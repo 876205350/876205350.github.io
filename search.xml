@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[git基础命令]]></title>
+    <url>%2F2019%2F06%2F14%2Farticle-git%2F</url>
+    <content type="text"><![CDATA[重新总结一下git的命令和个人理解 ##安装jitWindows上安装git可以从git官网下载安装，一直默认即可。在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）安装完成后进行配置，命令行输入:12git config --global user.name "Your Name"git config --global user.email "email@example.com" 因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。 ###说一下git clonegit clone支持https和git（即ssh）两种方式下载源码: 当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:介绍一下如何配置git的ssh key 首先检查一下刚刚的用户名邮箱:1git config --global --list 然后执行以下命令生成秘钥:1ssh-keygen -t rsa -C "你的邮箱" 点击回车需要几步操作:1.确认秘钥的保存路径（如果不需要改路径则直接回车）；2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；3.创建密码（如果不需要密码则直接回车）；4.确认密码；在指定路径下会有id_rsa和id_rsa.pub两个文件打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：尝试用git方式下载，可以看到已经可以正常下载:]]></content>
+      <categories>
+        <category>Testing</category>
+      </categories>
+      <tags>
+        <tag>Testing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win10 (1709版本) 电源选项设置控制风扇转动]]></title>
+    <url>%2F2018%2F02%2F08%2Fwin10%2F</url>
+    <content type="text"><![CDATA[最新版win10 :电源选项里面没有节能和性能模式怎么办？ 首先找到控制面板（两种方法）：第一种： 第二种： 点击电源选项 到如下页面 你可能会发现只有平衡没有节能,点击左侧创建电源计划,然后如图操作修改计划名称和上面选择的对应就好了 选择节能点击更改计划,然后点击更改高级电源设置（c） 找到如图红色框部分全部改为被动然后就完工了。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo标签显示]]></title>
+    <url>%2F2017%2F08%2F30%2Farticle-two%2F</url>
+    <content type="text"><![CDATA[Next主题标签和分类显示 #晚上闲着无聊就想着写一下博客总结一下 用命令 :hexo new 文章名字;新建的文章如下1234567---title: article-twodate: 2017-08-30 20:37:32type: ""categories: tags: --- 下面说一下categories是分类 tags是标签有两种形式:1tages: [标签1,标签2,...标签n] 12345tags: - 标签1 - 标签2 ... - 标签n 说一下显示问题:标签显示的时候会有大中小三种，标签的大小是根据不同文章中使用相同标签的次数决定的次数最多的标签显示时字体大加粗。 如下面的图]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[laravle 中 validate.php 汉化]]></title>
+    <url>%2F2017%2F08%2F19%2Fnew-article%2F</url>
+    <content type="text"><![CDATA[错误提示汉化:1laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。 位于\resources\lang\en\validation.php里面的提示全是英文 与en同级创建文件夹zh将en文件夹里内容粘贴到zh 将zh文件夹下的validation.php内容替换123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100&lt;?phpreturn [ 'unique' =&gt; ':attribute 已存在', 'accepted' =&gt; ':attribute 是被接受的', 'active_url' =&gt; ':attribute 必须是一个合法的 URL', 'after' =&gt; ':attribute 必须是 :date 之后的一个日期', 'alpha' =&gt; ':attribute 必须全部由字母字符构成。', 'alpha_dash' =&gt; ':attribute 必须全部由字母、数字、中划线或下划线字符构成', 'alpha_num' =&gt; ':attribute 必须全部由字母和数字构成', 'array' =&gt; ':attribute 必须是个数组', 'before' =&gt; ':attribute 必须是 :date 之前的一个日期', 'between' =&gt; [ 'numeric' =&gt; ':attribute 必须在 :min 到 :max 之间', 'file' =&gt; ':attribute 必须在 :min 到 :max KB之间', 'string' =&gt; ':attribute 必须在 :min 到 :max 个字符之间', 'array' =&gt; ':attribute 必须在 :min 到 :max 项之间', ], 'boolean' =&gt; ':attribute 字符必须是 true 或 false', 'confirmed' =&gt; ':attribute 二次确认不匹配', 'date' =&gt; ':attribute 必须是一个合法的日期', 'date_format' =&gt; ':attribute 与给定的格式 :format 不符合', 'different' =&gt; ':attribute 必须不同于:other', 'digits' =&gt; ':attribute 必须是 :digits 位', 'digits_between' =&gt; ':attribute 必须在 :min and :max 位之间', 'email' =&gt; ':attribute 必须是一个合法的电子邮件地址。', 'filled' =&gt; ':attribute 的字段是必填的', 'exists' =&gt; '选定的 :attribute 是无效的', 'image' =&gt; ':attribute 必须是一个图片 (jpeg, png, bmp 或者 gif)', 'in' =&gt; '选定的 :attribute 是无效的', 'integer' =&gt; ':attribute 必须是个整数', 'ip' =&gt; ':attribute 必须是一个合法的 IP 地址。', 'max' =&gt; [ 'numeric' =&gt; ':attribute 的最大长度为 :max 位', 'file' =&gt; ':attribute 的最大为 :max', 'string' =&gt; ':attribute 的最大长度为 :max 字符', 'array' =&gt; ':attribute 的最大个数为 :max 个', ], 'mimes' =&gt; ':attribute 的文件类型必须是:values', 'min' =&gt; [ 'numeric' =&gt; ':attribute 的最小长度为 :min 位', 'string' =&gt; ':attribute 的最小长度为 :min 字符', 'file' =&gt; ':attribute 大小至少为:min KB', 'array' =&gt; ':attribute 至少有 :min 项', ], 'not_in' =&gt; '选定的 :attribute 是无效的', 'numeric' =&gt; ':attribute 必须是数字', 'regex' =&gt; ':attribute 格式是无效的', 'required' =&gt; ':attribute 字段必须填写', 'required_if' =&gt; ':attribute 字段是必须的当 :other 是 :value', 'required_with' =&gt; ':attribute 字段是必须的当 :values 是存在的', 'required_with_all' =&gt; ':attribute 字段是必须的当 :values 是存在的', 'required_without' =&gt; ':attribute 字段是必须的当 :values 是不存在的', 'required_without_all' =&gt; ':attribute 字段是必须的当 没有一个 :values 是存在的', 'same' =&gt; ':attribute 和 :other 必须匹配', 'size' =&gt; [ 'numeric' =&gt; ':attribute 必须是 :size 位', 'file' =&gt; ':attribute 必须是 :size KB', 'string' =&gt; ':attribute 必须是 :size 个字符', 'array' =&gt; ':attribute 必须包括 :size 项', ], 'string' =&gt; ':attribute 必须是字符串', 'unique' =&gt; ':attribute 已经采取.', 'uploaded' =&gt; ':attribute 上传失败', 'url' =&gt; ':attribute 无效的格式', 'timezone' =&gt; ':attribute 必须个有效的时区', /* |-------------------------------------------------------------------------- | Custom Validation Language Lines |-------------------------------------------------------------------------- | | Here you may specify custom validation messages for attributes using the | convention "attribute.rule" to name the lines. This makes it quick to | specify a specific custom language line for a given attribute rule. | */ 'custom' =&gt; [ 'attribute-name' =&gt; [ 'rule-name' =&gt; 'custom-message', ], ], /* |-------------------------------------------------------------------------- | Custom Validation Attributes |-------------------------------------------------------------------------- | | The following language lines are used to swap attribute place-holders | with something more reader friendly such as E-Mail Address instead | of "email". This simply helps us make messages a little cleaner. | */ 'attributes' =&gt; [ 'username' =&gt; '用户名', 'account' =&gt; '账号', 'captcha' =&gt; '验证码', 'mobile' =&gt; '手机号', 'password' =&gt; '密码', 'content' =&gt; '内容', 'identity' =&gt; '手机号/用户名', ],]; 最后一步打开config/app.php 文件 将其中 ‘locale’ =&gt; ‘en’,修改为’locale’ =&gt; ‘zh’, 即可]]></content>
+      <categories>
+        <category>laravel</category>
+      </categories>
+      <tags>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo总结]]></title>
+    <url>%2F2017%2F07%2F13%2Farticl-one%2F</url>
+    <content type="text"><![CDATA[之前布好的个人博客竟然出问题了，没办法又重新来了一遍同样的主题同样主题在此总结一下。 总体来说可以分为四步第一就是把需要安装的软件装好1.安装Node（作用）:用来生成静态页面然后用检查是否安装成功，按下Win和R，打开运行窗口：在新打开的窗口中输入cmd，敲击回车，打开命令行界面。输入:1node -v 显示版本信息说明安装成功 2.下载Git安装文件：安装完成同样我们来检查一下Git是不是安装正确了，打开命令行，输入：1git --version 显示版本信息说明安装成功 github账户的注册和配置打开Github官网，在下图的框中，分别输入自己的用户名，邮箱，密码一定要确认注册，否则无法使用gh-pages！ ##安装Hexo1.下载安装hexo1npm install hexo-cli -g 来试试安装成功没有，输入以下命令查看Hexo的版本信息：1hexo -v 如果出现类似内容说明安装成功啦！1234567891011hexo-cli: 1.0.3os: Windows_NT 10.0.14393 win32 x64http_parser: 2.7.0node: 6.10.2v8: 5.1.281.98uv: 1.9.1zlib: 1.2.11ares: 1.10.1-DEVicu: 58.2modules: 48openssl: 1.0.2k 文件夹里面新建Hexo1hexo init 我们在开始前先执行命令：1npm install 这条命令是用来安装依赖包的，具体安装内容可以在package.json文件里找到。安装好了之后会看到一大串的信息，这里就不贴出来了。现在我们可以看到blog目录下的文件结构是这样的：node_modules：是依赖包public：存放的是生成的页面scaffolds：命令生成文章等的模板source：用命令创建的各种文章themes：主题_config.yml：整个博客的配置db.json：source解析所得到的package.json：项目所需模块项目的配置信息 接下来就是看看主题样式了1hexo server 执行完以后会有：12INFO Start processingINFO Hexo is running at http://localhost:4000/. Press Ctrl+C to stop. 然后输入在页面地址栏输入：localhost:4000 ##接下来就是上传到github用编辑器打开你的项目，修改_config.yml文件的一些配置(冒号之后都是有一个半角空格的)：1234deploy: type: git repo: https://github.com/YourgithubName/YourgithubName.github.io.git branch: master 执行安装命令：1npm install hexo-deployer-git --save 之后执行上传到github的命令：123hexo cleanhexo generatehexo deploy 这次的总结就写到这里吧!!!]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F01%2F22%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[我的美丽女神—-铭铭 蓝桥运营服务部女神 信工男神 高个子副主席 帅帅的主席 猥琐的男神经张Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>Testing</category>
+      </categories>
+      <tags>
+        <tag>Testing</tag>
+      </tags>
+  </entry>
+</search>
