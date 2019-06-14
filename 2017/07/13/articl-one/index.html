@@ -119,7 +119,10 @@
 <meta property="og:site_name" content="Like programming">
 <meta property="og:description" content="之前布好的个人博客竟然出问题了，没办法又重新来了一遍同样的主题同样主题在此总结一下。">
 <meta property="og:image" content="http://yoursite.com/uploads/one.jpg">
-<meta property="og:updated_time" content="2019-06-14T09:35:30.488Z">
+<meta property="og:image" content="http://yoursite.com/uploads/hexo1.jpg">
+<meta property="og:image" content="http://yoursite.com/uploads/hexo2.jpg">
+<meta property="og:image" content="http://yoursite.com/uploads/hexo3.jpg">
+<meta property="og:updated_time" content="2019-06-14T17:07:43.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo总结">
 <meta name="twitter:description" content="之前布好的个人博客竟然出问题了，没办法又重新来了一遍同样的主题同样主题在此总结一下。">
@@ -425,6 +428,9 @@
 <p>执行安装命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <p>之后执行上传到github的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
 <p>这次的总结就写到这里吧!!!</p>
+<p>##2019年重新使用Hexo<br>创建编辑完文章（报错）<br>原因:<br>1文章图片文件夹内含有一个视频文件（500MB）;<br>执行过Hexo hexo generate 然后执行hexo deploy报错原因大概是上传内容超过100MB.<br>2.我将视频删除重新执行hexo generate -d依然报错（我确定不是Git,Hexo问题）<br>解决:<br>把hexo下面的.deploy_git手动删除然后输入Hexo clean;<br>重新执行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>之后执行上传到github的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+<p>问题解决<br><img src="/uploads/hexo1.jpg" alt="如图"><br><img src="/uploads/hexo2.jpg" alt="如图"><br><img src="/uploads/hexo3.jpg" alt="如图"></p>
 
       
     </div>
