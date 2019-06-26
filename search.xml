@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[第一次面试总结]]></title>
+    <url>%2F2019%2F06%2F26%2Finterview%2F</url>
+    <content type="text"><![CDATA[今天面了第一家公司，去了以后填写了申请报表人事看到工作经历没有问了我一句，感觉没什么希望了。公司名称:建培教育简介:小型，培训教育类 1.讲一下tp3.2中的查询方法如何实现的。2.讲一下你对MVC的理解。3.php中的接口和抽象类的区别。4.CSS中的四种定位。人事打断后问了一下之前做过哪些项目，然后就说公司要招一些有工作经验的人。]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[git基础命令]]></title>
     <url>%2F2019%2F06%2F14%2Farticle-git%2F</url>
     <content type="text"><![CDATA[重新总结一下git的命令和个人理解 ##安装jitWindows上安装git可以从git官网下载安装，一直默认即可。在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）安装完成后进行配置，命令行输入:12git config --global user.name "Your Name"git config --global user.email "email@example.com" 因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。 ###说一下git clonegit clone支持https和git（即ssh）两种方式下载源码: 当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:介绍一下如何配置git的ssh key 首先检查一下刚刚的用户名邮箱:1git config --global --list 然后执行以下命令生成秘钥:1ssh-keygen -t rsa -C "你的邮箱" 点击回车需要几步操作:1.确认秘钥的保存路径（如果不需要改路径则直接回车）；2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；3.创建密码（如果不需要密码则直接回车）；4.确认密码；在指定路径下会有id_rsa和id_rsa.pub两个文件打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：尝试用git方式下载，可以看到已经可以正常下载:]]></content>
@@ -19,7 +30,7 @@
   <entry>
     <title><![CDATA[Hexo标签显示]]></title>
     <url>%2F2017%2F08%2F30%2Farticle-two%2F</url>
-    <content type="text"><![CDATA[Next主题标签和分类显示 #晚上闲着无聊就想着写一下博客总结一下 用命令 :hexo new 文章名字;新建的文章如下1234567---title: article-twodate: 2017-08-30 20:37:32type: ""categories: tags: --- 下面说一下categories是分类 tags是标签有两种形式:1tages: [标签1,标签2,...标签n] 12345tags: - 标签1 - 标签2 ... - 标签n 说一下显示问题:标签显示的时候会有大中小三种，标签的大小是根据不同文章中使用相同标签的次数决定的次数最多的标签显示时字体大加粗。 如下面的图]]></content>
+    <content type="text"><![CDATA[Next主题标签和分类显示 用命令 :hexo new 文章名字;新建的文章如下1234567---title: article-twodate: 2017-08-30 20:37:32type: ""categories: tags: --- 下面说一下categories是分类 tags是标签有两种形式:1tages: [标签1,标签2,...标签n] 12345tags: - 标签1 - 标签2 ... - 标签n 说一下显示问题:标签显示的时候会有大中小三种，标签的大小是根据不同文章中使用相同标签的次数决定的次数最多的标签显示时字体大加粗。 如下面的图]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
