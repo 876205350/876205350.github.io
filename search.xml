@@ -36,7 +36,7 @@
   <entry>
     <title><![CDATA[mysql数据库忘记密码]]></title>
     <url>%2F2017%2F05%2F01%2Fmysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%2F</url>
-    <content type="text"><![CDATA[11. 开始 --&gt;cmd--&gt; net stop mysql (停用MySQL服务 没启动的可以省略) 找到安装路径 MySQL Server 5.1下的my.ini 打开 my.ini 找到 [mysqld] 然后在下面加上 这句： skip_grant_tables （意思好像是启动MySQL服务的时候跳过权限表认证 ） 然后就启动数据库修改密码了 1 开始 --&gt; cmd --&gt; netstart mysql (启动MySQL服务)---&gt; mysql 回车 ( 如果成功，将出现MySQL提示符) 输入use mysql; （连接权限数据库）。 改密码： 1update user set password=password("要修改的密码")where user="root";（别忘了最后加分号）。 修改失败的话用下面的sql语句 注意5.7以上版本的 ：1updateuser setauthentication_string=password('要修改的密码') where user='root' ; 刷新权限（必须步骤）：flush privileges; 。 退出 quit。 将第3 步的 my.ini里的 skip_grant_tables 去掉（启动MySQL服务的时候不能让他跳过权限表认证 ） 重启MySQL ，再进入，使用用户名root和刚才设置的新密码就可以登录了。]]></content>
+    <content type="text"><![CDATA[数据库忘记密码 11. 开始 --&gt;cmd--&gt; net stop mysql (停用MySQL服务 没启动的可以省略) 找到安装路径 MySQL Server 5.1下的my.ini 打开 my.ini 找到 [mysqld] 然后在下面加上 这句： skip_grant_tables （意思好像是启动MySQL服务的时候跳过权限表认证 ） 然后就启动数据库修改密码了 1 开始 --&gt; cmd --&gt; netstart mysql (启动MySQL服务)---&gt; mysql 回车 ( 如果成功，将出现MySQL提示符) 输入use mysql; （连接权限数据库）。 改密码： 1update user set password=password("要修改的密码")where user="root";（别忘了最后加分号）。 修改失败的话用下面的sql语句 注意5.7以上版本的 ：1updateuser setauthentication_string=password('要修改的密码') where user='root' ; 刷新权限（必须步骤）：flush privileges; 。 退出 quit。 将第3 步的 my.ini里的 skip_grant_tables 去掉（启动MySQL服务的时候不能让他跳过权限表认证 ） 重启MySQL ，再进入，使用用户名root和刚才设置的新密码就可以登录了。]]></content>
       <categories>
         <category>mysql</category>
       </categories>
