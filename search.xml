@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[面试总结]]></title>
+    <title><![CDATA[总结]]></title>
     <url>%2F2019%2F06%2F26%2Finterview%2F</url>
-    <content type="text"><![CDATA[面试总结 第一次面试今天面了第一家公司，去了以后填写了申请报表人事看到工作经历没有问了我一句，感觉没什么希望了。公司名称:建培教育简介:小型，培训教育类 1.讲一下tp3.2中的查询方法如何实现的。2.讲一下你对MVC的理解。3.php中的接口和抽象类的区别。4.CSS中的四种定位。人事打断后问了一下之前做过哪些项目，然后就说公司要招一些有工作经验的人。 第二次面试公司名称:北京速通网电子商务有限公司简介: 企业年轻人较多有活力 一面:人力资源主管1.一个团队中什么最重要2.你的优势是什么3.你有什么想了解的二面:技术面1.简单做一下自我介绍2.在学校参加过哪些课外活动3.聊了一下简历上的项目4.说出你用过的PHP中操作数组的函数5.如何截取一个字符串，获取字符串的长度6.Linux下搭建环境，基本命令会吗7.项目中有用到redis吗8.数据库中数据量过大如何优化查询语句9.get和post的区别大概问了这些问题感觉自己基础薄弱！明明知道面上的希望不大但还是主动问了人力资源主管面试结果，他说和团队不匹配，并不是技术问题。]]></content>
+    <content type="text"><![CDATA[总结 第一次面试今天面了第一家公司，去了以后填写了申请报表人事看到工作经历没有问了我一句，感觉没什么希望了。公司名称:建培教育简介:小型，培训教育类 1.讲一下tp3.2中的查询方法如何实现的。2.讲一下你对MVC的理解。3.php中的接口和抽象类的区别。4.CSS中的四种定位。人事打断后问了一下之前做过哪些项目，然后就说公司要招一些有工作经验的人。 第二次面试公司名称:北京速通网电子商务有限公司简介: 企业年轻人较多有活力 一面:人力资源主管1.一个团队中什么最重要2.你的优势是什么3.你有什么想了解的二面:技术面1.简单做一下自我介绍2.在学校参加过哪些课外活动3.聊了一下简历上的项目4.说出你用过的PHP中操作数组的函数5.如何截取一个字符串，获取字符串的长度6.Linux下搭建环境，基本命令会吗7.项目中有用到redis吗8.数据库中数据量过大如何优化查询语句9.get和post的区别大概问了这些问题感觉自己基础薄弱！明明知道面上的希望不大但还是主动问了人力资源主管面试结果，他说和团队不匹配，并不是技术问题。]]></content>
       <categories>
         <category>面试</category>
       </categories>
@@ -13,7 +13,7 @@
   </entry>
   <entry>
     <title><![CDATA[git基础命令]]></title>
-    <url>%2F2019%2F06%2F14%2Farticle-git%2F</url>
+    <url>%2F2018%2F06%2F14%2Farticle-git%2F</url>
     <content type="text"><![CDATA[重新总结一下git的命令和个人理解 ##安装jitWindows上安装git可以从git官网下载安装，一直默认即可。在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）安装完成后进行配置，命令行输入:12git config --global user.name "Your Name"git config --global user.email "email@example.com" 因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。 ###说一下git clonegit clone支持https和git（即ssh）两种方式下载源码: 当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:介绍一下如何配置git的ssh key 首先检查一下刚刚的用户名邮箱:1git config --global --list 然后执行以下命令生成秘钥:1ssh-keygen -t rsa -C "你的邮箱" 点击回车需要几步操作:1.确认秘钥的保存路径（如果不需要改路径则直接回车）；2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；3.创建密码（如果不需要密码则直接回车）；4.确认密码；在指定路径下会有id_rsa和id_rsa.pub两个文件打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：尝试用git方式下载，可以看到已经可以正常下载:]]></content>
       <categories>
         <category>Testing</category>
@@ -23,13 +23,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[win10 (1709版本) 电源选项设置控制风扇转动]]></title>
-    <url>%2F2018%2F02%2F08%2Fwin10%2F</url>
-    <content type="text"><![CDATA[最新版win10 :电源选项里面没有节能和性能模式怎么办？ 首先找到控制面板（两种方法）：第一种： 第二种： 点击电源选项 到如下页面 你可能会发现只有平衡没有节能,点击左侧创建电源计划,然后如图操作修改计划名称和上面选择的对应就好了 选择节能点击更改计划,然后点击更改高级电源设置（c） 找到如图红色框部分全部改为被动然后就完工了。]]></content>
+    <title><![CDATA[laravle 中 validate.php 汉化]]></title>
+    <url>%2F2017%2F08%2F30%2Fnew-article%2F</url>
+    <content type="text"><![CDATA[错误提示汉化:1laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。 位于\resources\lang\en\validation.php里面的提示全是英文 与en同级创建文件夹zh将en文件夹里内容粘贴到zh 将zh文件夹下的validation.php内容替换123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100&lt;?phpreturn [ 'unique' =&gt; ':attribute 已存在', 'accepted' =&gt; ':attribute 是被接受的', 'active_url' =&gt; ':attribute 必须是一个合法的 URL', 'after' =&gt; ':attribute 必须是 :date 之后的一个日期', 'alpha' =&gt; ':attribute 必须全部由字母字符构成。', 'alpha_dash' =&gt; ':attribute 必须全部由字母、数字、中划线或下划线字符构成', 'alpha_num' =&gt; ':attribute 必须全部由字母和数字构成', 'array' =&gt; ':attribute 必须是个数组', 'before' =&gt; ':attribute 必须是 :date 之前的一个日期', 'between' =&gt; [ 'numeric' =&gt; ':attribute 必须在 :min 到 :max 之间', 'file' =&gt; ':attribute 必须在 :min 到 :max KB之间', 'string' =&gt; ':attribute 必须在 :min 到 :max 个字符之间', 'array' =&gt; ':attribute 必须在 :min 到 :max 项之间', ], 'boolean' =&gt; ':attribute 字符必须是 true 或 false', 'confirmed' =&gt; ':attribute 二次确认不匹配', 'date' =&gt; ':attribute 必须是一个合法的日期', 'date_format' =&gt; ':attribute 与给定的格式 :format 不符合', 'different' =&gt; ':attribute 必须不同于:other', 'digits' =&gt; ':attribute 必须是 :digits 位', 'digits_between' =&gt; ':attribute 必须在 :min and :max 位之间', 'email' =&gt; ':attribute 必须是一个合法的电子邮件地址。', 'filled' =&gt; ':attribute 的字段是必填的', 'exists' =&gt; '选定的 :attribute 是无效的', 'image' =&gt; ':attribute 必须是一个图片 (jpeg, png, bmp 或者 gif)', 'in' =&gt; '选定的 :attribute 是无效的', 'integer' =&gt; ':attribute 必须是个整数', 'ip' =&gt; ':attribute 必须是一个合法的 IP 地址。', 'max' =&gt; [ 'numeric' =&gt; ':attribute 的最大长度为 :max 位', 'file' =&gt; ':attribute 的最大为 :max', 'string' =&gt; ':attribute 的最大长度为 :max 字符', 'array' =&gt; ':attribute 的最大个数为 :max 个', ], 'mimes' =&gt; ':attribute 的文件类型必须是:values', 'min' =&gt; [ 'numeric' =&gt; ':attribute 的最小长度为 :min 位', 'string' =&gt; ':attribute 的最小长度为 :min 字符', 'file' =&gt; ':attribute 大小至少为:min KB', 'array' =&gt; ':attribute 至少有 :min 项', ], 'not_in' =&gt; '选定的 :attribute 是无效的', 'numeric' =&gt; ':attribute 必须是数字', 'regex' =&gt; ':attribute 格式是无效的', 'required' =&gt; ':attribute 字段必须填写', 'required_if' =&gt; ':attribute 字段是必须的当 :other 是 :value', 'required_with' =&gt; ':attribute 字段是必须的当 :values 是存在的', 'required_with_all' =&gt; ':attribute 字段是必须的当 :values 是存在的', 'required_without' =&gt; ':attribute 字段是必须的当 :values 是不存在的', 'required_without_all' =&gt; ':attribute 字段是必须的当 没有一个 :values 是存在的', 'same' =&gt; ':attribute 和 :other 必须匹配', 'size' =&gt; [ 'numeric' =&gt; ':attribute 必须是 :size 位', 'file' =&gt; ':attribute 必须是 :size KB', 'string' =&gt; ':attribute 必须是 :size 个字符', 'array' =&gt; ':attribute 必须包括 :size 项', ], 'string' =&gt; ':attribute 必须是字符串', 'unique' =&gt; ':attribute 已经采取.', 'uploaded' =&gt; ':attribute 上传失败', 'url' =&gt; ':attribute 无效的格式', 'timezone' =&gt; ':attribute 必须个有效的时区', /* |-------------------------------------------------------------------------- | Custom Validation Language Lines |-------------------------------------------------------------------------- | | Here you may specify custom validation messages for attributes using the | convention "attribute.rule" to name the lines. This makes it quick to | specify a specific custom language line for a given attribute rule. | */ 'custom' =&gt; [ 'attribute-name' =&gt; [ 'rule-name' =&gt; 'custom-message', ], ], /* |-------------------------------------------------------------------------- | Custom Validation Attributes |-------------------------------------------------------------------------- | | The following language lines are used to swap attribute place-holders | with something more reader friendly such as E-Mail Address instead | of "email". This simply helps us make messages a little cleaner. | */ 'attributes' =&gt; [ 'username' =&gt; '用户名', 'account' =&gt; '账号', 'captcha' =&gt; '验证码', 'mobile' =&gt; '手机号', 'password' =&gt; '密码', 'content' =&gt; '内容', 'identity' =&gt; '手机号/用户名', ],]; 最后一步打开config/app.php 文件 将其中 ‘locale’ =&gt; ‘en’,修改为’locale’ =&gt; ‘zh’, 即可]]></content>
+      <categories>
+        <category>laravel</category>
+      </categories>
+      <tags>
+        <tag>Laravel</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hexo标签显示]]></title>
-    <url>%2F2017%2F08%2F30%2Farticle-two%2F</url>
+    <url>%2F2017%2F08%2F20%2Farticle-two%2F</url>
     <content type="text"><![CDATA[Next主题标签和分类显示 用命令 :hexo new 文章名字;新建的文章如下1234567---title: article-twodate: 2017-08-30 20:37:32type: ""categories: tags: --- 下面说一下categories是分类 tags是标签有两种形式:1tages: [标签1,标签2,...标签n] 12345tags: - 标签1 - 标签2 ... - 标签n 说一下显示问题:标签显示的时候会有大中小三种，标签的大小是根据不同文章中使用相同标签的次数决定的次数最多的标签显示时字体大加粗。 如下面的图]]></content>
       <categories>
         <category>Hexo</category>
@@ -39,15 +45,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[laravle 中 validate.php 汉化]]></title>
-    <url>%2F2017%2F08%2F19%2Fnew-article%2F</url>
-    <content type="text"><![CDATA[错误提示汉化:1laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。 位于\resources\lang\en\validation.php里面的提示全是英文 与en同级创建文件夹zh将en文件夹里内容粘贴到zh 将zh文件夹下的validation.php内容替换123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100&lt;?phpreturn [ 'unique' =&gt; ':attribute 已存在', 'accepted' =&gt; ':attribute 是被接受的', 'active_url' =&gt; ':attribute 必须是一个合法的 URL', 'after' =&gt; ':attribute 必须是 :date 之后的一个日期', 'alpha' =&gt; ':attribute 必须全部由字母字符构成。', 'alpha_dash' =&gt; ':attribute 必须全部由字母、数字、中划线或下划线字符构成', 'alpha_num' =&gt; ':attribute 必须全部由字母和数字构成', 'array' =&gt; ':attribute 必须是个数组', 'before' =&gt; ':attribute 必须是 :date 之前的一个日期', 'between' =&gt; [ 'numeric' =&gt; ':attribute 必须在 :min 到 :max 之间', 'file' =&gt; ':attribute 必须在 :min 到 :max KB之间', 'string' =&gt; ':attribute 必须在 :min 到 :max 个字符之间', 'array' =&gt; ':attribute 必须在 :min 到 :max 项之间', ], 'boolean' =&gt; ':attribute 字符必须是 true 或 false', 'confirmed' =&gt; ':attribute 二次确认不匹配', 'date' =&gt; ':attribute 必须是一个合法的日期', 'date_format' =&gt; ':attribute 与给定的格式 :format 不符合', 'different' =&gt; ':attribute 必须不同于:other', 'digits' =&gt; ':attribute 必须是 :digits 位', 'digits_between' =&gt; ':attribute 必须在 :min and :max 位之间', 'email' =&gt; ':attribute 必须是一个合法的电子邮件地址。', 'filled' =&gt; ':attribute 的字段是必填的', 'exists' =&gt; '选定的 :attribute 是无效的', 'image' =&gt; ':attribute 必须是一个图片 (jpeg, png, bmp 或者 gif)', 'in' =&gt; '选定的 :attribute 是无效的', 'integer' =&gt; ':attribute 必须是个整数', 'ip' =&gt; ':attribute 必须是一个合法的 IP 地址。', 'max' =&gt; [ 'numeric' =&gt; ':attribute 的最大长度为 :max 位', 'file' =&gt; ':attribute 的最大为 :max', 'string' =&gt; ':attribute 的最大长度为 :max 字符', 'array' =&gt; ':attribute 的最大个数为 :max 个', ], 'mimes' =&gt; ':attribute 的文件类型必须是:values', 'min' =&gt; [ 'numeric' =&gt; ':attribute 的最小长度为 :min 位', 'string' =&gt; ':attribute 的最小长度为 :min 字符', 'file' =&gt; ':attribute 大小至少为:min KB', 'array' =&gt; ':attribute 至少有 :min 项', ], 'not_in' =&gt; '选定的 :attribute 是无效的', 'numeric' =&gt; ':attribute 必须是数字', 'regex' =&gt; ':attribute 格式是无效的', 'required' =&gt; ':attribute 字段必须填写', 'required_if' =&gt; ':attribute 字段是必须的当 :other 是 :value', 'required_with' =&gt; ':attribute 字段是必须的当 :values 是存在的', 'required_with_all' =&gt; ':attribute 字段是必须的当 :values 是存在的', 'required_without' =&gt; ':attribute 字段是必须的当 :values 是不存在的', 'required_without_all' =&gt; ':attribute 字段是必须的当 没有一个 :values 是存在的', 'same' =&gt; ':attribute 和 :other 必须匹配', 'size' =&gt; [ 'numeric' =&gt; ':attribute 必须是 :size 位', 'file' =&gt; ':attribute 必须是 :size KB', 'string' =&gt; ':attribute 必须是 :size 个字符', 'array' =&gt; ':attribute 必须包括 :size 项', ], 'string' =&gt; ':attribute 必须是字符串', 'unique' =&gt; ':attribute 已经采取.', 'uploaded' =&gt; ':attribute 上传失败', 'url' =&gt; ':attribute 无效的格式', 'timezone' =&gt; ':attribute 必须个有效的时区', /* |-------------------------------------------------------------------------- | Custom Validation Language Lines |-------------------------------------------------------------------------- | | Here you may specify custom validation messages for attributes using the | convention "attribute.rule" to name the lines. This makes it quick to | specify a specific custom language line for a given attribute rule. | */ 'custom' =&gt; [ 'attribute-name' =&gt; [ 'rule-name' =&gt; 'custom-message', ], ], /* |-------------------------------------------------------------------------- | Custom Validation Attributes |-------------------------------------------------------------------------- | | The following language lines are used to swap attribute place-holders | with something more reader friendly such as E-Mail Address instead | of "email". This simply helps us make messages a little cleaner. | */ 'attributes' =&gt; [ 'username' =&gt; '用户名', 'account' =&gt; '账号', 'captcha' =&gt; '验证码', 'mobile' =&gt; '手机号', 'password' =&gt; '密码', 'content' =&gt; '内容', 'identity' =&gt; '手机号/用户名', ],]; 最后一步打开config/app.php 文件 将其中 ‘locale’ =&gt; ‘en’,修改为’locale’ =&gt; ‘zh’, 即可]]></content>
-      <categories>
-        <category>laravel</category>
-      </categories>
-      <tags>
-        <tag>Laravel</tag>
-      </tags>
+    <title><![CDATA[win10电源选项设置控制风扇转动]]></title>
+    <url>%2F2017%2F08%2F10%2Fwin10%2F</url>
+    <content type="text"><![CDATA[最新版win10 :电源选项里面没有节能和性能模式怎么办？ 首先找到控制面板（两种方法）：第一种： 第二种： 点击电源选项 到如下页面 你可能会发现只有平衡没有节能,点击左侧创建电源计划,然后如图操作修改计划名称和上面选择的对应就好了 选择节能点击更改计划,然后点击更改高级电源设置（c） 找到如图红色框部分全部改为被动然后就完工了。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hexo总结]]></title>

@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Testing," />
+  <meta name="keywords" content="Laravel," />
 
 
 
@@ -111,26 +111,21 @@
 
 
 
-<meta name="description" content="重新总结一下git的命令和个人理解">
-<meta name="keywords" content="Testing">
+<meta name="description" content="错误提示汉化:1laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。">
+<meta name="keywords" content="Laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git基础命令">
-<meta property="og:url" content="http://yoursite.com/2019/06/14/article-git/index.html">
+<meta property="og:title" content="laravle 中 validate.php 汉化">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/new-article/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="重新总结一下git的命令和个人理解">
-<meta property="og:image" content="http://yoursite.com/uploads/git.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git1.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git2.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git3.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git4.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git5.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git6.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git7.png">
-<meta property="og:updated_time" content="2019-06-14T10:30:42.095Z">
+<meta property="og:description" content="错误提示汉化:1laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。">
+<meta property="og:image" content="http://yoursite.com/uploads/20170805133548878.png">
+<meta property="og:image" content="http://yoursite.com/uploads/20170805133934965.png">
+<meta property="og:image" content="http://yoursite.com/uploads/20170820.png">
+<meta property="og:updated_time" content="2019-07-31T04:24:48.143Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git基础命令">
-<meta name="twitter:description" content="重新总结一下git的命令和个人理解">
-<meta name="twitter:image" content="http://yoursite.com/uploads/git.png">
+<meta name="twitter:title" content="laravle 中 validate.php 汉化">
+<meta name="twitter:description" content="错误提示汉化:1laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/20170805133548878.png">
 
 
 
@@ -158,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/14/article-git/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/30/new-article/"/>
 
 
 
 
 
-  <title>git基础命令 | Like programming</title>
+  <title>laravle 中 validate.php 汉化 | Like programming</title>
   
 
 
@@ -327,7 +322,7 @@
   
 
   <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/14/article-git/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/new-article/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="我有一个梦想">
@@ -344,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git基础命令</h1>
+          <h1 class="post-title" itemprop="name headline">laravle 中 validate.php 汉化</h1>
         
 
         <div class="post-meta">
@@ -356,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-14T17:27:54+08:00">
-                2019-06-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T11:56:34+08:00">
+                2017-08-30
               </time>
             
 
@@ -379,8 +374,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Testing/" itemprop="url" rel="index">
-                    <span itemprop="name">Testing</span>
+                  <a href="/categories/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
                   </a>
                 </span>
 
@@ -413,15 +408,12 @@
       
 
       
-        <p>重新总结一下git的命令和个人理解<br><a id="more"></a></p>
-<p>##安装jit<br>Windows上安装git<br>可以从git官网下载安装，一直默认即可。<br>在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）<br><img src="/uploads/git.png" alt="如图"><br>安装完成后进行配置，命令行输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Your Name"</span></div><div class="line">git config --global user.email <span class="string">"email@example.com"</span></div></pre></td></tr></table></figure></p>
-<p>因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。</p>
-<p>###说一下git clone<br>git clone支持https和git（即ssh）两种方式下载源码:</p>
-<p>当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:<br><img src="/uploads/git1.png" alt="如图"><br>介绍一下如何配置git的ssh key</p>
-<p>首先检查一下刚刚的用户名邮箱:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global  --list</div></pre></td></tr></table></figure></p>
-<p><img src="/uploads/git2.png" alt="如图"></p>
-<p>然后执行以下命令生成秘钥:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"你的邮箱"</span></div></pre></td></tr></table></figure></p>
-<p>点击回车需要几步操作:<br>1.确认秘钥的保存路径（如果不需要改路径则直接回车）；<br>2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；<br>3.创建密码（如果不需要密码则直接回车）；<br>4.确认密码；<br><img src="/uploads/git3.png" alt="如图"><br>在指定路径下会有id_rsa和id_rsa.pub两个文件<br><img src="/uploads/git4.png" alt="如图"><br>打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key<br><img src="/uploads/git5.png" alt="如图"><br>然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：<br><img src="/uploads/git6.png" alt="如图"><br>尝试用git方式下载，可以看到已经可以正常下载:<br><img src="/uploads/git7.png" alt="如图"></p>
+        <h2 id="错误提示汉化"><a href="#错误提示汉化" class="headerlink" title="错误提示汉化:"></a>错误提示汉化:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">laravel 的验证机制很好用，但是默认提示文本是英文，相信很多小伙伴很苦恼吧。</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="位于-resources-lang-en-validation-php里面的提示全是英文"><a href="#位于-resources-lang-en-validation-php里面的提示全是英文" class="headerlink" title="位于\resources\lang\en\validation.php里面的提示全是英文"></a>位于\resources\lang\en\validation.php里面的提示全是英文</h2><p><img src="/uploads/20170805133548878.png" class="full-image"></p>
+<h2 id="与en同级创建文件夹zh将en文件夹里内容粘贴到zh"><a href="#与en同级创建文件夹zh将en文件夹里内容粘贴到zh" class="headerlink" title="与en同级创建文件夹zh将en文件夹里内容粘贴到zh"></a>与en同级创建文件夹zh将en文件夹里内容粘贴到zh</h2><p><img src="/uploads/20170805133934965.png" alt="如图"></p>
+<h2 id="将zh文件夹下的validation-php内容替换"><a href="#将zh文件夹下的validation-php内容替换" class="headerlink" title="将zh文件夹下的validation.php内容替换"></a>将zh文件夹下的validation.php内容替换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"><span class="built_in">return</span> [</div><div class="line">    <span class="string">'unique'</span>               =&gt; <span class="string">':attribute 已存在'</span>,</div><div class="line">    <span class="string">'accepted'</span>             =&gt; <span class="string">':attribute 是被接受的'</span>,</div><div class="line">    <span class="string">'active_url'</span>           =&gt; <span class="string">':attribute 必须是一个合法的 URL'</span>,</div><div class="line">    <span class="string">'after'</span>                =&gt; <span class="string">':attribute 必须是 :date 之后的一个日期'</span>,</div><div class="line">    <span class="string">'alpha'</span>                =&gt; <span class="string">':attribute 必须全部由字母字符构成。'</span>,</div><div class="line">    <span class="string">'alpha_dash'</span>           =&gt; <span class="string">':attribute 必须全部由字母、数字、中划线或下划线字符构成'</span>,</div><div class="line">    <span class="string">'alpha_num'</span>            =&gt; <span class="string">':attribute 必须全部由字母和数字构成'</span>,</div><div class="line">    <span class="string">'array'</span>                =&gt; <span class="string">':attribute 必须是个数组'</span>,</div><div class="line">    <span class="string">'before'</span>               =&gt; <span class="string">':attribute 必须是 :date 之前的一个日期'</span>,</div><div class="line">    <span class="string">'between'</span>              =&gt; [</div><div class="line">        <span class="string">'numeric'</span> =&gt; <span class="string">':attribute 必须在 :min 到 :max 之间'</span>,</div><div class="line">        <span class="string">'file'</span>    =&gt; <span class="string">':attribute 必须在 :min 到 :max KB之间'</span>,</div><div class="line">        <span class="string">'string'</span>  =&gt; <span class="string">':attribute 必须在 :min 到 :max 个字符之间'</span>,</div><div class="line">        <span class="string">'array'</span>   =&gt; <span class="string">':attribute 必须在 :min 到 :max 项之间'</span>,</div><div class="line">    ],</div><div class="line">    <span class="string">'boolean'</span>              =&gt; <span class="string">':attribute 字符必须是 true 或 false'</span>,</div><div class="line">    <span class="string">'confirmed'</span>            =&gt; <span class="string">':attribute 二次确认不匹配'</span>,</div><div class="line">    <span class="string">'date'</span>                 =&gt; <span class="string">':attribute 必须是一个合法的日期'</span>,</div><div class="line">    <span class="string">'date_format'</span>          =&gt; <span class="string">':attribute 与给定的格式 :format 不符合'</span>,</div><div class="line">    <span class="string">'different'</span>            =&gt; <span class="string">':attribute 必须不同于:other'</span>,</div><div class="line">    <span class="string">'digits'</span>               =&gt; <span class="string">':attribute 必须是 :digits 位'</span>,</div><div class="line">    <span class="string">'digits_between'</span>       =&gt; <span class="string">':attribute 必须在 :min and :max 位之间'</span>,</div><div class="line">    <span class="string">'email'</span>                =&gt; <span class="string">':attribute 必须是一个合法的电子邮件地址。'</span>,</div><div class="line">    <span class="string">'filled'</span>               =&gt; <span class="string">':attribute 的字段是必填的'</span>,</div><div class="line">    <span class="string">'exists'</span>               =&gt; <span class="string">'选定的 :attribute 是无效的'</span>,</div><div class="line">    <span class="string">'image'</span>                =&gt; <span class="string">':attribute 必须是一个图片 (jpeg, png, bmp 或者 gif)'</span>,</div><div class="line">    <span class="string">'in'</span>                   =&gt; <span class="string">'选定的 :attribute 是无效的'</span>,</div><div class="line">    <span class="string">'integer'</span>              =&gt; <span class="string">':attribute 必须是个整数'</span>,</div><div class="line">    <span class="string">'ip'</span>                   =&gt; <span class="string">':attribute 必须是一个合法的 IP 地址。'</span>,</div><div class="line">    <span class="string">'max'</span>                  =&gt; [</div><div class="line">        <span class="string">'numeric'</span> =&gt; <span class="string">':attribute 的最大长度为 :max 位'</span>,</div><div class="line">        <span class="string">'file'</span>    =&gt; <span class="string">':attribute 的最大为 :max'</span>,</div><div class="line">        <span class="string">'string'</span>  =&gt; <span class="string">':attribute 的最大长度为 :max 字符'</span>,</div><div class="line">        <span class="string">'array'</span>   =&gt; <span class="string">':attribute 的最大个数为 :max 个'</span>,</div><div class="line">    ],</div><div class="line">    <span class="string">'mimes'</span>                =&gt; <span class="string">':attribute 的文件类型必须是:values'</span>,</div><div class="line">    <span class="string">'min'</span>                  =&gt; [</div><div class="line">        <span class="string">'numeric'</span> =&gt; <span class="string">':attribute 的最小长度为 :min 位'</span>,</div><div class="line">        <span class="string">'string'</span>  =&gt; <span class="string">':attribute 的最小长度为 :min 字符'</span>,</div><div class="line">        <span class="string">'file'</span>    =&gt; <span class="string">':attribute 大小至少为:min KB'</span>,</div><div class="line">        <span class="string">'array'</span>   =&gt; <span class="string">':attribute 至少有 :min 项'</span>,</div><div class="line">    ],</div><div class="line">    <span class="string">'not_in'</span>               =&gt; <span class="string">'选定的 :attribute 是无效的'</span>,</div><div class="line">    <span class="string">'numeric'</span>              =&gt; <span class="string">':attribute 必须是数字'</span>,</div><div class="line">    <span class="string">'regex'</span>                =&gt; <span class="string">':attribute 格式是无效的'</span>,</div><div class="line">    <span class="string">'required'</span>             =&gt; <span class="string">':attribute 字段必须填写'</span>,</div><div class="line">    <span class="string">'required_if'</span>          =&gt; <span class="string">':attribute 字段是必须的当 :other 是 :value'</span>,</div><div class="line">    <span class="string">'required_with'</span>        =&gt; <span class="string">':attribute 字段是必须的当 :values 是存在的'</span>,</div><div class="line">    <span class="string">'required_with_all'</span>    =&gt; <span class="string">':attribute 字段是必须的当 :values 是存在的'</span>,</div><div class="line">    <span class="string">'required_without'</span>     =&gt; <span class="string">':attribute 字段是必须的当 :values 是不存在的'</span>,</div><div class="line">    <span class="string">'required_without_all'</span> =&gt; <span class="string">':attribute 字段是必须的当 没有一个 :values 是存在的'</span>,</div><div class="line">    <span class="string">'same'</span>                 =&gt; <span class="string">':attribute 和 :other 必须匹配'</span>,</div><div class="line">    <span class="string">'size'</span>                 =&gt; [</div><div class="line">        <span class="string">'numeric'</span> =&gt; <span class="string">':attribute 必须是 :size 位'</span>,</div><div class="line">        <span class="string">'file'</span>    =&gt; <span class="string">':attribute 必须是 :size KB'</span>,</div><div class="line">        <span class="string">'string'</span>  =&gt; <span class="string">':attribute 必须是 :size 个字符'</span>,</div><div class="line">        <span class="string">'array'</span>   =&gt; <span class="string">':attribute 必须包括 :size 项'</span>,</div><div class="line">    ],</div><div class="line">    <span class="string">'string'</span>               =&gt; <span class="string">':attribute 必须是字符串'</span>,</div><div class="line">    <span class="string">'unique'</span>               =&gt; <span class="string">':attribute 已经采取.'</span>,</div><div class="line">    <span class="string">'uploaded'</span>             =&gt; <span class="string">':attribute 上传失败'</span>,</div><div class="line">    <span class="string">'url'</span>                  =&gt; <span class="string">':attribute 无效的格式'</span>,</div><div class="line">    <span class="string">'timezone'</span>             =&gt; <span class="string">':attribute 必须个有效的时区'</span>,</div><div class="line">    /*</div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    | Custom Validation Language Lines</div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    |</div><div class="line">    | Here you may specify custom validation messages <span class="keyword">for</span> attributes using the</div><div class="line">    | convention <span class="string">"attribute.rule"</span> to name the lines. This makes it quick to</div><div class="line">    | specify a specific custom language line <span class="keyword">for</span> a given attribute rule.</div><div class="line">    |</div><div class="line">    */</div><div class="line">    <span class="string">'custom'</span>               =&gt; [</div><div class="line">        <span class="string">'attribute-name'</span> =&gt; [</div><div class="line">            <span class="string">'rule-name'</span> =&gt; <span class="string">'custom-message'</span>,</div><div class="line">        ],</div><div class="line">    ],</div><div class="line">    /*</div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    | Custom Validation Attributes</div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    |</div><div class="line">    | The following language lines are used to swap attribute place-holders</div><div class="line">    | with something more reader friendly such as E-Mail Address instead</div><div class="line">    | of <span class="string">"email"</span>. This simply helps us make messages a little cleaner.</div><div class="line">    |</div><div class="line">    */</div><div class="line">    <span class="string">'attributes'</span>           =&gt; [</div><div class="line">        <span class="string">'username'</span> =&gt; <span class="string">'用户名'</span>,</div><div class="line">        <span class="string">'account'</span>  =&gt; <span class="string">'账号'</span>,</div><div class="line">        <span class="string">'captcha'</span>  =&gt; <span class="string">'验证码'</span>,</div><div class="line">        <span class="string">'mobile'</span>   =&gt; <span class="string">'手机号'</span>,</div><div class="line">        <span class="string">'password'</span> =&gt; <span class="string">'密码'</span>,</div><div class="line">        <span class="string">'content'</span>  =&gt; <span class="string">'内容'</span>,</div><div class="line">        <span class="string">'identity'</span> =&gt; <span class="string">'手机号/用户名'</span>,</div><div class="line">    ],</div><div class="line">];</div></pre></td></tr></table></figure>
+<h2 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h2><h3 id="打开config-app-php-文件-将其中-‘locale’-gt-‘en’-修改为’locale’-gt-‘zh’-即可"><a href="#打开config-app-php-文件-将其中-‘locale’-gt-‘en’-修改为’locale’-gt-‘zh’-即可" class="headerlink" title="打开config/app.php 文件 将其中 ‘locale’ =&gt; ‘en’,修改为’locale’ =&gt; ‘zh’, 即可"></a>打开config/app.php 文件 将其中 ‘locale’ =&gt; ‘en’,修改为’locale’ =&gt; ‘zh’, 即可</h3><p><img src="/uploads/20170820.png" class="full-image"></p>
 
       
     </div>
@@ -451,7 +443,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Testing/" rel="tag"># Testing</a>
+            <a href="/tags/Laravel/" rel="tag"># Laravel</a>
           
         </div>
       
@@ -464,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/08/win10/" rel="next" title="win10 (1709版本)  电源选项设置控制风扇转动">
-                <i class="fa fa-chevron-left"></i> win10 (1709版本)  电源选项设置控制风扇转动
+              <a href="/2017/08/20/article-two/" rel="next" title="Hexo标签显示">
+                <i class="fa fa-chevron-left"></i> Hexo标签显示
               </a>
             
           </div>
@@ -474,8 +466,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/26/interview/" rel="prev" title="面试总结">
-                面试总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/14/article-git/" rel="prev" title="git基础命令">
+                git基础命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,15 +522,24 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ming.jpg"
                alt="我有一个梦想" />
           <p class="site-author-name" itemprop="name">我有一个梦想</p>
            
-              <p class="site-description motion-element" itemprop="description">只要你不离开我。</p>
+              <p class="site-description motion-element" itemprop="description">你是我奋斗的动力。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -593,6 +594,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误提示汉化"><span class="nav-number">1.</span> <span class="nav-text">错误提示汉化:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位于-resources-lang-en-validation-php里面的提示全是英文"><span class="nav-number">2.</span> <span class="nav-text">位于\resources\lang\en\validation.php里面的提示全是英文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与en同级创建文件夹zh将en文件夹里内容粘贴到zh"><span class="nav-number">3.</span> <span class="nav-text">与en同级创建文件夹zh将en文件夹里内容粘贴到zh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将zh文件夹下的validation-php内容替换"><span class="nav-number">4.</span> <span class="nav-text">将zh文件夹下的validation.php内容替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后一步"><span class="nav-number">5.</span> <span class="nav-text">最后一步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开config-app-php-文件-将其中-‘locale’-gt-‘en’-修改为’locale’-gt-‘zh’-即可"><span class="nav-number">5.1.</span> <span class="nav-text">打开config/app.php 文件 将其中 ‘locale’ => ‘en’,修改为’locale’ => ‘zh’, 即可</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
