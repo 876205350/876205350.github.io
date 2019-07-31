@@ -16,7 +16,7 @@
     <url>%2F2018%2F06%2F14%2Farticle-git%2F</url>
     <content type="text"><![CDATA[重新总结一下git的命令和个人理解 ##安装jitWindows上安装git可以从git官网下载安装，一直默认即可。在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）安装完成后进行配置，命令行输入:12git config --global user.name "Your Name"git config --global user.email "email@example.com" 因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。 ###说一下git clonegit clone支持https和git（即ssh）两种方式下载源码: 当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:介绍一下如何配置git的ssh key 首先检查一下刚刚的用户名邮箱:1git config --global --list 然后执行以下命令生成秘钥:1ssh-keygen -t rsa -C "你的邮箱" 点击回车需要几步操作:1.确认秘钥的保存路径（如果不需要改路径则直接回车）；2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；3.创建密码（如果不需要密码则直接回车）；4.确认密码；在指定路径下会有id_rsa和id_rsa.pub两个文件打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：尝试用git方式下载，可以看到已经可以正常下载:]]></content>
       <categories>
-        <category>Testing</category>
+        <category>git</category>
       </categories>
       <tags>
         <tag>Testing</tag>
@@ -34,8 +34,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mysql数据库忘记密码]]></title>
+    <url>%2F2017%2F05%2F01%2Fmysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[11. 开始 --&gt;cmd--&gt; net stop mysql (停用MySQL服务 没启动的可以省略) 找到安装路径 MySQL Server 5.1下的my.ini 打开 my.ini 找到 [mysqld] 然后在下面加上 这句： skip_grant_tables （意思好像是启动MySQL服务的时候跳过权限表认证 ） 然后就启动数据库修改密码了 1 开始 --&gt; cmd --&gt; netstart mysql (启动MySQL服务)---&gt; mysql 回车 ( 如果成功，将出现MySQL提示符) 输入use mysql; （连接权限数据库）。 改密码： 1update user set password=password("要修改的密码")where user="root";（别忘了最后加分号）。 修改失败的话用下面的sql语句 注意5.7以上版本的 ：1updateuser setauthentication_string=password('要修改的密码') where user='root' ; 刷新权限（必须步骤）：flush privileges; 。 退出 quit。 将第3 步的 my.ini里的 skip_grant_tables 去掉（启动MySQL服务的时候不能让他跳过权限表认证 ） 重启MySQL ，再进入，使用用户名root和刚才设置的新密码就可以登录了。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql密码正确无法登陆]]></title>
+    <url>%2F2017%2F03%2F07%2Fmysql-password%2F</url>
+    <content type="text"><![CDATA[MySQL root密码正确，却怎么也无法从本地登录提示：11 ERROR 1045 (28000): Access denied for user 'root'@'localhost'(using password: YES) 后来发现mysql库中的user表缺少一个root指向host：localhost的数据项，只有一个root指向host：主机名的数据项，故怎么也无法利用root账户登录MySQL。 总结一点就是root账户缺失了访问localhost主机的账户信息，导致无法本地登录。 那有什么办法恢复root登录呢?11. cmd --&gt; net stop mysql (停用MySQL服务 没启动的可以省略) 找到安装路径 MySQL Server 5.1下的my.ini 打开 my.ini 找到 [mysqld] 然后在下面加上 这句： skip_grant_tables （意思好像是 启动MySQL服务的时候跳过权限表认证 ） 会发现这时无密码就可以登录mysql了。 当然我们还必须修复root账户丢失的数据项。 第一种是因为root账户初始的时候有3条记录，包含root对应localhost，hostname，127.0.0.1三条账户数据，我们可以updatehost为其他两项中一项为localhost即可。 第二种是直接insert一条记录，host为localhost即可 查看一下你的表中user字段用户名是不是root是不是与你连接数据库地用户名一致 总结一下：即使root的host包含了主机名，127.0.0.1那么依然是无法正常登录的，这里必须要有localhost的host才行。 查看数据库mysql表中的host字段： 发现user表host字段中没有localhost，但是我的理解是%代表所有的主机都能登录的，为什么localhost不能呢，同样的情况我在5.0.45版的mysql上面做实验就不会发生localhost无法登录，我当前用的是5.1.57版的，难道是版本的问题? 接下来的修改很明显了：12mysql&gt; updateuser set host='localhost' where user='root' and host='%';mysql&gt; flush privileges; OK，退出mysql，重启mysql就解决问题了]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo标签显示]]></title>
-    <url>%2F2017%2F08%2F20%2Farticle-two%2F</url>
+    <url>%2F2016%2F08%2F20%2Farticle-two%2F</url>
     <content type="text"><![CDATA[Next主题标签和分类显示 用命令 :hexo new 文章名字;新建的文章如下1234567---title: article-twodate: 2017-08-30 20:37:32type: ""categories: tags: --- 下面说一下categories是分类 tags是标签有两种形式:1tages: [标签1,标签2,...标签n] 12345tags: - 标签1 - 标签2 ... - 标签n 说一下显示问题:标签显示的时候会有大中小三种，标签的大小是根据不同文章中使用相同标签的次数决定的次数最多的标签显示时字体大加粗。 如下面的图]]></content>
       <categories>
         <category>Hexo</category>
@@ -45,19 +67,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[win10电源选项设置控制风扇转动]]></title>
-    <url>%2F2017%2F08%2F10%2Fwin10%2F</url>
-    <content type="text"><![CDATA[最新版win10 :电源选项里面没有节能和性能模式怎么办？ 首先找到控制面板（两种方法）：第一种： 第二种： 点击电源选项 到如下页面 你可能会发现只有平衡没有节能,点击左侧创建电源计划,然后如图操作修改计划名称和上面选择的对应就好了 选择节能点击更改计划,然后点击更改高级电源设置（c） 找到如图红色框部分全部改为被动然后就完工了。]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[Hexo总结]]></title>
-    <url>%2F2017%2F07%2F13%2Farticl-one%2F</url>
-    <content type="text"><![CDATA[之前布好的个人博客竟然出问题了，没办法又重新来了一遍同样的主题同样主题在此总结一下。 总体来说可以分为四步第一就是把需要安装的软件装好1.安装Node（作用）:用来生成静态页面然后用检查是否安装成功，按下Win和R，打开运行窗口：在新打开的窗口中输入cmd，敲击回车，打开命令行界面。输入:1node -v 显示版本信息说明安装成功 2.下载Git安装文件：安装完成同样我们来检查一下Git是不是安装正确了，打开命令行，输入：1git --version 显示版本信息说明安装成功 github账户的注册和配置打开Github官网，在下图的框中，分别输入自己的用户名，邮箱，密码一定要确认注册，否则无法使用gh-pages！ ##安装Hexo1.下载安装hexo1npm install hexo-cli -g 来试试安装成功没有，输入以下命令查看Hexo的版本信息：1hexo -v 如果出现类似内容说明安装成功啦！1234567891011hexo-cli: 1.0.3os: Windows_NT 10.0.14393 win32 x64http_parser: 2.7.0node: 6.10.2v8: 5.1.281.98uv: 1.9.1zlib: 1.2.11ares: 1.10.1-DEVicu: 58.2modules: 48openssl: 1.0.2k 文件夹里面新建Hexo1hexo init 我们在开始前先执行命令：1npm install 这条命令是用来安装依赖包的，具体安装内容可以在package.json文件里找到。安装好了之后会看到一大串的信息，这里就不贴出来了。现在我们可以看到blog目录下的文件结构是这样的：node_modules：是依赖包public：存放的是生成的页面scaffolds：命令生成文章等的模板source：用命令创建的各种文章themes：主题_config.yml：整个博客的配置db.json：source解析所得到的package.json：项目所需模块项目的配置信息 接下来就是看看主题样式了1hexo server 执行完以后会有：12INFO Start processingINFO Hexo is running at http://localhost:4000/. Press Ctrl+C to stop. 然后输入在页面地址栏输入：localhost:4000 ##接下来就是上传到github用编辑器打开你的项目，修改_config.yml文件的一些配置(冒号之后都是有一个半角空格的)：1234deploy: type: git repo: https://github.com/YourgithubName/YourgithubName.github.io.git branch: master 执行安装命令：1npm install hexo-deployer-git --save 之后执行上传到github的命令：123hexo cleanhexo generatehexo deploy 这次的总结就写到这里吧!!! ##2019年重新使用Hexo创建编辑完文章（报错）原因:1文章图片文件夹内含有一个视频文件（500MB）;执行过Hexo hexo generate 然后执行hexo deploy报错原因大概是上传内容超过100MB.2.我将视频删除重新执行hexo generate -d依然报错（我确定不是Git,Hexo问题）解决:把hexo下面的.deploy_git手动删除然后输入Hexo clean;重新执行:1npm install hexo-deployer-git --save 之后执行上传到github的命令：123hexo cleanhexo generatehexo deploy 问题解决]]></content>
+    <url>%2F2016%2F08%2F13%2Farticl-one%2F</url>
+    <content type="text"><![CDATA[之前布好的个人博客竟然出问题了，没办法又重新来了一遍同样的主题同样主题在此总结一下。 总体来说可以分为四步第一就是把需要安装的软件装好1.安装Node（作用）:用来生成静态页面然后用检查是否安装成功，按下Win和R，打开运行窗口：在新打开的窗口中输入cmd，敲击回车，打开命令行界面。输入:1node -v 显示版本信息说明安装成功 2.下载Git安装文件：安装完成同样我们来检查一下Git是不是安装正确了，打开命令行，输入：1git --version 显示版本信息说明安装成功 github账户的注册和配置打开Github官网，在下图的框中，分别输入自己的用户名，邮箱，密码一定要确认注册，否则无法使用gh-pages！ ##安装Hexo1.下载安装hexo1npm install hexo-cli -g 来试试安装成功没有，输入以下命令查看Hexo的版本信息：1hexo -v 如果出现类似内容说明安装成功啦！1234567891011hexo-cli: 1.0.3os: Windows_NT 10.0.14393 win32 x64http_parser: 2.7.0node: 6.10.2v8: 5.1.281.98uv: 1.9.1zlib: 1.2.11ares: 1.10.1-DEVicu: 58.2modules: 48openssl: 1.0.2k 文件夹里面新建Hexo1hexo init 我们在开始前先执行命令：1npm install 这条命令是用来安装依赖包的，具体安装内容可以在package.json文件里找到。安装好了之后会看到一大串的信息，这里就不贴出来了。现在我们可以看到blog目录下的文件结构是这样的：node_modules：是依赖包public：存放的是生成的页面scaffolds：命令生成文章等的模板source：用命令创建的各种文章themes：主题_config.yml：整个博客的配置db.json：source解析所得到的package.json：项目所需模块项目的配置信息 接下来就是看看主题样式了1hexo server 执行完以后会有：12INFO Start processingINFO Hexo is running at http://localhost:4000/. Press Ctrl+C to stop. 然后输入在页面地址栏输入：localhost:4000 ##接下来就是上传到github用编辑器打开你的项目，修改_config.yml文件的一些配置(冒号之后都是有一个半角空格的)：1234deploy: type: git repo: https://github.com/YourgithubName/YourgithubName.github.io.git branch: master 执行安装命令：1npm install hexo-deployer-git --save 之后执行上传到github的命令：123hexo cleanhexo generatehexo deploy 这次的总结就写到这里吧!!! ##2019年重新使用Hexo创建编辑完文章（报错）原因:1文章图片文件夹内含有一个视频文件（500MB）;执行过Hexo hexo generate 然后执行hexo deploy报错原因大概是上传内容超过100MB.2.我将视频删除重新执行hexo generate -d依然报错（我确定不是Git,Hexo问题）解决:把hexo下面的.deploy_git手动删除然后输入Hexo clean;重新执行:1npm install hexo-deployer-git --save 之后执行上传到github的命令：123hexo cleanhexo generatehexo deploy 问题解决 #附件12345hexo cleanhexo g == hexo generatehexo d == hexo deployhexo s == hexo serverhexo n == hexo new]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win10电源选项设置控制风扇转动]]></title>
+    <url>%2F2016%2F08%2F10%2Fwin10%2F</url>
+    <content type="text"><![CDATA[最新版win10 :电源选项里面没有节能和性能模式怎么办？ 首先找到控制面板（两种方法）：第一种： 第二种： 点击电源选项 到如下页面 你可能会发现只有平衡没有节能,点击左侧创建电源计划,然后如图操作修改计划名称和上面选择的对应就好了 选择节能点击更改计划,然后点击更改高级电源设置（c） 找到如图红色框部分全部改为被动然后就完工了。]]></content>
   </entry>
 </search>
