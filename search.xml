@@ -34,6 +34,28 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mysql优化（二）索引]]></title>
+    <url>%2F2017%2F05%2F10%2Fmysql%E4%BC%98%E5%8C%96%EF%BC%88%E4%BA%8C%EF%BC%89%E7%B4%A2%E5%BC%95%2F</url>
+    <content type="text"><![CDATA[数据库索引优化 索引优化策略1索引类型1.1B-tree索引名叫Btree，大方面看都用的平衡树，但是具体是实现上，各引擎稍有不同比如严格的说INDB引擎使用的是T-treeMyisam，innodb默认使用B-Tree索引排好序的快速查找结构 1.2hash索引在Memory表中默认是hash索引，hash理论时间复杂度O(1) 既然hash查找如此高效，为什么不能用hash索引？1 hash函数计算后的结果是随机的，如果在磁盘上放置数据， 以主键ID为例，那么随着ID的增长 id对应的行在磁盘上随机放置 2 无法对范围查找进行优化 3 无法利用前缀索引，比如 在btree中，field列的值“hellopworld”，并加索引查询xx == helloword，自然可以利用索引，xx == hello 也可以利用索引（左前缀索引），因为hash（‘helloword’）和hash（‘hello’）两者关系仍为随机。 4 排序也无法优化 5 必须回行 也就是说通过索引拿到数据位置，必须回到表中取数据 2：btree索引的常见误区2.1 在where条件常用的列上都加上索引列：where cat_id=3 and price&gt;100;查询第三个栏目，100元以上的商品 Cat_id上或price上都加上索引 只能用上cat_id或price索引，因为独立的索引同时只能用上1个 联合索引（多个列看成整体值建立索引）2.2 在多列上建立索引后查询那个列索引都将发挥作用多列索引上索引发挥作用，需要满足左前缀要求以index（a，b，c）位例（注意和顺序有关）123456789| 语法 | 索引是否发挥作用 ||Where a=3 |是 只使用a列 ||Where a=3 and b=5 |是 使用a b 列 ||Where a=3 and b=5 and c=4 | 是 使用a b c 列 ||Where b=3 / where c=4 |否 ||Where a=3 and c=4 |a列能发挥索引，c不能 ||Where a=3 and b&gt;10 and c=7 |a能利用，b能利用，c不能利用||where a=3 and b like ‘XXX%’ and c=7|a能利用，b能利用，c不能利用||where a=3 and b like ‘%XXX’ |a能利用，b不能利用 | abc三个索引ab相连接，bc相连接，都通则都能用否则断开后面索引都不能 什么是左前缀（左边准确等于几，后面不知道可以） 看题:假设某个表有一个联合索引（C1,C2,C3,C4）以下--只能使用联合索引的C1,C2,C3部分 A where C1=x and C2=x and C4&gt;x and C3=x (C1,C2,C3可以用到联合索引，C4可以用一半) B where C1=x and C2=x and C4=x order by C3=x(C1,C2,C3可以用到联合索引) C where C1=x and C4=x ground by C3,C2(只用C1，若ground byC2,C3则索引为C1,C2,C3) D where C1=? and C5=? order by C2,C3(同上) E where C1=? and C2=? and C5=? order by C2,C3 （查找使用C1,C2 排序使用C3） 希望此题对大家有帮助]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql优化（一）建表]]></title>
+    <url>%2F2017%2F05%2F05%2Fmysql%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%BA%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[数据库设计建表 表优化与类型选择1．定长与变长分离如 id int占4个字节，char(4)占据4个字符长度也是定长 即每个单元值占据的字节是固定的 核心且常用字段宜建成一张表 注：而varchar，text，blob变长字段适合单方一张表，用主键和核心表关联起来 2．常用字段和不常用字段分离结合网站具体业务分析，分析字段查询场景，查询频度低的字段，单拆分出来 3．在一对多需要关联统计的字段上添加冗余字段空间换时间统计模块下贴子数量如果使用jion in联合查询则短时间内存增加相乘关系列选择原则：字符类优先级 整形&gt;data, time&gt;enum,char&gt;varchar&gt;blob,text列特点分析： 整型：定长没有国家/地区之分,没有字符集的差异。Enum类型：存男和女 底层进行转化成数字。Text 和 blob 无法使用内存临时表（排序等操作只能在磁盘上进行 ） 够用就行，不要慷慨（smallint，varchar（N））原因：大的字段浪费内存，影响速度。 尽力避免使用NULL愿因：NULL 不利于索引]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql数据库忘记密码]]></title>
     <url>%2F2017%2F05%2F01%2Fmysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%2F</url>
     <content type="text"><![CDATA[数据库忘记密码 11. 开始 --&gt;cmd--&gt; net stop mysql (停用MySQL服务 没启动的可以省略) 找到安装路径 MySQL Server 5.1下的my.ini 打开 my.ini 找到 [mysqld] 然后在下面加上 这句： skip_grant_tables （意思好像是启动MySQL服务的时候跳过权限表认证 ） 然后就启动数据库修改密码了 1 开始 --&gt; cmd --&gt; netstart mysql (启动MySQL服务)---&gt; mysql 回车 ( 如果成功，将出现MySQL提示符) 输入use mysql; （连接权限数据库）。 改密码： 1update user set password=password("要修改的密码")where user="root";（别忘了最后加分号）。 修改失败的话用下面的sql语句 注意5.7以上版本的 ：1updateuser setauthentication_string=password('要修改的密码') where user='root' ; 刷新权限（必须步骤）：flush privileges; 。 退出 quit。 将第3 步的 my.ini里的 skip_grant_tables 去掉（启动MySQL服务的时候不能让他跳过权限表认证 ） 重启MySQL ，再进入，使用用户名root和刚才设置的新密码就可以登录了。]]></content>
