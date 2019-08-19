@@ -125,7 +125,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/mysql/5.png">
 <meta property="og:image" content="http://yoursite.com/uploads/mysql/6.png">
 <meta property="og:image" content="http://yoursite.com/uploads/mysql/7.png">
-<meta property="og:updated_time" content="2019-08-04T03:09:31.113Z">
+<meta property="og:updated_time" content="2019-08-19T12:42:41.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql优化（三）Btree聚簇非聚簇">
 <meta name="twitter:description" content="Myisam与innodb引擎聚簇非聚簇">
@@ -413,7 +413,7 @@
 
       
         <h2 id="Myisam与innodb引擎聚簇非聚簇"><a href="#Myisam与innodb引擎聚簇非聚簇" class="headerlink" title="Myisam与innodb引擎聚簇非聚簇"></a>Myisam与innodb引擎聚簇非聚簇</h2><a id="more"></a>
-<h2 id="Myisam与innodb引擎，索引文件的异同"><a href="#Myisam与innodb引擎，索引文件的异同" class="headerlink" title="Myisam与innodb引擎，索引文件的异同"></a>Myisam与innodb引擎，索引文件的异同</h2><p>Myisam索引与数据关系是，索引与数据分离，每个索引都指向在磁盘上的位置，也就是说主索引和次索引都指向物理行（磁盘位置） 我们称之为非聚簇索引。</p>
+<h1 id="Myisam与innodb引擎，索引文件的异同"><a href="#Myisam与innodb引擎，索引文件的异同" class="headerlink" title="Myisam与innodb引擎，索引文件的异同"></a>Myisam与innodb引擎，索引文件的异同</h1><p>Myisam索引与数据关系是，索引与数据分离，每个索引都指向在磁盘上的位置，也就是说主索引和次索引都指向物理行（磁盘位置） 我们称之为非聚簇索引。</p>
 <p>Innodb索引与数据的关系，直接在索引树中，直接存储行的数据，次索引指向对主键的引用我们称之为聚簇索引。</p>
 <h2 id="如图所示Myisam与innodb引擎存储索引对比"><a href="#如图所示Myisam与innodb引擎存储索引对比" class="headerlink" title="如图所示Myisam与innodb引擎存储索引对比"></a>如图所示Myisam与innodb引擎存储索引对比</h2><p><img src="/uploads/mysql/1.jpg" alt="如图"><br><img src="/uploads/mysql/2.jpg" alt="如图"></p>
 <h2 id="注意：innodb来说"><a href="#注意：innodb来说" class="headerlink" title="注意：innodb来说"></a>注意：innodb来说</h2><pre><code>1 主键索引即存储索引值，又在叶子中存储行的数据
@@ -493,8 +493,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/30/new-article/" rel="prev" title="laravle 中 validate.php 汉化">
-                laravle 中 validate.php 汉化 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/20/mysql优化（四）理想状态索引与排序/" rel="prev" title="mysql优化（四）理想的索引与排序">
+                mysql优化（四）理想的索引与排序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -576,7 +576,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -598,7 +598,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -633,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Myisam与innodb引擎聚簇非聚簇"><span class="nav-number">1.</span> <span class="nav-text">Myisam与innodb引擎聚簇非聚簇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Myisam与innodb引擎，索引文件的异同"><span class="nav-number">2.</span> <span class="nav-text">Myisam与innodb引擎，索引文件的异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如图所示Myisam与innodb引擎存储索引对比"><span class="nav-number">3.</span> <span class="nav-text">如图所示Myisam与innodb引擎存储索引对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意：innodb来说"><span class="nav-number">4.</span> <span class="nav-text">注意：innodb来说</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引"><span class="nav-number">5.</span> <span class="nav-text">聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引的页分裂过程"><span class="nav-number">5.1.</span> <span class="nav-text">聚簇索引的页分裂过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树的平衡旋转图例"><span class="nav-number">5.2.</span> <span class="nav-text">二叉排序树的平衡旋转图例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-LL：右单旋转"><span class="nav-number">5.2.1.</span> <span class="nav-text">1 LL：右单旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-RR左单旋转"><span class="nav-number">5.2.2.</span> <span class="nav-text">2 RR左单旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-LR平衡旋转：先左后右"><span class="nav-number">5.2.3.</span> <span class="nav-text">3 LR平衡旋转：先左后右</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-RL平衡旋转：先右后左"><span class="nav-number">5.2.4.</span> <span class="nav-text">4 RL平衡旋转：先右后左</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高性能索引策略"><span class="nav-number">6.</span> <span class="nav-text">高性能索引策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引覆盖"><span class="nav-number">7.</span> <span class="nav-text">索引覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点："><span class="nav-number">7.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种优化场景："><span class="nav-number">7.2.</span> <span class="nav-text">几种优化场景：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-无WHERE条件的查询优化："><span class="nav-number">7.2.1.</span> <span class="nav-text">1.无WHERE条件的查询优化：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、二次检索优化"><span class="nav-number">7.2.2.</span> <span class="nav-text">2、二次检索优化</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Myisam与innodb引擎聚簇非聚簇"><span class="nav-number">1.</span> <span class="nav-text">Myisam与innodb引擎聚簇非聚簇</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Myisam与innodb引擎，索引文件的异同"><span class="nav-number"></span> <span class="nav-text">Myisam与innodb引擎，索引文件的异同</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如图所示Myisam与innodb引擎存储索引对比"><span class="nav-number">1.</span> <span class="nav-text">如图所示Myisam与innodb引擎存储索引对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意：innodb来说"><span class="nav-number">2.</span> <span class="nav-text">注意：innodb来说</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引"><span class="nav-number">3.</span> <span class="nav-text">聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引的页分裂过程"><span class="nav-number">3.1.</span> <span class="nav-text">聚簇索引的页分裂过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树的平衡旋转图例"><span class="nav-number">3.2.</span> <span class="nav-text">二叉排序树的平衡旋转图例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-LL：右单旋转"><span class="nav-number">3.2.1.</span> <span class="nav-text">1 LL：右单旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-RR左单旋转"><span class="nav-number">3.2.2.</span> <span class="nav-text">2 RR左单旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-LR平衡旋转：先左后右"><span class="nav-number">3.2.3.</span> <span class="nav-text">3 LR平衡旋转：先左后右</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-RL平衡旋转：先右后左"><span class="nav-number">3.2.4.</span> <span class="nav-text">4 RL平衡旋转：先右后左</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高性能索引策略"><span class="nav-number">4.</span> <span class="nav-text">高性能索引策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引覆盖"><span class="nav-number">5.</span> <span class="nav-text">索引覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点："><span class="nav-number">5.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种优化场景："><span class="nav-number">5.2.</span> <span class="nav-text">几种优化场景：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-无WHERE条件的查询优化："><span class="nav-number">5.2.1.</span> <span class="nav-text">1.无WHERE条件的查询优化：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、二次检索优化"><span class="nav-number">5.2.2.</span> <span class="nav-text">2、二次检索优化</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -111,15 +111,19 @@
 
 
 
-<meta name="description" content="你是我奋斗的动力。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Like programming">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta name="description" content="理想的索引      索引与排序">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql优化（四）理想的索引与排序">
+<meta property="og:url" content="http://yoursite.com/2017/05/20/mysql优化（四）理想状态索引与排序/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="你是我奋斗的动力。">
+<meta property="og:description" content="理想的索引      索引与排序">
+<meta property="og:image" content="http://yoursite.com/uploads/mysql/9.png">
+<meta property="og:updated_time" content="2019-08-19T13:51:42.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Like programming">
-<meta name="twitter:description" content="你是我奋斗的动力。">
+<meta name="twitter:title" content="mysql优化（四）理想的索引与排序">
+<meta name="twitter:description" content="理想的索引      索引与排序">
+<meta name="twitter:image" content="http://yoursite.com/uploads/mysql/9.png">
 
 
 
@@ -147,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/20/mysql优化（四）理想状态索引与排序/"/>
 
 
 
 
 
-  <title>归档 | Like programming</title>
+  <title>mysql优化（四）理想的索引与排序 | Like programming</title>
   
 
 
@@ -178,7 +182,7 @@
     
   
 
-  <div class="container sidebar-position-right  page-archive  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -306,66 +310,193 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 13 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/20/mysql优化（四）理想状态索引与排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我有一个梦想">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ming.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like programming">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql优化（四）理想的索引与排序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T18:17:59+08:00">
+                2017-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <h1 id="理想的索引-索引与排序"><a href="#理想的索引-索引与排序" class="headerlink" title="理想的索引      索引与排序"></a>理想的索引      索引与排序</h1><a id="more"></a>
+<h2 id="理想的索引"><a href="#理想的索引" class="headerlink" title="理想的索引"></a>理想的索引</h2><h3 id="如何选择索引"><a href="#如何选择索引" class="headerlink" title="如何选择索引"></a>如何选择索引</h3><p>1 查询频繁 2 区分度高 3 长度小 （占用内存少）4 尽可能覆盖常用查询字段</p>
+<p>列如：<br>区分度：100万用户，性别基本上男、女各50万 区分度低<br>索引长度直接影响索引文件的大小，影响增删改的速度，并间接影响查询速度（占用内存多）</p>
+<p>针对列中的值，从左往右截取部分来建立索引<br>1 截取的越短，重复度越高，区分度越小，索引效果越不好。<br>2 截取的越长，重复度越低，区分度越高，索引效果越好，但带来的影响越大，增删改慢并且影响查询速度。<br>所以我们要在  区分度 + 长度     两者取一个平衡。</p>
+<h3 id="1-截取不同长度并测试其区分度。"><a href="#1-截取不同长度并测试其区分度。" class="headerlink" title="1 截取不同长度并测试其区分度。"></a>1 截取不同长度并测试其区分度。</h3><p><img src="/uploads/mysql/9.png" alt="如图"><br>对于一般的系统应用，区分度能够达到0.1索引的性能就可以接受 （一行索引对应十条数据）</p>
+<h3 id="2-对于左前缀不易区分的列，建立索引技巧"><a href="#2-对于左前缀不易区分的列，建立索引技巧" class="headerlink" title="2 对于左前缀不易区分的列，建立索引技巧"></a>2 对于左前缀不易区分的列，建立索引技巧</h3><p>左前缀不易区分比如网址都是以（<a href="http://www）开头" target="_blank" rel="external">http://www）开头</a><br>列的前11个字符都是一样的不易区分有以下两种方法：<br>(1)    把列内容倒过来存储并建立索引<br>moc.udiab.www//:ptth<br>这样左前缀区分大<br>(2)    伪hash索引效果<br>同样存储url hash列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">create table t10(</div><div class="line">    id int primary key,</div><div class="line">    url char(60) not null default&apos;&apos;</div><div class="line">);</div><div class="line"></div><div class="line">insert into t10 values</div><div class="line">(1,&apos;http://www.baidu.com&apos;),</div><div class="line">(2,&apos;http://www.sina.com&apos;),</div><div class="line">(3,&apos;http://www.sohu.cn&apos;),</div><div class="line">(4,&apos;http://www.jiaguo.net&apos;),</div><div class="line">(5,&apos;http://www.go.cn&apos;),</div><div class="line"></div><div class="line">alert table t10 add urlcrc int unsigned not null</div></pre></td></tr></table></figure>
+<p>函数crc32(url)计算URL列存入urlcrc列</p>
+<p>查询时：select * from t10 where urlcrc = crc32(‘<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>‘)</p>
+<h3 id="3-多列索引"><a href="#3-多列索引" class="headerlink" title="3 多列索引"></a>3 多列索引</h3><p>多列索引的考虑因素列的查询频率，列的区分度注意一定要结合实际业务场景<br>以商城为例 goods表中的cat_id(栏目),brand_id(品牌)做多列索引<br>从计算数据得出区分度Brand_id区分度更高<br>但是从商城实际业务看，顾客一般先选大分类-&gt;小分类-&gt;品牌<br>最终选择（1）index(cat_id,brand_id), （2）index(cat_id,shop_price)来建立索引（建立两个复合索引）1 ，2两个索引称为冗余索引<br>甚至可以再加（3）index（cat_id，brand_id，shop_price）1 3放在一起就是重复索引</p>
+<p>但（3）中的前2列和（1）中的前两列一样，再去掉（1）<br>最终建立：Index（cat_id，shop_price）和index（cat_id，brand_id,shop_price）这两个复合索引</p>
+<h2 id="索引与排序"><a href="#索引与排序" class="headerlink" title="索引与排序"></a>索引与排序</h2><h3 id="排序可能发生2种情况"><a href="#排序可能发生2种情况" class="headerlink" title="排序可能发生2种情况"></a>排序可能发生2种情况</h3><h4 id="1-对于索引覆盖直接在索引上查询，就是有序的，using-index"><a href="#1-对于索引覆盖直接在索引上查询，就是有序的，using-index" class="headerlink" title="1 对于索引覆盖直接在索引上查询，就是有序的，using index"></a>1 对于索引覆盖直接在索引上查询，就是有序的，using index</h4><p>在innodb引擎中沿着索引字段排序查询，也是自然有序的，而对于mysisam引擎，如果按某索引字段排序如id 但取出的字段中有未索引字段，myisam做法不是索引-&gt;回行，索引-&gt;回行。而是先取出所有行，再进行排序。</p>
+<h4 id="2-先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中"><a href="#2-先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中" class="headerlink" title="2 先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中"></a>2 先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中</h4><p>我们的争取的目标…..取出来的数据本身就是有序的,利用索引来排序<br>比如表：goods商品（cat_id，shop_price）组成联合索引<br>Where cat_id=N order by shop_price 可以利用索引排序<br>Select goods_id，cat_id，shop_price from goods order by shop_price,<br>//using where 按照shop_price索引取的结果，本身就是有序的</p>
+<p>Select goods_id,cat_id,shop_price from goods order by click_count<br>//using filesort 用到文件排序即取出的结果再次排序</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
         </div>
       
+
+      
+      
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/16/mysql优化（三）Btree聚簇非聚簇/" rel="next" title="mysql优化（三）Btree聚簇非聚簇">
+                <i class="fa fa-chevron-left"></i> mysql优化（三）Btree聚簇非聚簇
+              </a>
+            
+          </div>
 
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/14/article-git/" itemprop="url">
-              
-                <span itemprop="name">git基础命令</span>
-              
-            </a>
-        
-      </h2>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/30/new-article/" rel="prev" title="laravle 中 validate.php 汉化">
+                laravle 中 validate.php 汉化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-14T17:27:54+08:00"
-              content="2018-06-14" >
-          06-14
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
-  </section>
-
-  
-
+      
+    </div>
+  </div>
 
 
           </div>
@@ -373,6 +504,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTczNy8yMjI0OA=="></div>
+    
+  </div>
+
 
         </div>
         
@@ -393,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ming.jpg"
@@ -456,6 +602,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理想的索引-索引与排序"><span class="nav-number">1.</span> <span class="nav-text">理想的索引      索引与排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#理想的索引"><span class="nav-number">1.1.</span> <span class="nav-text">理想的索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选择索引"><span class="nav-number">1.1.1.</span> <span class="nav-text">如何选择索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-截取不同长度并测试其区分度。"><span class="nav-number">1.1.2.</span> <span class="nav-text">1 截取不同长度并测试其区分度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对于左前缀不易区分的列，建立索引技巧"><span class="nav-number">1.1.3.</span> <span class="nav-text">2 对于左前缀不易区分的列，建立索引技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-多列索引"><span class="nav-number">1.1.4.</span> <span class="nav-text">3 多列索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引与排序"><span class="nav-number">1.2.</span> <span class="nav-text">索引与排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序可能发生2种情况"><span class="nav-number">1.2.1.</span> <span class="nav-text">排序可能发生2种情况</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-对于索引覆盖直接在索引上查询，就是有序的，using-index"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1 对于索引覆盖直接在索引上查询，就是有序的，using index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2 先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -576,11 +738,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
@@ -610,6 +770,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

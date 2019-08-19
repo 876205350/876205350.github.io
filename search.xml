@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python安装链接mysql数据库]]></title>
+    <url>%2F2019%2F08%2F10%2Fpython%E4%BD%BF%E7%94%A8%E9%93%BE%E6%8E%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[python 如何使用 mysql 以及配置 首先Django 2.2支持Python 3.5,3.6和3.7 python3自带的pip 首先我们要知道python链接mysql需要三方包的，目前主流的方式就是pymysql 和 mysqlclient（也就是Python3版本的MySQLdb）。一、pymysql1）纯Python实现的，安装简单（直接pip安装） 2) 由于纯Python实现的，可以很好的跟gevent框架结合 二、mysqlclient1）是一个C扩展模块,编译安装可能会导致报各种错误,明显没有pymysql方便 2）速度快； 安装使用pymysql12]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[总结]]></title>
     <url>%2F2019%2F06%2F26%2Finterview%2F</url>
     <content type="text"><![CDATA[总结 第一次面试今天面了第一家公司，去了以后填写了申请报表人事看到工作经历没有问了我一句，感觉没什么希望了。公司名称:建培教育简介:小型，培训教育类 1.讲一下tp3.2中的查询方法如何实现的。2.讲一下你对MVC的理解。3.php中的接口和抽象类的区别。4.CSS中的四种定位。人事打断后问了一下之前做过哪些项目，然后就说公司要招一些有工作经验的人。 第二次面试公司名称:北京速通网电子商务有限公司简介: 企业年轻人较多有活力 一面:人力资源主管1.一个团队中什么最重要2.你的优势是什么3.你有什么想了解的二面:技术面1.简单做一下自我介绍2.在学校参加过哪些课外活动3.聊了一下简历上的项目4.说出你用过的PHP中操作数组的函数5.如何截取一个字符串，获取字符串的长度6.Linux下搭建环境，基本命令会吗7.项目中有用到redis吗8.数据库中数据量过大如何优化查询语句9.get和post的区别大概问了这些问题感觉自己基础薄弱！明明知道面上的希望不大但还是主动问了人力资源主管面试结果，他说和团队不匹配，并不是技术问题。]]></content>
@@ -31,6 +42,17 @@
       </categories>
       <tags>
         <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql优化（四）理想的索引与排序]]></title>
+    <url>%2F2017%2F05%2F20%2Fmysql%E4%BC%98%E5%8C%96%EF%BC%88%E5%9B%9B%EF%BC%89%E7%90%86%E6%83%B3%E7%8A%B6%E6%80%81%E7%B4%A2%E5%BC%95%E4%B8%8E%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[理想的索引 索引与排序 理想的索引如何选择索引1 查询频繁 2 区分度高 3 长度小 （占用内存少）4 尽可能覆盖常用查询字段 列如：区分度：100万用户，性别基本上男、女各50万 区分度低索引长度直接影响索引文件的大小，影响增删改的速度，并间接影响查询速度（占用内存多） 针对列中的值，从左往右截取部分来建立索引1 截取的越短，重复度越高，区分度越小，索引效果越不好。2 截取的越长，重复度越低，区分度越高，索引效果越好，但带来的影响越大，增删改慢并且影响查询速度。所以我们要在 区分度 + 长度 两者取一个平衡。 1 截取不同长度并测试其区分度。对于一般的系统应用，区分度能够达到0.1索引的性能就可以接受 （一行索引对应十条数据） 2 对于左前缀不易区分的列，建立索引技巧左前缀不易区分比如网址都是以（http://www）开头列的前11个字符都是一样的不易区分有以下两种方法：(1) 把列内容倒过来存储并建立索引moc.udiab.www//:ptth这样左前缀区分大(2) 伪hash索引效果同样存储url hash列 12345678910111213create table t10( id int primary key, url char(60) not null default&apos;&apos;);insert into t10 values(1,&apos;http://www.baidu.com&apos;),(2,&apos;http://www.sina.com&apos;),(3,&apos;http://www.sohu.cn&apos;),(4,&apos;http://www.jiaguo.net&apos;),(5,&apos;http://www.go.cn&apos;),alert table t10 add urlcrc int unsigned not null 函数crc32(url)计算URL列存入urlcrc列 查询时：select * from t10 where urlcrc = crc32(‘http://www.baidu.com‘) 3 多列索引多列索引的考虑因素列的查询频率，列的区分度注意一定要结合实际业务场景以商城为例 goods表中的cat_id(栏目),brand_id(品牌)做多列索引从计算数据得出区分度Brand_id区分度更高但是从商城实际业务看，顾客一般先选大分类-&gt;小分类-&gt;品牌最终选择（1）index(cat_id,brand_id), （2）index(cat_id,shop_price)来建立索引（建立两个复合索引）1 ，2两个索引称为冗余索引甚至可以再加（3）index（cat_id，brand_id，shop_price）1 3放在一起就是重复索引 但（3）中的前2列和（1）中的前两列一样，再去掉（1）最终建立：Index（cat_id，shop_price）和index（cat_id，brand_id,shop_price）这两个复合索引 索引与排序排序可能发生2种情况1 对于索引覆盖直接在索引上查询，就是有序的，using index在innodb引擎中沿着索引字段排序查询，也是自然有序的，而对于mysisam引擎，如果按某索引字段排序如id 但取出的字段中有未索引字段，myisam做法不是索引-&gt;回行，索引-&gt;回行。而是先取出所有行，再进行排序。 2 先取出数据，形成临时表做filesort文件排序，但文件可能在磁盘上，也可能在内存中我们的争取的目标…..取出来的数据本身就是有序的,利用索引来排序比如表：goods商品（cat_id，shop_price）组成联合索引Where cat_id=N order by shop_price 可以利用索引排序Select goods_id，cat_id，shop_price from goods order by shop_price,//using where 按照shop_price索引取的结果，本身就是有序的 Select goods_id,cat_id,shop_price from goods order by click_count//using filesort 用到文件排序即取出的结果再次排序]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
