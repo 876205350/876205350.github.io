@@ -111,26 +111,33 @@
 
 
 
-<meta name="description" content="重新总结一下git的命令和个人理解">
+<meta name="description" content="总结一下git的命令和个人理解">
 <meta name="keywords" content="Testing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git基础命令">
 <meta property="og:url" content="http://yoursite.com/2018/06/14/article-git/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="重新总结一下git的命令和个人理解">
-<meta property="og:image" content="http://yoursite.com/uploads/git.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git1.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git2.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git3.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git4.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git5.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git6.png">
-<meta property="og:image" content="http://yoursite.com/uploads/git7.png">
-<meta property="og:updated_time" content="2019-07-31T05:01:30.364Z">
+<meta property="og:description" content="总结一下git的命令和个人理解">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git1.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git2.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git3.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git4.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git5.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git6.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git7.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git8.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git9.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git10.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git11.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git12.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git13.png">
+<meta property="og:image" content="http://yoursite.com/uploads/git/git14.png">
+<meta property="og:updated_time" content="2019-08-20T14:56:07.822Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基础命令">
-<meta name="twitter:description" content="重新总结一下git的命令和个人理解">
-<meta name="twitter:image" content="http://yoursite.com/uploads/git.png">
+<meta name="twitter:description" content="总结一下git的命令和个人理解">
+<meta name="twitter:image" content="http://yoursite.com/uploads/git/git.png">
 
 
 
@@ -413,16 +420,67 @@
       
 
       
-        <p>重新总结一下git的命令和个人理解<br><a id="more"></a></p>
-<p>##安装jit<br>Windows上安装git<br>可以从git官网下载安装，一直默认即可。<br>在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）<br><img src="/uploads/git.png" alt="如图"><br>安装完成后进行配置，命令行输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Your Name"</span></div><div class="line">git config --global user.email <span class="string">"email@example.com"</span></div></pre></td></tr></table></figure></p>
+        <h1 id="总结一下git的命令和个人理解"><a href="#总结一下git的命令和个人理解" class="headerlink" title="总结一下git的命令和个人理解"></a>总结一下git的命令和个人理解</h1><a id="more"></a>
+<p>##安装git<br>Windows上安装git<br>可以从git官网下载安装，一直默认即可。<br>在开始菜单中找到Git Bash 点击后会出现命令行窗体（可以看到版本号）<br><img src="/uploads/git/git.png" alt="如图"><br>安装完成后进行配置，命令行输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Your Name"</span></div><div class="line">git config --global user.email <span class="string">"email@example.com"</span></div></pre></td></tr></table></figure></p>
 <p>因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。</p>
-<p>###说一下git clone<br>git clone支持https和git（即ssh）两种方式下载源码:</p>
-<p>当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:<br><img src="/uploads/git1.png" alt="如图"><br>介绍一下如何配置git的ssh key</p>
+<p>##说一下git clone<br>git clone支持https和git（即ssh）两种方式下载源码:</p>
+<p>当使用git方式下载时，如果没有配置过ssh key，则会有如下错误提示:<br><img src="/uploads/git/git1.png" alt="如图"><br>介绍一下如何配置git的ssh key</p>
 <p>首先检查一下刚刚的用户名邮箱:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global  --list</div></pre></td></tr></table></figure></p>
-<p><img src="/uploads/git2.png" alt="如图"></p>
+<p><img src="/uploads/git/git2.png" alt="如图"></p>
 <p>然后执行以下命令生成秘钥:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"你的邮箱"</span></div></pre></td></tr></table></figure></p>
-<p>点击回车需要几步操作:<br>1.确认秘钥的保存路径（如果不需要改路径则直接回车）；<br>2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；<br>3.创建密码（如果不需要密码则直接回车）；<br>4.确认密码；<br><img src="/uploads/git3.png" alt="如图"><br>在指定路径下会有id_rsa和id_rsa.pub两个文件<br><img src="/uploads/git4.png" alt="如图"><br>打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key<br><img src="/uploads/git5.png" alt="如图"><br>然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：<br><img src="/uploads/git6.png" alt="如图"><br>尝试用git方式下载，可以看到已经可以正常下载:<br><img src="/uploads/git7.png" alt="如图"></p>
-
+<p>点击回车需要几步操作:</p>
+<h3 id="1-确认秘钥的保存路径（如果不需要改路径则直接回车）；"><a href="#1-确认秘钥的保存路径（如果不需要改路径则直接回车）；" class="headerlink" title="1.确认秘钥的保存路径（如果不需要改路径则直接回车）；"></a>1.确认秘钥的保存路径（如果不需要改路径则直接回车）；</h3><h3 id="2-如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；"><a href="#2-如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；" class="headerlink" title="2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；"></a>2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；</h3><h3 id="3-创建密码（如果不需要密码则直接回车）；"><a href="#3-创建密码（如果不需要密码则直接回车）；" class="headerlink" title="3.创建密码（如果不需要密码则直接回车）；"></a>3.创建密码（如果不需要密码则直接回车）；</h3><h3 id="4-确认密码；"><a href="#4-确认密码；" class="headerlink" title="4.确认密码；"></a>4.确认密码；</h3><p><img src="/uploads/git/git3.png" alt="如图"><br>在指定路径下会有id_rsa和id_rsa.pub两个文件<br><img src="/uploads/git/git4.png" alt="如图"><br>打开你的github点击头像-&gt;settings左侧列表的SSH and GPG keys 点击绿色的New SSH key<br><img src="/uploads/git/git5.png" alt="如图"><br>然后用文本工具打开之前生成的id_rsa.pub文件，把内容拷贝到key下面的输入框，并为这个key定义一个名称（通常用来区分不同主机），然后保存：<br><img src="/uploads/git/git6.png" alt="如图"><br>尝试用git方式下载，可以看到已经可以正常下载:<br><img src="/uploads/git/git7.png" alt="如图"></p>
+<p>以上几步完成以后此时你就和git有了一对一联系，上传下载就如同有了令牌一样</p>
+<h2 id="git的基本命令"><a href="#git的基本命令" class="headerlink" title="git的基本命令"></a>git的基本命令</h2><h3 id="git是什么"><a href="#git是什么" class="headerlink" title="git是什么"></a>git是什么</h3><p>git是一种版本控制器. 更直白说,团队开发时,管理代码用的软件. </p>
+<h3 id="说一下安装"><a href="#说一下安装" class="headerlink" title="说一下安装"></a>说一下安装</h3><p>Window环境:<br>到 <a href="https://git-for-windows.github.io/" target="_blank" rel="external">https://git-for-windows.github.io/</a> 下载软件, 双击,一路”Next”,安装完毕. 到开始菜单找”git bash”,如下图<br><img src="/uploads/git/git8.png" alt="如图"><br><img src="/uploads/git/git9.png" alt="如图"><br>Linux环境安装git:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># ubuntu,debian# </div><div class="line">$ sudo apt-get install git</div></pre></td></tr></table></figure></p>
+<p>centos,redhat系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># yum install git</div></pre></td></tr></table></figure></p>
+<h2 id="代码管理"><a href="#代码管理" class="headerlink" title="代码管理"></a>代码管理</h2><h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd E:/ (集成环境进入到www目录下)</div><div class="line">$ mkdir test</div><div class="line">$ git init</div></pre></td></tr></table></figure>
+<p>注意:<br>  不要把仓库建在中文目录下,可能出问题.<br>  .git是个隐藏目录,不要乱碰.(你的每一次代码修改它都帮你记录着呢)</p>
+<h3 id="添加文件"><a href="#添加文件" class="headerlink" title="添加文件"></a>添加文件</h3><p>在刚刚创建的test目下创建一个index.php如图：<br><img src="/uploads/git/git10.png" alt="如图"><br>查看仓库状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status</div></pre></td></tr></table></figure></p>
+<p>可见,此时git发现有一个新文件,但并没有把此文件纳入管理. 我们需要两步,让git仓库管理index.php<br>git add index.php<br>把index.php提交到暂存区<br>git commit -m “新建index.php”<br>把index.php提交到版本库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add index.php</div><div class="line">$ git commit -m &quot;新建index.php&quot;</div></pre></td></tr></table></figure></p>
+<p><img src="/uploads/git/git11.png" alt="如图"></p>
+<h3 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h3><p>修改后的文件需要重新提交到暂存区然后到版本库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add index.php</div><div class="line">$ git commit -m &quot;修改第2行&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><p>用rm命令删除文件,并直接commit,提交到版本库<br>例:先创建一个foo.php,供练习删除用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ touch foo.php # 创建foo.php </div><div class="line">$ git add foo.php $ git commit -m &quot;练习删除用&quot; </div><div class="line">$ ls </div><div class="line">foo.php  index.php</div><div class="line"># 开始删除 </div><div class="line">$ git rm foo.php </div><div class="line">rm &apos;foo.php&apos;</div><div class="line">$ git commit -m &quot;删除foo.php&quot; </div><div class="line">[master e4dc37c] 删除foo.php </div><div class="line">1 file changed, 0 insertions(+), 0 deletions(-) </div><div class="line">delete mode 100644 foo.php</div><div class="line">$ ls </div><div class="line">index.php</div></pre></td></tr></table></figure></p>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>经过前面的练习,你在本地的仓库里管理代码已经比较熟练了.<br>但如果是团队开发,如何配合起来呢?<br>我们可以把版本仓库放在互联网上. 开发者把自己最新的版本推到线上仓库, 同时,把线上仓库的最新代码,拉到自己本地. 这样,就可以配合工作了.</p>
+<h3 id="注册git在线仓库的账号"><a href="#注册git在线仓库的账号" class="headerlink" title="注册git在线仓库的账号"></a>注册git在线仓库的账号</h3><p>国外: <a href="http://www.github.com" target="_blank" rel="external">http://www.github.com</a><br>国内: <a href="http://git.oschina.net" target="_blank" rel="external">http://git.oschina.net</a> </p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>注册后,”新建项目”,我们先建一个测试项目<br><img src="/uploads/git/git12.png" alt="如图"><br>为此项目提供的仓库地址有2个.<br>    http地址:<a href="https://github.com/876205350/lianxi.git" target="_blank" rel="external">https://github.com/876205350/lianxi.git</a><br>    ssh地址: git@github.com:876205350/lianxi.git<br>前面因为ssh key已经配好使用ssh更方便不过下面我们依然使用http地址</p>
+<h3 id="把代码推送到远程仓库"><a href="#把代码推送到远程仓库" class="headerlink" title="把代码推送到远程仓库"></a>把代码推送到远程仓库</h3><p>为本地库添加远程库<br>$ git remote add origin <a href="https://github.com/876205350/lianxi.git" target="_blank" rel="external">https://github.com/876205350/lianxi.git</a><br>意思是:添加1个远程库,代号是origin,地址是 <a href="https://....lianxi.git" target="_blank" rel="external">https://....lianxi.git</a><br>push 推代码<br>$git push -u origin master 意思是,把本地的版本(默认是master),推到代号为origin的远程库去.<br>这个过程会弹出github登录框，让你输入用户名/密码<br><img src="/uploads/git/git13.png" alt="如图"><br>以后再使用http就不用输入账号密码</p>
+<h2 id="代码管理-1"><a href="#代码管理-1" class="headerlink" title="代码管理"></a>代码管理</h2><p>学习git,你必须要了解3个重要区域.<br>工作区, 即开发者的工作目录.<br>暂存区, 修改已被记录,但尚未录入版本库的区域.<br>版本库, 存储变化日志及版本信息.</p>
+<p>工作区-&gt;add-&gt;到暂存区-&gt;commit-&gt;仓库</p>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>添加多个文件<br>git add <file1> <file2> #添加file1,file2<br>git add *.txt #添加当前目录下的.txt文档<br>git add . #添加当前目录的所有变化</file2></file1></p>
+<p>删除文件<br>git rm <file></file></p>
+<p>移动或改名<br>git mv 源文件 新文件<br>例<br>移动:git mv config.php ./inc/config.php<br>改名:git mv config.php config.inc.php</p>
+<h3 id="改动日志"><a href="#改动日志" class="headerlink" title="改动日志"></a>改动日志</h3><p>每个文件/目录发生的版本变化,我们都可以追溯.<br>命令为:”git log “<br>常用格式: git log 查看项目的日志<br>git log <file> 查看某文件的日志<br>git log . 查看本目录的日志<br>例: git log 显示如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">commit 37285a5a9bc5b62609c5e81dacc4daafab1b9600</div><div class="line">Author: lucy &lt;lucy@xx.com&gt;</div><div class="line">Date:   Thu Nov 12 17:09:04 2015 +0800</div><div class="line"></div><div class="line">    new readme.txt </div><div class="line">... </div><div class="line">...</div><div class="line">commit c7dfbb8a7ab6c6377040a20c851216572a79d0a0 </div><div class="line">Author: yanshiba &lt;yanshiba@gmail.com&gt; </div><div class="line">Date:   Mon Nov 9 15:08:05 2015 +0800</div><div class="line"></div><div class="line">    新建index.php</div></pre></td></tr></table></figure></file></p>
+<p>如果感觉log有点乱,可以git log –pretty=oneline,让日志单行显示.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">37285a5a9bc5b62609c5e81dacc4daafab1b9600 new readme.txt </div><div class="line">... </div><div class="line">c7dfbb8a7ab6c6377040a20c851216572a79d0a0 新建index.php</div></pre></td></tr></table></figure></p>
+<h3 id="切换版本"><a href="#切换版本" class="headerlink" title="切换版本"></a>切换版本</h3><p>git reflog 查看版本变化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git reflog </div><div class="line">5d5df85 HEAD@&#123;0&#125;: commit: four </div><div class="line">6207e59 HEAD@&#123;1&#125;: commit: three </div><div class="line">70110b9 HEAD@&#123;2&#125;: commit: two </div><div class="line">bc65223 HEAD@&#123;3&#125;: commit (initial): one</div></pre></td></tr></table></figure></p>
+<p>HEAD指向当前版本5d5df86,<br>切换为head的前1版本,git reset –hard HEAD^<br>切换为head的前2版本,git reset –hard HEAD^^<br>切换为head的前100版本,git reset –hard HEAD~100</p>
+<p>实例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git reset --hard HEAD^^ </div><div class="line">HEAD is now at 70110b9 two</div></pre></td></tr></table></figure></p>
+<p>也可以利用版本号来切换,例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git reset --hard 6207e59</div><div class="line">HEAD is now at 6207e59 three</div></pre></td></tr></table></figure></p>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><h3 id="分支有什么用？"><a href="#分支有什么用？" class="headerlink" title="分支有什么用？"></a>分支有什么用？</h3><p>在开发中,遇到这样的情况怎么办?<br>网站已有支付宝在线支付功能,要添加”微信支付”.<br>修改了3个文件, wechat.php,pay.php</p>
+<p>刚做到一半,突然有个紧急bug: 支付宝支付后不能修改订单状态.<br>你需要立即马上修改这个bug,需要修改的文件是,ali.php,pay.php.</p>
+<p>问题是:pay.php,已经被你修改过,而且尚未完成.<br>直接在此基础上改,肯定有问题.<br>把pay.php倒回去? 那我之前的工作白费了.</p>
+<p>此时你肯定会想: 在做”微信支付”时,能否把仓库复制一份,在此副本上修改,不影响原仓库的内容.修改完毕后,再把副本上的修改合并过去.<br>好的,这时你已经有了分支的思想.</p>
+<p>前面见过的master,即是代码的主干分支,<br>事实上,在实际的开发中,往往不会直接修改和提交到master分支上.<br>而是创建一个dev分支,在dev分支上,修改测试,没问题了,再把dev分支合并到master上.</p>
+<p>如果有了分支,刚才的难题就好解决了,如下图:<br><img src="/uploads/git/git14.png" alt="如图"><br>在做”微信支付”时,我们创建一个wechat分支.<br>把wechat分支commit,此时,master分支内容不会变,因为分支不同.</p>
+<p>当遇到紧急bug时,创建一个AliBug分支.<br>修复bug后,把AliBug分支合并到master分支上.</p>
+<p>再次从容切换到wechat分支上,接着开发”微信支付”功能,开发完毕后,<br>把wechat分支合并到master分支上.</p>
+<h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><p>查看所有分支git branch<br>列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch </div><div class="line">* master # 说明只有master分支,且处于master分支.</div></pre></td></tr></table></figure></p>
+<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><p>创建dev分支 git branch dev<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git branch dev # 创建dev分支</div><div class="line">git branch #查看分支  </div><div class="line">  dev </div><div class="line">* master # dev分支创建成功,但仍处于master分支</div></pre></td></tr></table></figure></p>
+<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><p>切换到dev分支 git checkout dev<br>再次查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git branch </div><div class="line">* dev  </div><div class="line">  master # 已切换到dev分支上</div></pre></td></tr></table></figure></p>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>当我们在dev上开发某功能,并测试通过后,可以把dev的内容合并到master分支.<br>例:<br>当前的readme.txt 内容为”so so”,在dev分支下,添加一行”from dev”<br>并提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add readme.txt </div><div class="line">git commit -m &quot;mod in dev&quot;</div></pre></td></tr></table></figure></p>
+<p>再次切换到master,查看readme.txt的内容,仍为’so so’<br>合并dev分支,git merge dev, 如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git merge dev </div><div class="line">Updating c5364fe..412926b </div><div class="line">Fast-forward </div><div class="line">readme.txt | 1 + </div><div class="line">1 file changed, 1 insertion(+)</div></pre></td></tr></table></figure></p>
+<p>再次查看readme.txt的内容,已变为”soso from dev”;</p>
+<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch -d dev </div><div class="line">Deleted branch dev (was 412926b).</div></pre></td></tr></table></figure>
+<h3 id="快速创建和切换分支-快速创建和切换分支"><a href="#快速创建和切换分支-快速创建和切换分支" class="headerlink" title="快速创建和切换分支 快速创建和切换分支"></a>快速创建和切换分支 快速创建和切换分支</h3><p>git checkout -b dev # 创建dev分支并立即切换到dev分支<br>即起到git branch dev和git checkout dev的共同作用.</p>
+<h2 id="远程仓库-1"><a href="#远程仓库-1" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="查看远程仓库"><a href="#查看远程仓库" class="headerlink" title="查看远程仓库"></a>查看远程仓库</h3><p>查看远程仓库:git remote<br>查看仓库地址:git remote -v<br>例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote -v </div><div class="line">origin  https://git.oschina.net/lianshou/test.git (fetch) </div><div class="line">origin  https://git.oschina.net/lianshou/test.git (push)</div></pre></td></tr></table></figure></p>
+<h3 id="删除远程库"><a href="#删除远程库" class="headerlink" title="删除远程库"></a>删除远程库</h3><p>命令:git remote remove &lt;远程库名&gt;<br>示例:git remote remove origin</p>
+<h3 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h3><p>命令:git remote add &lt;远程库名&gt; &lt;远程库地址&gt; 示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/876205350/lianxi.git</div></pre></td></tr></table></figure></p>
+<p>注: 远程库名一般叫origin,但并非强制,你可以自己起名.<br>例:<br>git remote add online <a href="https://github.com/876205350/lianxi.git" target="_blank" rel="external">https://github.com/876205350/lianxi.git</a></p>
+<h3 id="修改远程库名称"><a href="#修改远程库名称" class="headerlink" title="修改远程库名称"></a>修改远程库名称</h3><p>git remote rename &lt;旧名称&gt; &lt;新名称&gt;<br>例:<br>git remote rename online oschina</p>
+<h2 id="公钥登陆"><a href="#公钥登陆" class="headerlink" title="公钥登陆"></a>公钥登陆</h2><p>配置请看 ssh key配置</p>
+<h3 id="配置ssh格式的远程仓库地址"><a href="#配置ssh格式的远程仓库地址" class="headerlink" title="配置ssh格式的远程仓库地址"></a>配置ssh格式的远程仓库地址</h3><p>git remote add origin git@github.com:876205350/lianxi.git</p>
+<h3 id="push本地仓库到远程-发现不用填密码了"><a href="#push本地仓库到远程-发现不用填密码了" class="headerlink" title="push本地仓库到远程,发现不用填密码了"></a>push本地仓库到远程,发现不用填密码了</h3><p>git push -u origin master</p>
+<h2 id="未完待续…………"><a href="#未完待续…………" class="headerlink" title="未完待续…………"></a>未完待续…………</h2>
       
     </div>
 
@@ -532,8 +590,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ming.jpg"
@@ -595,6 +662,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总结一下git的命令和个人理解"><span class="nav-number">1.</span> <span class="nav-text">总结一下git的命令和个人理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-确认秘钥的保存路径（如果不需要改路径则直接回车）；"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.确认秘钥的保存路径（如果不需要改路径则直接回车）；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.如果上一步置顶的保存路径下已经有秘钥文件，则需要确认是否覆盖（如果之前的秘钥不再需要则直接回车覆盖，如需要则手动拷贝到其他目录后再覆盖）；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-创建密码（如果不需要密码则直接回车）；"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.创建密码（如果不需要密码则直接回车）；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-确认密码；"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.确认密码；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的基本命令"><span class="nav-number">1.1.</span> <span class="nav-text">git的基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git是什么"><span class="nav-number">1.1.1.</span> <span class="nav-text">git是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说一下安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">说一下安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码管理"><span class="nav-number">1.2.</span> <span class="nav-text">代码管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建版本库"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">添加文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改文件"><span class="nav-number">1.2.3.</span> <span class="nav-text">修改文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">1.2.4.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程仓库"><span class="nav-number">1.2.5.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册git在线仓库的账号"><span class="nav-number">1.2.6.</span> <span class="nav-text">注册git在线仓库的账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">1.2.7.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把代码推送到远程仓库"><span class="nav-number">1.2.8.</span> <span class="nav-text">把代码推送到远程仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码管理-1"><span class="nav-number">1.3.</span> <span class="nav-text">代码管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件操作"><span class="nav-number">1.3.1.</span> <span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改动日志"><span class="nav-number">1.3.2.</span> <span class="nav-text">改动日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换版本"><span class="nav-number">1.3.3.</span> <span class="nav-text">切换版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">1.4.</span> <span class="nav-text">分支管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支有什么用？"><span class="nav-number">1.4.1.</span> <span class="nav-text">分支有什么用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看分支"><span class="nav-number">1.4.2.</span> <span class="nav-text">查看分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支"><span class="nav-number">1.4.3.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换分支"><span class="nav-number">1.4.4.</span> <span class="nav-text">切换分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并分支"><span class="nav-number">1.4.5.</span> <span class="nav-text">合并分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除分支"><span class="nav-number">1.4.6.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速创建和切换分支-快速创建和切换分支"><span class="nav-number">1.4.7.</span> <span class="nav-text">快速创建和切换分支 快速创建和切换分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库-1"><span class="nav-number">1.5.</span> <span class="nav-text">远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看远程仓库"><span class="nav-number">1.5.1.</span> <span class="nav-text">查看远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程库"><span class="nav-number">1.5.2.</span> <span class="nav-text">删除远程库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加远程库"><span class="nav-number">1.5.3.</span> <span class="nav-text">添加远程库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改远程库名称"><span class="nav-number">1.5.4.</span> <span class="nav-text">修改远程库名称</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公钥登陆"><span class="nav-number">1.6.</span> <span class="nav-text">公钥登陆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ssh格式的远程仓库地址"><span class="nav-number">1.6.1.</span> <span class="nav-text">配置ssh格式的远程仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push本地仓库到远程-发现不用填密码了"><span class="nav-number">1.6.2.</span> <span class="nav-text">push本地仓库到远程,发现不用填密码了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续…………"><span class="nav-number">1.7.</span> <span class="nav-text">未完待续…………</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
