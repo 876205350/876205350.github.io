@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[总结]]></title>
     <url>%2F2019%2F06%2F26%2Finterview%2F</url>
-    <content type="text"><![CDATA[总结 第一次面试今天面了第一家公司，去了以后填写了申请报表人事看到工作经历没有问了我一句，感觉没什么希望了。公司名称:建培教育简介:小型，培训教育类 讲一下tp3.2中的查询方法如何实现的。 讲一下你对MVC的理解。 php中的接口和抽象类的区别。 CSS中的四种定位。 人事打断后问了一下之前做过哪些项目，然后就说公司要招一些有工作经验的人。 第二次面试公司名称:北京速通网电子商务有限公司简介: 企业年轻人较多有活力 一面:人力资源主管 一个团队中什么最重要 你的优势是什么 你有什么想了解的 二面:技术面 简单做一下自我介绍 在学校参加过哪些课外活动 聊了一下简历上的项目 说出你用过的PHP中操作数组的函数 如何截取一个字符串，获取字符串的长度 Linux下搭建环境，基本命令会吗 项目中有用到redis吗 数据库中数据量过大如何优化查询语句 get和post的区别 大概问了这些问题感觉自己基础薄弱！明明知道面上的希望不大但还是主动问了人力资源主管面试结果，他说和团队不匹配，并不是技术问题。 第三次面试公司名称：百变悟空科技一面：HR 介绍一下公司主要业务 问了一下基本信息，期望薪资。 一道冒泡排序题 二面：技术面 简单做一下自我介绍 数据库优化方面知识myisam和innodb的区别innodb事务数据库的锁复合索引 nosql中的redis数据类型 简单聊了一下简历上的项目 第四次面试公司名称：学知在线教育只有技术面 说一下laravel路由 谈一下使用过的laravel中间件 PHP常用的魔术方法 说一下AOP和OOP 常用的git命令 Vue中的路由参数如何传递 myisam和innodb的区别 讲一下laravel中的ORM 聊了一下项目 逻辑题：N个火柴，没根火柴燃烧完需要1个小时，火柴只能被点燃，怎样得出时间经过45分钟。 第五次面试公司名称：北京果粒科技直接技术： 简单介绍一下自己 说一下用过的PHP数组处理函数 使用过PHP7吗？ 构造函数与析构函数 public，private，protect修饰类的区别 公司分的任务没有在当天按时完成怎么办？ 项目评估一个月完成，现需要半个月完成怎么办？ 给你加派人手你会如何分配项目 聊一下项目，问最近有接触什么新技术]]></content>
+    <content type="text"><![CDATA[总结 第一次面试今天面了第一家公司，去了以后填写了申请报表人事看到工作经历没有问了我一句，感觉没什么希望了。公司名称:建培教育简介:小型，培训教育类 讲一下tp3.2中的查询方法如何实现的。 讲一下你对MVC的理解。 php中的接口和抽象类的区别。 CSS中的四种定位。 人事打断后问了一下之前做过哪些项目，然后就说公司要招一些有工作经验的人。 第二次面试公司名称:北京速通网电子商务有限公司简介: 企业年轻人较多有活力 一面:人力资源主管 一个团队中什么最重要 你的优势是什么 你有什么想了解的 二面:技术面 简单做一下自我介绍 在学校参加过哪些课外活动 聊了一下简历上的项目 说出你用过的PHP中操作数组的函数 如何截取一个字符串，获取字符串的长度 Linux下搭建环境，基本命令会吗 项目中有用到redis吗 数据库中数据量过大如何优化查询语句 get和post的区别 大概问了这些问题感觉自己基础薄弱！明明知道面上的希望不大但还是主动问了人力资源主管面试结果，他说和团队不匹配，并不是技术问题。 第三次面试公司名称：百变悟空科技一面：HR 介绍一下公司主要业务 问了一下基本信息，期望薪资。 一道冒泡排序题 二面：技术面 简单做一下自我介绍 数据库优化方面知识myisam和innodb的区别innodb事务数据库的锁复合索引 nosql中的redis数据类型 简单聊了一下简历上的项目 第四次面试公司名称：学知在线教育只有技术面 说一下laravel路由 谈一下使用过的laravel中间件 PHP常用的魔术方法 说一下AOP和OOP 常用的git命令 Vue中的路由参数如何传递 myisam和innodb的区别 讲一下laravel中的ORM 聊了一下项目 逻辑题：N个火柴，没根火柴燃烧完需要1个小时，火柴只能被点燃，怎样得出时间经过45分钟。 第五次面试公司名称：北京果粒科技直接技术： 简单介绍一下自己 说一下用过的PHP数组处理函数 使用过PHP7吗？ 构造方法与析构方法 public，private，protect修饰类的区别 公司分的任务没有在当天按时完成怎么办？ 项目评估一个月完成，现需要半个月完成怎么办？ 给你加派人手你会如何分配项目 聊一下项目，问最近有接触什么新技术]]></content>
       <categories>
         <category>面试</category>
       </categories>
@@ -42,6 +42,17 @@
       </categories>
       <tags>
         <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql优化（五）重复索引与冗余索引]]></title>
+    <url>%2F2017%2F05%2F28%2Fmysql%E4%BC%98%E5%8C%96%EF%BC%88%E4%BA%94%EF%BC%89%E9%87%8D%E5%A4%8D%E7%B4%A2%E5%BC%95%E4%B8%8E%E5%86%97%E4%BD%99%E7%B4%A2%E5%BC%95%2F</url>
+    <content type="text"><![CDATA[冗余索引（重点） 重复索引： 是指的在相同的列上按照相同的顺序创建的相同类型的索引，应该避免这样创建重复索引，发现以后也应该立即删除。重复索引没有任何帮助，只会增大索引文件，拖慢更新速度。1234567CREATE TABLE test( ID INT NOT NULL PRIMARY KEY, A INT NOT NULL, B INT NOT NULL, UNIQUE(ID), INDEX(ID),) ENGINE=InnoDB; 这段SQL创建了3个重复索引。通常并没有理由这么做。 冗余索引冗余索引是指两个索引覆盖的列有重叠，称之为冗余索引 比如文章和标签表12345678+-------+--------+---------+| id | artid | tag |+-------+--------+---------+| 1 | 1 | PHP || 2 | 1 | Linux || 3 | 2 | MySQL || 4 | 2 | Oracle |+-------+--------+---------+ 在实际使用中有两种查询Artid —&gt; 查询文章 —&gt; tagTag –&gt; 查询文章 —&gt; artid 列:Selet tag from table where artid =2Selet artid from table where tag=PHP 建立索引Alter table 表名 add index …….思路 1 :Artid -查— tag -&gt; index artid（artid）；Tag –查— artid -&gt; index tag(tag)Extra：using where这种建立两个索引的思路不够优化 优化思路 1 思路 2（联合索引） ：Artid —查—tag -&gt; index artid（artid,tag）；Tag –查—artid –&gt; index tag(tag,artid)Extra：using where，using index 索引覆盖 具体在不同的数据库引擎上测试结果如下列:如果在整数列上有一个索引，现在需要额外增加一个很长的VARCHAR列来扩展该索引，那性能可能会急剧下降。特别是有查询把这个索引当做覆盖索引，或者这是MyISAM表并且有很多范围查询（由于MyISAM的前缀压缩）的时候。有一个userinfo表。这个表有1000000行，对每个state_id值大概有20000条记录。在state_id列有一个索引对下面的查询有用，假设查询名为Q1：1SELECT count(*) FROM userinfo WHERE state_Id=5; 一个简单的测试表明该查询的执行速度大概是每秒115次(QPS)。还有一个相关查询需要检索几个列的值，而不是只统计行数，假设名为Q2：1SELECT state_id,city,address FROM userinfo WHERE state_id=5; 对于这个查询，测试结果QPS小于10。提升该查询性能的最简单办法就是扩展索引为(state_id,city,address)，让索引能覆盖查询：1ALTER TABLE userinfo DROP KEY state_id, ADD KEY state_id_2(state_id,city,address); 索引扩展后，Q2运行得更快了，但是Q1却变慢了。如果我们想让两个查询都变得更快，就需要两个索引，尽管这样一来原来的单列索引是冗余的了。图1显示这两个查询在不同索引策略下的详细结果，分别使用MyISAM和InnoDB存储引擎。注意到只有state_id_2索引时，InnoDB引擎上的查询Q1的性能下降并不明显，这是因为InnoDB没有使用索引压缩。有两个索引的缺点是索引成本更高。图2显示了想表中插入100万行数据所需要的时间。可以看到，表中的索引越多插入速度越慢。一般来说，增加新索引将会导致INSERT、UPDATE、DELETE等操作的速度变慢，特别是当新增索引后导致达到了内存瓶颈的时候。解决冗余索引和重复索引的方法很简单，删除这些索引就可以，但首先要做的是找出这样的索引。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>

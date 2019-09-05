@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -111,15 +111,22 @@
 
 
 
-<meta name="description" content="你是我奋斗的动力。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Like programming">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="冗余索引（重点）">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql优化（五）重复索引与冗余索引">
+<meta property="og:url" content="http://yoursite.com/2017/05/28/mysql优化（五）重复索引与冗余索引/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="你是我奋斗的动力。">
+<meta property="og:description" content="冗余索引（重点）">
+<meta property="og:image" content="http://yoursite.com/uploads/mysql/10.png">
+<meta property="og:image" content="http://yoursite.com/uploads/mysql/11.png">
+<meta property="og:image" content="http://yoursite.com/uploads/mysql/3.jpg">
+<meta property="og:image" content="http://yoursite.com/uploads/mysql/4.jpg">
+<meta property="og:updated_time" content="2019-09-05T14:37:17.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Like programming">
-<meta name="twitter:description" content="你是我奋斗的动力。">
+<meta name="twitter:title" content="mysql优化（五）重复索引与冗余索引">
+<meta name="twitter:description" content="冗余索引（重点）">
+<meta name="twitter:image" content="http://yoursite.com/uploads/mysql/10.png">
 
 
 
@@ -147,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/28/mysql优化（五）重复索引与冗余索引/"/>
 
 
 
 
 
-  <title>归档 | Like programming</title>
+  <title>mysql优化（五）重复索引与冗余索引 | Like programming</title>
   
 
 
@@ -178,7 +185,7 @@
     
   
 
-  <div class="container sidebar-position-right  page-archive  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -306,413 +313,192 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 14 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/28/mysql优化（五）重复索引与冗余索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我有一个梦想">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ming.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like programming">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql优化（五）重复索引与冗余索引</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T19:02:04+08:00">
+                2017-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <h1 id="冗余索引（重点）"><a href="#冗余索引（重点）" class="headerlink" title="冗余索引（重点）"></a>冗余索引（重点）</h1><a id="more"></a>
+<h2 id="重复索引："><a href="#重复索引：" class="headerlink" title="重复索引："></a>重复索引：</h2><p>   是指的在相同的列上按照相同的顺序创建的相同类型的索引，应该避免这样创建重复索引，发现以后也应该立即删除。重复索引没有任何帮助，只会增大索引文件，拖慢更新速度。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE <span class="built_in">test</span>(</div><div class="line">  ID INT NOT NULL PRIMARY KEY,</div><div class="line">  A INT NOT NULL,</div><div class="line">  B INT NOT NULL,</div><div class="line">  UNIQUE(ID),</div><div class="line">  INDEX(ID),</div><div class="line">) ENGINE=InnoDB;</div></pre></td></tr></table></figure></p>
+<p>这段SQL创建了3个重复索引。通常并没有理由这么做。</p>
+<h2 id="冗余索引"><a href="#冗余索引" class="headerlink" title="冗余索引"></a>冗余索引</h2><p>冗余索引是指两个索引覆盖的列有重叠，称之为冗余索引</p>
+<h3 id="比如文章和标签表"><a href="#比如文章和标签表" class="headerlink" title="比如文章和标签表"></a>比如文章和标签表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+-------+--------+---------+</div><div class="line">|  id   | artid  |   tag   |</div><div class="line">+-------+--------+---------+</div><div class="line">|   1   |    1   |   PHP   |</div><div class="line">|   2   |    1   |  Linux  |</div><div class="line">|   3   |    2   |  MySQL  |</div><div class="line">|   4   |    2   |  Oracle |</div><div class="line">+-------+--------+---------+</div></pre></td></tr></table></figure>
+<p>在实际使用中有两种查询<br>Artid —&gt; 查询文章 —&gt; tag<br>Tag –&gt; 查询文章 —&gt; artid</p>
+<p>列:<br>Selet tag from table where artid =2<br>Selet artid from table where tag=PHP</p>
+<p>建立索引<br>Alter table 表名 add index …….<br>思路 1 :<br>Artid -查— tag -&gt; index artid（artid）；<br>Tag –查— artid -&gt; index tag(tag)<br><img src="/uploads/mysql/10.png" alt="如图"><br>Extra：using where<br>这种建立两个索引的思路不够优化</p>
+<p>优化思路 1 思路 2（联合索引） ：<br>Artid —查—tag -&gt; index artid（artid,tag）；<br>Tag –查—artid –&gt; index tag(tag,artid)<br><img src="/uploads/mysql/11.png" alt="如图"><br>Extra：using where，using index 索引覆盖 </p>
+<h2 id="具体在不同的数据库引擎上测试结果如下"><a href="#具体在不同的数据库引擎上测试结果如下" class="headerlink" title="具体在不同的数据库引擎上测试结果如下"></a>具体在不同的数据库引擎上测试结果如下</h2><p>列:<br>如果在整数列上有一个索引，现在需要额外增加一个很长的VARCHAR列来扩展该索引，那性能可能会急剧下降。特别是有查询把这个索引当做覆盖索引，或者这是MyISAM表并且有很多范围查询（由于MyISAM的前缀压缩）的时候。<br>有一个userinfo表。这个表有1000000行，对每个state_id值大概有20000条记录。在state_id列有一个索引对下面的查询有用，假设查询名为Q1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT count(*) FROM userinfo WHERE state_Id=5;</div></pre></td></tr></table></figure></p>
+<p>一个简单的测试表明该查询的执行速度大概是每秒115次(QPS)。还有一个相关查询需要检索几个列的值，而不是只统计行数，假设名为Q2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT state_id,city,address FROM userinfo WHERE state_id=5;</div></pre></td></tr></table></figure></p>
+<p>对于这个查询，测试结果QPS小于10。提升该查询性能的最简单办法就是扩展索引为(state_id,city,address)，让索引能覆盖查询：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE userinfo DROP KEY state_id, ADD KEY state_id_2(state_id,city,address);</div></pre></td></tr></table></figure></p>
+<p>索引扩展后，Q2运行得更快了，但是Q1却变慢了。如果我们想让两个查询都变得更快，就需要两个索引，尽管这样一来原来的单列索引是冗余的了。图1显示这两个查询在不同索引策略下的详细结果，分别使用MyISAM和InnoDB存储引擎。注意到只有state_id_2索引时，InnoDB引擎上的查询Q1的性能下降并不明显，这是因为InnoDB没有使用索引压缩。<br><img src="/uploads/mysql/3.jpg" alt="如图"><br>有两个索引的缺点是索引成本更高。图2显示了想表中插入100万行数据所需要的时间。<br><img src="/uploads/mysql/4.jpg" alt="如图"><br>可以看到，表中的索引越多插入速度越慢。一般来说，增加新索引将会导致INSERT、UPDATE、DELETE等操作的速度变慢，特别是当新增索引后导致达到了内存瓶颈的时候。<br>解决冗余索引和重复索引的方法很简单，删除这些索引就可以，但首先要做的是找出这样的索引。 </p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2019">2019</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
         </div>
       
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/10/python使用链接mysql数据库/" itemprop="url">
-              
-                <span itemprop="name">python安装链接mysql数据库</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-10T17:32:49+08:00"
-              content="2019-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
 
       
       
       
 
       
-      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/20/mysql优化（四）理想状态索引与排序/" rel="next" title="mysql优化（四）理想的索引与排序">
+                <i class="fa fa-chevron-left"></i> mysql优化（四）理想的索引与排序
+              </a>
+            
+          </div>
 
-      
+          <span class="post-nav-divider"></span>
 
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/26/interview/" itemprop="url">
-              
-                <span itemprop="name">总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-06-26T19:50:47+08:00"
-              content="2019-06-26" >
-          06-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/30/new-article/" rel="prev" title="laravle 中 validate.php 汉化">
+                laravle 中 validate.php 汉化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
         </div>
       
-      
 
       
-
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/14/article-git/" itemprop="url">
-              
-                <span itemprop="name">git基础命令</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-14T17:27:54+08:00"
-              content="2018-06-14" >
-          06-14
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-      
-      
-      
-
+    <div class="post-spread">
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
       
-
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/30/new-article/" itemprop="url">
-              
-                <span itemprop="name">laravle 中 validate.php 汉化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-30T11:56:34+08:00"
-              content="2017-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/28/mysql优化（五）重复索引与冗余索引/" itemprop="url">
-              
-                <span itemprop="name">mysql优化（五）重复索引与冗余索引</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-28T19:02:04+08:00"
-              content="2017-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/20/mysql优化（四）理想状态索引与排序/" itemprop="url">
-              
-                <span itemprop="name">mysql优化（四）理想的索引与排序</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-20T18:17:59+08:00"
-              content="2017-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/16/mysql优化（三）Btree聚簇非聚簇/" itemprop="url">
-              
-                <span itemprop="name">mysql优化（三）Btree聚簇非聚簇</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-16T23:03:39+08:00"
-              content="2017-05-16" >
-          05-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/10/mysql优化（二）索引/" itemprop="url">
-              
-                <span itemprop="name">mysql优化（二）索引</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-10T15:06:46+08:00"
-              content="2017-05-10" >
-          05-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/05/mysql优化（一）建表/" itemprop="url">
-              
-                <span itemprop="name">mysql优化（一）建表</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-05T14:38:10+08:00"
-              content="2017-05-05" >
-          05-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/01/mysql数据库忘记密码/" itemprop="url">
-              
-                <span itemprop="name">mysql数据库忘记密码</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-01T14:01:44+08:00"
-              content="2017-05-01" >
-          05-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -720,6 +506,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTczNy8yMjI0OA=="></div>
+    
+  </div>
+
 
         </div>
         
@@ -740,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ming.jpg"
@@ -803,6 +604,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#冗余索引（重点）"><span class="nav-number">1.</span> <span class="nav-text">冗余索引（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重复索引："><span class="nav-number">1.1.</span> <span class="nav-text">重复索引：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冗余索引"><span class="nav-number">1.2.</span> <span class="nav-text">冗余索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比如文章和标签表"><span class="nav-number">1.2.1.</span> <span class="nav-text">比如文章和标签表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体在不同的数据库引擎上测试结果如下"><span class="nav-number">1.3.</span> <span class="nav-text">具体在不同的数据库引擎上测试结果如下</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -923,11 +740,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
@@ -957,6 +772,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
