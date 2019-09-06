@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -111,15 +111,17 @@
 
 
 
-<meta name="description" content="你是我奋斗的动力。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Like programming">
-<meta property="og:url" content="http://yoursite.com/tags/Hexo/index.html">
+<meta name="description" content="如何利用explain来分析sql语句">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql优化（六）sql语句分析">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/mysql优化（六）sql语句分析/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="你是我奋斗的动力。">
+<meta property="og:description" content="如何利用explain来分析sql语句">
+<meta property="og:updated_time" content="2019-09-06T06:06:53.164Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Like programming">
-<meta name="twitter:description" content="你是我奋斗的动力。">
+<meta name="twitter:title" content="mysql优化（六）sql语句分析">
+<meta name="twitter:description" content="如何利用explain来分析sql语句">
 
 
 
@@ -147,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/06/mysql优化（六）sql语句分析/"/>
 
 
 
 
 
-  <title>标签: Hexo | Like programming</title>
+  <title>mysql优化（六）sql语句分析 | Like programming</title>
   
 
 
@@ -178,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-right  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -306,72 +308,196 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>Hexo<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/20/article-two/" itemprop="url">
-              
-                <span itemprop="name">Hexo标签显示</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-20T20:37:32+08:00"
-              content="2016-08-20" >
-          08-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/13/articl-one/" itemprop="url">
-              
-                <span itemprop="name">Hexo总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-13T15:10:29+08:00"
-              content="2016-08-13" >
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/06/mysql优化（六）sql语句分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我有一个梦想">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ming.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql优化（六）sql语句分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T09:26:33+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="如何利用explain来分析sql语句"><a href="#如何利用explain来分析sql语句" class="headerlink" title="如何利用explain来分析sql语句"></a>如何利用explain来分析sql语句</h1><a id="more"></a>
+<h2 id="一-sql语句的优化"><a href="#一-sql语句的优化" class="headerlink" title="一.sql语句的优化"></a>一.sql语句的优化</h2><h3 id="1-Sql语句的时间花在哪？"><a href="#1-Sql语句的时间花在哪？" class="headerlink" title="1.Sql语句的时间花在哪？"></a>1.Sql语句的时间花在哪？</h3><p>等待时间和执行时间<br>这两个时间并非孤立的，如果单条语句执行的快了对其他语句的锁定也就少了<br>分析如何降低执行时间。</p>
+<h3 id="2-Sql语句的执行时间，又花到哪了？"><a href="#2-Sql语句的执行时间，又花到哪了？" class="headerlink" title="2.Sql语句的执行时间，又花到哪了？"></a>2.Sql语句的执行时间，又花到哪了？</h3><p>查找-&gt; 沿着索引查找慢着可能全表扫描。<br>取出-&gt; 查找行后把结果取出来。</p>
+<h4 id="如何查询快？"><a href="#如何查询快？" class="headerlink" title="如何查询快？"></a>如何查询快？</h4><p>a)    查询的快—联合索引的顺序区分度，长度<br>b)    取的快，索引覆盖<br>c)    传输的少的行和列  </p>
+<h4 id="切分查询：按数据拆成多次"><a href="#切分查询：按数据拆成多次" class="headerlink" title="切分查询：按数据拆成多次"></a>切分查询：按数据拆成多次</h4><p>如 ： 插入10000行数据，每1000条为单位，插入<br>分解查询：按照逻辑把多表链接查询分成多个简单查询sql，</p>
+<h3 id="3-sql语句优化思路？"><a href="#3-sql语句优化思路？" class="headerlink" title="3.sql语句优化思路？"></a>3.sql语句优化思路？</h3><p>不查 —&gt; 少查 –&gt; 高效的查<br>不查，通过业务逻辑来计算</p>
+<p>比如 论坛注册会员的数，我们可以根据前三个月统计每天注册量，用程序估算。</p>
+<p>少量，尽可能精准数据，我们观察新闻网站，内容等一般一次性取列表10 –30条左右</p>
+<p>必须查的尽量走在索引查询行<br>取时，取尽量少的列。比如 select * from tableA  取出所有列，不建议<br>如果定量分析查的多少行和是否沿着索引查？</p>
+<h2 id="二-使用explain来分析"><a href="#二-使用explain来分析" class="headerlink" title="二.使用explain来分析"></a>二.使用explain来分析</h2><h3 id="id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"><a href="#id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。" class="headerlink" title="id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"></a>id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">mysql&gt; explain  select id,user_name from l_manager where id in (select id from l_manager where id = 2)\G</div><div class="line">*************************** 1. row ***************************</div><div class="line">           id: 1</div><div class="line">  select_type: SIMPLE</div><div class="line">        table: l_manager</div><div class="line">   partitions: NULL</div><div class="line">         type: const</div><div class="line">possible_keys: PRIMARY</div><div class="line">          key: PRIMARY</div><div class="line">      key_len: 4</div><div class="line">          ref: const</div><div class="line">         rows: 1</div><div class="line">     filtered: 100.00</div><div class="line">        Extra: NULL</div><div class="line">*************************** 2. row ***************************</div><div class="line">           id: 1</div><div class="line">  select_type: SIMPLE</div><div class="line">        table: l_manager</div><div class="line">   partitions: NULL</div><div class="line">         type: const</div><div class="line">possible_keys: PRIMARY</div><div class="line">          key: PRIMARY</div><div class="line">      key_len: 4</div><div class="line">          ref: const</div><div class="line">         rows: 1</div><div class="line">     filtered: 100.00</div><div class="line">        Extra: Using index</div><div class="line">2 rows in set, 1 warning (0.00 sec)</div></pre></td></tr></table></figure>
+<h3 id="Select-type-查询类型"><a href="#Select-type-查询类型" class="headerlink" title="Select_type:查询类型"></a>Select_type:查询类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">            ----Simple(不含子查询)</div><div class="line">Select_type-  </div><div class="line">            ----Primary（含子查询或派生查询）----Derived （from型子查询）  </div><div class="line">			                 ----subquery(非from子查询)</div></pre></td></tr></table></figure>
+<h3 id="Table：查询针对的表"><a href="#Table：查询针对的表" class="headerlink" title="Table：查询针对的表"></a>Table：查询针对的表</h3><p>有可能 实际表名或者表别名 （from A2 as a2）<br>Derived 如from 型子查询<br>Null 直接计算的结果不走表</p>
+<h3 id="Possible-key-可能用到的索引"><a href="#Possible-key-可能用到的索引" class="headerlink" title="Possible_key : 可能用到的索引"></a>Possible_key : 可能用到的索引</h3><p>注意：可能用几个索引最终只能用一个</p>
+<h3 id="Key-：最终用的索引"><a href="#Key-：最终用的索引" class="headerlink" title="Key ：最终用的索引"></a>Key ：最终用的索引</h3><h3 id="Key-len-使用索引最大长度"><a href="#Key-len-使用索引最大长度" class="headerlink" title="Key_len : 使用索引最大长度"></a>Key_len : 使用索引最大长度</h3><p>注：有可能possible_keys为Null 而key不为NULL这种情况<br>Possible_keys分析的是索引用于查找的过程。<br>而最终的key可能是被用于查找，排序或索引覆盖</p>
+<h3 id="Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据"><a href="#Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据" class="headerlink" title="Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据"></a>Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据</h3><p>可能的值如下：<br>all ：意味着从标的第一行往后逐行扫描，运气不好扫描到最后一行。<br>Index ： 比all性能稍微好一点<br>通俗说：all扫描所有的数据行，相当于data_all   index扫描所有索引节点相当于index_all<br>2种情况可能出现<br>1索引覆盖的查询情况下，能利用上索引数据，但利用不上索引查询必须全索引扫描<br>Range：意思是查询时能根据索引做范围扫描</p>
+<h3 id="Ref：意思指通过索引列可以直接引用到某些数据行"><a href="#Ref：意思指通过索引列可以直接引用到某些数据行" class="headerlink" title="Ref：意思指通过索引列可以直接引用到某些数据行"></a>Ref：意思指通过索引列可以直接引用到某些数据行</h3><p>Eq_ref 是指通过索引列直接引用某1行数据<br>常见于链接查询中<br>Const，system，null 这三个分别指查询优化到常量级别甚至不需要查询时间<br>一般按照主键查询易出现const，system<br>或者直接查询某个表达式不经过表时，出现null</p>
+<h3 id="Rows：预计要扫描多少行"><a href="#Rows：预计要扫描多少行" class="headerlink" title="Rows：预计要扫描多少行"></a>Rows：预计要扫描多少行</h3><h3 id="Extra："><a href="#Extra：" class="headerlink" title="Extra："></a>Extra：</h3><p>Index是指用到索引覆盖，效率非常高<br>Using where 是指只靠索引无法定位。还需要where判断<br>Using temporary 指用上了临时表，ground by 与 order by 不同列时或ground by 与 order by 别的表的列<br>Using filesort 文件排序（文件可能在磁盘，也可能在内存）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/28/mysql优化（五）重复索引与冗余索引/" rel="next" title="mysql优化（五）重复索引与冗余索引">
+                <i class="fa fa-chevron-left"></i> mysql优化（五）重复索引与冗余索引
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/30/new-article/" rel="prev" title="laravle 中 validate.php 汉化">
+                laravle 中 validate.php 汉化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -379,6 +505,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTczNy8yMjI0OA=="></div>
+    
+  </div>
+
 
         </div>
         
@@ -399,8 +531,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ming.jpg"
@@ -462,6 +603,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何利用explain来分析sql语句"><span class="nav-number">1.</span> <span class="nav-text">如何利用explain来分析sql语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-sql语句的优化"><span class="nav-number">1.1.</span> <span class="nav-text">一.sql语句的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Sql语句的时间花在哪？"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.Sql语句的时间花在哪？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Sql语句的执行时间，又花到哪了？"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.Sql语句的执行时间，又花到哪了？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何查询快？"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">如何查询快？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切分查询：按数据拆成多次"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">切分查询：按数据拆成多次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-sql语句优化思路？"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.sql语句优化思路？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-使用explain来分析"><span class="nav-number">1.2.</span> <span class="nav-text">二.使用explain来分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"><span class="nav-number">1.2.1.</span> <span class="nav-text">id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-type-查询类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">Select_type:查询类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table：查询针对的表"><span class="nav-number">1.2.3.</span> <span class="nav-text">Table：查询针对的表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-key-可能用到的索引"><span class="nav-number">1.2.4.</span> <span class="nav-text">Possible_key : 可能用到的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-：最终用的索引"><span class="nav-number">1.2.5.</span> <span class="nav-text">Key ：最终用的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-len-使用索引最大长度"><span class="nav-number">1.2.6.</span> <span class="nav-text">Key_len : 使用索引最大长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据"><span class="nav-number">1.2.7.</span> <span class="nav-text">Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ref：意思指通过索引列可以直接引用到某些数据行"><span class="nav-number">1.2.8.</span> <span class="nav-text">Ref：意思指通过索引列可以直接引用到某些数据行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rows：预计要扫描多少行"><span class="nav-number">1.2.9.</span> <span class="nav-text">Rows：预计要扫描多少行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extra："><span class="nav-number">1.2.10.</span> <span class="nav-text">Extra：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -582,10 +739,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -614,6 +771,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
