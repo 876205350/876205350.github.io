@@ -1,0 +1,1134 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Laravel," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Laravel提供了3种操作数据库方式：DB facade（原始方式）、查询构造器和Eloquent ORM。">
+<meta name="keywords" content="Laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel操作数据库">
+<meta property="og:url" content="http://yoursite.com/2018/05/08/laravel操作数据库/index.html">
+<meta property="og:site_name" content="Like programming">
+<meta property="og:description" content="Laravel提供了3种操作数据库方式：DB facade（原始方式）、查询构造器和Eloquent ORM。">
+<meta property="og:updated_time" content="2019-10-08T07:11:35.595Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="laravel操作数据库">
+<meta name="twitter:description" content="Laravel提供了3种操作数据库方式：DB facade（原始方式）、查询构造器和Eloquent ORM。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/08/laravel操作数据库/"/>
+
+
+
+
+
+  <title>laravel操作数据库 | Like programming</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like programming</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">喜欢你</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/laravel操作数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我有一个梦想">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ming.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">laravel操作数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T09:47:15+08:00">
+                2018-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Laravel提供了3种操作数据库方式：DB-facade（原始方式）、查询构造器和Eloquent-ORM。"><a href="#Laravel提供了3种操作数据库方式：DB-facade（原始方式）、查询构造器和Eloquent-ORM。" class="headerlink" title="Laravel提供了3种操作数据库方式：DB facade（原始方式）、查询构造器和Eloquent ORM。"></a>Laravel提供了3种操作数据库方式：DB facade（原始方式）、查询构造器和Eloquent ORM。</h1><a id="more"></a>
+<h2 id="一、数据库操作之DB-facade-查询方法：select，update，insert，delete，和statement。"><a href="#一、数据库操作之DB-facade-查询方法：select，update，insert，delete，和statement。" class="headerlink" title="一、数据库操作之DB facade 查询方法：select，update，insert，delete，和statement。"></a>一、数据库操作之DB facade 查询方法：select，update，insert，delete，和statement。</h2><h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//返回二位数组</div><div class="line">DB::select(<span class="string">'select * from users);</span></div><div class="line">DB::select('select * from users <span class="built_in">where</span> active = ?<span class="string">', [1]);</span></div><div class="line">DB::select('select * from users <span class="built_in">where</span> id = :id<span class="string">', ['</span>id<span class="string">' =&gt; 1]);</span></div></pre></td></tr></table></figure>
+<h3 id="新增操作"><a href="#新增操作" class="headerlink" title="新增操作"></a>新增操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//返回<span class="literal">true</span>或<span class="literal">false</span></div><div class="line">DB::insert(<span class="string">"insert into table(vip_ID,vip_name,vip_type,vip_fenshu) values(?,?,?,?)"</span>,[5,<span class="string">'小明'</span>,<span class="string">'出行'</span>,670]);</div></pre></td></tr></table></figure>
+<h3 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 返回受影响行数</div><div class="line">DB::update(<span class="string">'update vipinfo set vip_fenshu= ? where vip_ID= ? '</span>,[700,5]);</div></pre></td></tr></table></figure>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 返回的是删除的行数。</div><div class="line">DB::delete(<span class="string">'delete from vipinfo where vip_ID= ?'</span>,[5]);</div></pre></td></tr></table></figure>
+<h3 id="运行一般性声明"><a href="#运行一般性声明" class="headerlink" title="运行一般性声明"></a>运行一般性声明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DB::statement(<span class="string">'drop table users'</span>);</div></pre></td></tr></table></figure>
+<h2 id="二-、数据库操作之查询构造器"><a href="#二-、数据库操作之查询构造器" class="headerlink" title="二 、数据库操作之查询构造器"></a>二 、数据库操作之查询构造器</h2><h3 id="使用查询构造器实现查询"><a href="#使用查询构造器实现查询" class="headerlink" title="使用查询构造器实现查询"></a>使用查询构造器实现查询</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//get()返回多条数据  (对象)</div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;get();  </div><div class="line">//first()返回1条数据  (对象)</div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;first();  //结果集第一条记录  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;orderBy(<span class="string">'vip_ID'</span>,<span class="string">'desc'</span>)-&gt;first();//按vip_ID倒序排序  </div><div class="line">//<span class="built_in">where</span>()条件查询  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,<span class="string">'&gt;='</span>,2)-&gt;get(); //一个条件     </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;whereRaw(<span class="string">'vip_ID&gt; ? and vip_fenshu &gt;= ?'</span>,[2,300])-&gt;get(); //多个条件  </div><div class="line">dd(<span class="variable">$student</span>);  </div><div class="line">//pluck()指定字段,后面不加get  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;pluck(<span class="string">'vip_name'</span>);  </div><div class="line">dd(<span class="variable">$student</span>);  </div><div class="line">//lists()指定字段，可以指定某个字段作为下标  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;lists(<span class="string">'vip_name'</span>,<span class="string">'vip_ID'</span>);   //指定vip_ID为下标  </div><div class="line">dd(<span class="variable">$student</span>);  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;lists(<span class="string">'vip_name'</span>);   //不指定下标，默认下标从0开始  </div><div class="line">//select()指定某个字段  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;select(<span class="string">'vip_name'</span>,<span class="string">'vip_ID'</span>)-&gt;get();  </div><div class="line">dd(<span class="variable">$student</span>);  </div><div class="line">//chunk()每次查n条  </div><div class="line"><span class="variable">$student</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;chunk(2,<span class="keyword">function</span>(<span class="variable">$students</span>)&#123;  //每次查2条  </div><div class="line">    var_dump(<span class="variable">$students</span>);  </div><div class="line">    <span class="keyword">if</span>(.......) <span class="built_in">return</span> <span class="literal">false</span>;  //在满足某个条件下使用<span class="built_in">return</span>就不会再往下查了  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;insert([<span class="string">'vip_ID'</span>=&gt;6,<span class="string">'vip_name'</span>=&gt;<span class="string">'zls'</span>,<span class="string">'vip_type'</span>=&gt;<span class="string">"出行"</span>,<span class="string">'vip_fenshu'</span>=&gt;800]);  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$bool</span>;  //返回bool值  </div><div class="line"> //如果想得到新增的id，则使用insertGetId方法  </div><div class="line">  <span class="variable">$id</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;insertGetId([<span class="string">'vip_ID'</span>=&gt;5,<span class="string">'vip_name'</span>=&gt;<span class="string">'wyp'</span>,<span class="string">'vip_type'</span>=&gt;<span class="string">"出行"</span>,<span class="string">'vip_fenshu'</span>=&gt;800]);  </div><div class="line">  <span class="built_in">echo</span> <span class="variable">$id</span>;  </div><div class="line"> //插入多条数据  </div><div class="line"> <span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;insert([  </div><div class="line">        [<span class="string">'vip_ID'</span>=&gt;5,<span class="string">'vip_name'</span>=&gt;<span class="string">'wyp'</span>,<span class="string">'vip_type'</span>=&gt;<span class="string">"出行"</span>,<span class="string">'vip_fenshu'</span>=&gt;800],  </div><div class="line">        [<span class="string">'vip_ID'</span>=&gt;6,<span class="string">'vip_name'</span>=&gt;<span class="string">'zls'</span>,<span class="string">'vip_type'</span>=&gt;<span class="string">"出行"</span>,<span class="string">'vip_fenshu'</span>=&gt;800],  </div><div class="line">]);  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$bool</span>;  //返回bool值</div><div class="line">``` </div><div class="line"><span class="comment">### 修改</span></div><div class="line">``` bash</div><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;update([<span class="string">'vip_fenshu'</span>=&gt;500]);  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$bool</span>;  </div><div class="line">//自增  </div><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;increment(<span class="string">"vip_fenshu"</span>);//自增1  </div><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;increment(<span class="string">"vip_fenshu"</span>,3);//自增3  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$bool</span>;  </div><div class="line">//自减  </div><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;decrement(<span class="string">"vip_fenshu"</span>);//自1  </div><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;decrement(<span class="string">"vip_fenshu"</span>,3);//自增3  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$bool</span>;  </div><div class="line">//自增时再修改其他字段  </div><div class="line"><span class="variable">$bool</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;increment(<span class="string">"vip_fenshu"</span>,3,[<span class="string">'vip_name'</span>=&gt;<span class="string">'dbdibi'</span>]);//自增3</div></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$num</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,6)-&gt;delete();//删除1条  </div><div class="line"><span class="variable">$num</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;<span class="built_in">where</span>(<span class="string">'vip_ID'</span>,<span class="string">'&gt;'</span>,4)-&gt;delete();//删除多条  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$num</span>;  //删除的行数  </div><div class="line"><span class="variable">$num</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;truncate();//删除整表，不能恢复，谨慎使用</div></pre></td></tr></table></figure>
+<h3 id="使用聚合函数"><a href="#使用聚合函数" class="headerlink" title="使用聚合函数"></a>使用聚合函数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//count()统计记录条数  </div><div class="line"><span class="variable">$nums</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;count();  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$nums</span>;  </div><div class="line">//max()某个字段的最大值,同理min是最小值  </div><div class="line"><span class="variable">$max</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;max(<span class="string">"vip_fenshu"</span>);  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$max</span>;  </div><div class="line">//avg()某个字段的平均值  </div><div class="line"><span class="variable">$avg</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;avg(<span class="string">"vip_fenshu"</span>);  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$avg</span>;  </div><div class="line">//sum()某个字段的和  </div><div class="line"><span class="variable">$sum</span>=DB::table(<span class="string">"vipinfo"</span>)-&gt;sum(<span class="string">"vip_fenshu"</span>);  </div><div class="line"><span class="built_in">echo</span> <span class="variable">$sum</span>;</div></pre></td></tr></table></figure>
+<h2 id="三、数据库操作之-Eloquent-ORM"><a href="#三、数据库操作之-Eloquent-ORM" class="headerlink" title="三、数据库操作之 - Eloquent ORM"></a>三、数据库操作之 - Eloquent ORM</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Laravel 内置的 Eloquent ORM 提供了一个美观、简单的与数据库打交道的 ActiveRecord 实现，每张数据表都对应一个与该表进行交互的模型（Model），通过模型类，你可以对数据表进行查询、插入、更新、删除等操作。<br>在开始之前，确保在 config/database.php 文件中配置好了数据库连接。<br>我们从创建一个 Eloquent 模型开始，模型类通常位于 app 目录下，你也可以将其放在其他可以被 composer.json 文件自动加载到的地方。所有 Eloquent 模型都继承自 Illuminate\Database\Eloquent\Model 类。</p>
+<p>创建模型实例最简单的办法就是使用 Artisan 命令 make:model：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:model User</div></pre></td></tr></table></figure></p>
+<p>如果你想要在生成模型时生成数据库迁移，可以使用 –migration 或 -m 选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">php artisan make:model User --migration</div><div class="line">php artisan make:model User -m</div></pre></td></tr></table></figure></p>
+<h3 id="建立模型，在app目录下建立一个Student模型，即Student-php，不需要带任何后缀。"><a href="#建立模型，在app目录下建立一个Student模型，即Student-php，不需要带任何后缀。" class="headerlink" title="建立模型，在app目录下建立一个Student模型，即Student.php，不需要带任何后缀。"></a>建立模型，在app目录下建立一个Student模型，即Student.php，不需要带任何后缀。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php </div><div class="line">namespace App;  </div><div class="line">use Illuminate\Database\Eloquent\Model;  </div><div class="line">class Student extends Model&#123;  </div><div class="line">    //指定表名  </div><div class="line">    protected $table= &apos;vipinfo&apos;;  </div><div class="line">//指定主键  </div><div class="line">protected $primaryKey= &apos;vip_ID&apos;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Student控制器里增加一个test3方法，配置路由 Route::get(‘test3’,[‘uses’=&gt;’StudentController@test3’]);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public function test3()&#123;  </div><div class="line">    // all()方法查询所有数据  </div><div class="line">    $studnets=Student::all();  </div><div class="line">    dd($studnets);  </div><div class="line">    //find()查询一条，依据主键查询。findOrFail()查找不存在的记录时会抛出异常  </div><div class="line">    $student=Student::find(5);  //主键为5的记录  </div><div class="line">    var_dump($student[&apos;attributes&apos;]);  </div><div class="line">    //查询构造器的使用,省略了指定表名  </div><div class="line">    $student=Student::get();    </div><div class="line">    var_dump($student);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="2-新增数据、自定义时间戳、批量赋值"><a href="#2-新增数据、自定义时间戳、批量赋值" class="headerlink" title="2 . 新增数据、自定义时间戳、批量赋值"></a>2 . 新增数据、自定义时间戳、批量赋值</h3><h4 id="1-使用save方法新增"><a href="#1-使用save方法新增" class="headerlink" title="(1)使用save方法新增"></a>(1)使用save方法新增</h4><p>laravel会默认维护created_at,updated_at 两个字段，这两个字段都是存储时间戳，整型11位的，因此使用时需要在数据库添加这两个字段。如果不需要这个功能，只需要在模型里加一个属性：public $timestamps=false; 以及一个方法，可以将当前时间戳存到数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">protected function getDateFormat()&#123;  </div><div class="line">    return time();  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>控制器里写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$student=new Student();  </div><div class="line">//设定数据 </div><div class="line">$student-&gt;vip_name=&apos;xiaoming&apos;;  </div><div class="line">$student-&gt;vip_type=&apos;出行&apos;;  </div><div class="line">$student-&gt;vip_fenshu=900;  </div><div class="line">$bool=$student-&gt;save();  //保存  </div><div class="line">echo $bool;</div></pre></td></tr></table></figure></p>
+<p>从数据库里取得某条记录的时间戳时，默认取得的是按日期格式化好的时间戳，如果想取得原本的时间戳，则在模型里增加asDateTime方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">protected function asDateTime($val)&#123;  </div><div class="line">   return $val;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="（2）使用create方法新增时，需要在模型里增加："><a href="#（2）使用create方法新增时，需要在模型里增加：" class="headerlink" title="（2）使用create方法新增时，需要在模型里增加："></a>（2）使用create方法新增时，需要在模型里增加：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">protected $fillable=[&apos;vip_name&apos;,&apos;vip_fenshu&apos;,&apos;vip_type&apos;];   //允许批量赋值的字段</div></pre></td></tr></table></figure>
+<p>控制器里写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student::create([&apos;vip_name&apos;=&gt;&apos;mmm&apos;,&apos;vip_fenshu&apos;=&gt;999,&apos;vip_type&apos;=&gt;&apos;出行&apos;]);</div></pre></td></tr></table></figure></p>
+<h4 id="（3）firstOrCreate-以属性查找记录，若没有则新增"><a href="#（3）firstOrCreate-以属性查找记录，若没有则新增" class="headerlink" title="（3）firstOrCreate()以属性查找记录，若没有则新增"></a>（3）firstOrCreate()以属性查找记录，若没有则新增</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$student=Student::firstOrCreate([&apos;vip_name&apos;=&gt;&apos;mmm&apos;]);  </div><div class="line">echo $student;</div></pre></td></tr></table></figure>
+<h4 id="（4）firstOrNew-以属性查找记录，若没有则会创建新的实例。若需要保存，则自己调用save方法"><a href="#（4）firstOrNew-以属性查找记录，若没有则会创建新的实例。若需要保存，则自己调用save方法" class="headerlink" title="（4）firstOrNew()以属性查找记录，若没有则会创建新的实例。若需要保存，则自己调用save方法()"></a>（4）firstOrNew()以属性查找记录，若没有则会创建新的实例。若需要保存，则自己调用save方法()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$student=Student::firstOrNew([&apos;vip_name&apos;=&gt;&apos;mmm&apos;]);  </div><div class="line">$student-&gt;save();  </div><div class="line">echo $student;</div></pre></td></tr></table></figure>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//通过模型更新数据  $student=Student::find(2);  </div><div class="line">$student-&gt;vip_fenshu=10000;  </div><div class="line">$student-&gt;save(); //返回bool值  </div><div class="line">//通过查询构造器更新  </div><div class="line">$num=Student::where(&apos;vip_ID&apos;,&apos;&gt;&apos;,2)-&gt;update([&apos;vip_fenshu&apos;=&gt;2000]);  </div><div class="line">echo $num;  //返回更新的行数</div></pre></td></tr></table></figure>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//(1)通过模型删除数据  </div><div class="line">$student=Student::find(11);  </div><div class="line">$student-&gt;delete(); //返回bool值  </div><div class="line">//(2)通过主键删除   </div><div class="line">$num=Student::destroy(10); //删除主键为10的一条记录   </div><div class="line">echo $num; //返回删除的行数   </div><div class="line">$num=Student::destroy(10,5); //删除多条  或者$num=Student::destroy([10,5]);   </div><div class="line">echo $num; //返回删除的行数</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/11/正则表达式/" rel="next" title="正则表达式">
+                <i class="fa fa-chevron-left"></i> 正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/14/article-git/" rel="prev" title="git基础命令">
+                git基础命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTczNy8yMjI0OA=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div id="sidebar-dimmer"></div>
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/ming.jpg"
+               alt="我有一个梦想" />
+          <p class="site-author-name" itemprop="name">我有一个梦想</p>
+           
+              <p class="site-description motion-element" itemprop="description">你是我奋斗的动力。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Laravel提供了3种操作数据库方式：DB-facade（原始方式）、查询构造器和Eloquent-ORM。"><span class="nav-number">1.</span> <span class="nav-text">Laravel提供了3种操作数据库方式：DB facade（原始方式）、查询构造器和Eloquent ORM。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据库操作之DB-facade-查询方法：select，update，insert，delete，和statement。"><span class="nav-number">1.1.</span> <span class="nav-text">一、数据库操作之DB facade 查询方法：select，update，insert，delete，和statement。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询操作"><span class="nav-number">1.1.1.</span> <span class="nav-text">查询操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">新增操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新操作"><span class="nav-number">1.1.3.</span> <span class="nav-text">更新操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除操作"><span class="nav-number">1.1.4.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行一般性声明"><span class="nav-number">1.1.5.</span> <span class="nav-text">运行一般性声明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-、数据库操作之查询构造器"><span class="nav-number">1.2.</span> <span class="nav-text">二 、数据库操作之查询构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用查询构造器实现查询"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用查询构造器实现查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增"><span class="nav-number">1.2.2.</span> <span class="nav-text">新增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">1.2.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用聚合函数"><span class="nav-number">1.2.4.</span> <span class="nav-text">使用聚合函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、数据库操作之-Eloquent-ORM"><span class="nav-number">1.3.</span> <span class="nav-text">三、数据库操作之 - Eloquent ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立模型，在app目录下建立一个Student模型，即Student-php，不需要带任何后缀。"><span class="nav-number">1.3.2.</span> <span class="nav-text">建立模型，在app目录下建立一个Student模型，即Student.php，不需要带任何后缀。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-新增数据、自定义时间戳、批量赋值"><span class="nav-number">1.3.3.</span> <span class="nav-text">2 . 新增数据、自定义时间戳、批量赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使用save方法新增"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">(1)使用save方法新增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）使用create方法新增时，需要在模型里增加："><span class="nav-number">1.3.3.2.</span> <span class="nav-text">（2）使用create方法新增时，需要在模型里增加：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）firstOrCreate-以属性查找记录，若没有则新增"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">（3）firstOrCreate()以属性查找记录，若没有则新增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（4）firstOrNew-以属性查找记录，若没有则会创建新的实例。若需要保存，则自己调用save方法"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">（4）firstOrNew()以属性查找记录，若没有则会创建新的实例。若需要保存，则自己调用save方法()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改数据"><span class="nav-number">1.3.4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据"><span class="nav-number">1.3.5.</span> <span class="nav-text">删除数据</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我有一个梦想</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
