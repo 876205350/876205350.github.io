@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -111,17 +111,19 @@
 
 
 
-<meta name="description" content="python 如何使用 mysql 以及配置">
-<meta name="keywords" content="python">
+<meta name="description" content="英文全称为Multi-Version Concurrency Control 多版本并发控制。">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python安装链接mysql数据库">
-<meta property="og:url" content="http://yoursite.com/2019/08/10/python使用链接mysql数据库/index.html">
+<meta property="og:title" content="Mysql中MVCC原理讲解">
+<meta property="og:url" content="http://yoursite.com/2019/08/30/Mysql中MVCC原理讲解/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="python 如何使用 mysql 以及配置">
-<meta property="og:updated_time" content="2019-08-19T10:57:51.633Z">
+<meta property="og:description" content="英文全称为Multi-Version Concurrency Control 多版本并发控制。">
+<meta property="og:image" content="http://yoursite.com/uploads/mysql/MVCC-01.png">
+<meta property="og:updated_time" content="2019-10-11T12:13:22.583Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python安装链接mysql数据库">
-<meta name="twitter:description" content="python 如何使用 mysql 以及配置">
+<meta name="twitter:title" content="Mysql中MVCC原理讲解">
+<meta name="twitter:description" content="英文全称为Multi-Version Concurrency Control 多版本并发控制。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/mysql/MVCC-01.png">
 
 
 
@@ -149,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/10/python使用链接mysql数据库/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/08/30/Mysql中MVCC原理讲解/"/>
 
 
 
 
 
-  <title>python安装链接mysql数据库 | Like programming</title>
+  <title>Mysql中MVCC原理讲解 | Like programming</title>
   
 
 
@@ -318,7 +320,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/python使用链接mysql数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/Mysql中MVCC原理讲解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="我有一个梦想">
@@ -335,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python安装链接mysql数据库</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql中MVCC原理讲解</h1>
         
 
         <div class="post-meta">
@@ -347,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-10T17:32:49+08:00">
-                2019-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T17:59:01+08:00">
+                2019-08-30
               </time>
             
 
@@ -404,15 +406,87 @@
       
 
       
-        <h1 id="python-如何使用-mysql-以及配置"><a href="#python-如何使用-mysql-以及配置" class="headerlink" title="python 如何使用 mysql 以及配置"></a>python 如何使用 mysql 以及配置</h1><a id="more"></a>
-<h2 id="首先Django-2-2支持Python-3-5-3-6和3-7"><a href="#首先Django-2-2支持Python-3-5-3-6和3-7" class="headerlink" title="首先Django 2.2支持Python 3.5,3.6和3.7"></a>首先Django 2.2支持Python 3.5,3.6和3.7</h2><p> python3自带的pip</p>
-<h2 id="首先我们要知道"><a href="#首先我们要知道" class="headerlink" title="首先我们要知道"></a>首先我们要知道</h2><h3 id="python链接mysql需要三方包的，目前主流的方式就是pymysql-和-mysqlclient（也就是Python3版本的MySQLdb）。"><a href="#python链接mysql需要三方包的，目前主流的方式就是pymysql-和-mysqlclient（也就是Python3版本的MySQLdb）。" class="headerlink" title="python链接mysql需要三方包的，目前主流的方式就是pymysql 和 mysqlclient（也就是Python3版本的MySQLdb）。"></a>python链接mysql需要三方包的，目前主流的方式就是pymysql 和 mysqlclient（也就是Python3版本的MySQLdb）。</h3><h4 id="一、pymysql"><a href="#一、pymysql" class="headerlink" title="一、pymysql"></a>一、pymysql</h4><pre><code>1）纯Python实现的，安装简单（直接pip安装）
-
-2) 由于纯Python实现的，可以很好的跟gevent框架结合
-</code></pre><h4 id="二、mysqlclient"><a href="#二、mysqlclient" class="headerlink" title="二、mysqlclient"></a>二、mysqlclient</h4><pre><code>1）是一个C扩展模块,编译安装可能会导致报各种错误,明显没有pymysql方便
-
-2）速度快；
-</code></pre><h3 id="安装使用pymysql"><a href="#安装使用pymysql" class="headerlink" title="安装使用pymysql"></a>安装使用pymysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+        <h1 id="英文全称为Multi-Version-Concurrency-Control-多版本并发控制。"><a href="#英文全称为Multi-Version-Concurrency-Control-多版本并发控制。" class="headerlink" title="英文全称为Multi-Version Concurrency Control 多版本并发控制。"></a>英文全称为Multi-Version Concurrency Control 多版本并发控制。</h1><a id="more"></a>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>测试环境：MySQL 5.7.23-log<br>数据库默认隔离级别；RR（Repeatable Read，可重复读），MVCC主要适用于MySQL的RC，RR隔离级别<br>创建一张存储引擎为testmvcc的表，sql为:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE testmvcc (</div><div class="line"> id int(11) DEFAULT NULL,</div><div class="line"> name varchar(11) DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</div></pre></td></tr></table></figure></p>
+<h2 id="什么是MVCC"><a href="#什么是MVCC" class="headerlink" title="什么是MVCC"></a>什么是MVCC</h2><p>英文全称为Multi-Version Concurrency Control即 多版本并发控制。他无非就是乐观锁的一种实现方式。在Java编程中，如果把乐观锁看成一个接口，MVCC便是这个接口的一个实现类而已。<br><img src="/uploads/mysql/MVCC-01.png" alt="如图"></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>1.MVCC其实广泛应用于数据库技术，像Oracle,PostgreSQL等也引入了该技术，即适用范围广。</li>
+<li>2.MVCC并没有简单的使用数据库的行锁，而是使用了行级锁，row_level_lock,而非InnoDB中的innodb_row_lock.<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2>MVCC的实现，通过保存数据在某个时间点的快照来实现的。这意味着一个事务无论运行多长时间，在同一个事务里能够看到数据一致的视图。根据事务开始的时间不同，同时也意味着在同一个时刻不同事务看到的相同表里的数据可能是不同的。<h2 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h2></li>
+<li>每行数据都存在一个版本，每次数据更新时都更新该版本。</li>
+<li>修改时Copy出当前版本随意修改，各个事务之间无干扰。</li>
+<li>保存时比较版本号，如果成功（commit），则覆盖原记录；失败则放弃copy（rollback）<h2 id="InnoDB存储引擎MVCC的实现策略"><a href="#InnoDB存储引擎MVCC的实现策略" class="headerlink" title="InnoDB存储引擎MVCC的实现策略"></a>InnoDB存储引擎MVCC的实现策略</h2>在每一行数据中额外保存两个隐藏的列：当前行创建时的版本号和删除时的版本号（可能为空，其实还有一列称为回滚指针，用于事务回滚，不在本文范畴）。这里的版本号并不是实际的时间值，而是系统版本号。每开始新的事务，系统版本号都会自动递增。事务开始时刻的系统版本号会作为事务的版本号，用来和查询每行记录的版本号进行比较。</li>
+</ul>
+<p>每个事务又有自己的版本号，这样事务内执行CRUD操作时，就通过版本号的比较来达到数据版本控制的目的。</p>
+<h2 id="MVCC下InnoDB的增删查改是怎么work的"><a href="#MVCC下InnoDB的增删查改是怎么work的" class="headerlink" title="MVCC下InnoDB的增删查改是怎么work的"></a>MVCC下InnoDB的增删查改是怎么work的</h2><h3 id="1、插入数据（insert）-记录的版本号即当前事务的版本号"><a href="#1、插入数据（insert）-记录的版本号即当前事务的版本号" class="headerlink" title="1、插入数据（insert）:记录的版本号即当前事务的版本号"></a>1、插入数据（insert）:记录的版本号即当前事务的版本号</h3><p>执行一条数据语句：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; insert into testmvcc values(1,<span class="string">"test"</span>);</div></pre></td></tr></table></figure></p>
+<h4 id="假设事务id为1，那么插入后的数据行如下："><a href="#假设事务id为1，那么插入后的数据行如下：" class="headerlink" title="假设事务id为1，那么插入后的数据行如下："></a>假设事务id为1，那么插入后的数据行如下：</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">id</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">create version</th>
+<th style="text-align:center">delete version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。"><a href="#2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。" class="headerlink" title="2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。"></a>2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。</h3><p>比如，针对上面那行记录，事务Id为2 要把name字段更新<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; update table <span class="built_in">set</span> name= <span class="string">'new_value'</span> <span class="built_in">where</span> id=1;</div></pre></td></tr></table></figure></p>
+<h4 id="事务id为2，那么修改id-1后的数据行如下："><a href="#事务id为2，那么修改id-1后的数据行如下：" class="headerlink" title="事务id为2，那么修改id=1后的数据行如下："></a>事务id为2，那么修改id=1后的数据行如下：</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">id</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">create version</th>
+<th style="text-align:center">delete version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">new_value</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3、删除操作的时候，就把事务版本号作为删除版本号。"><a href="#3、删除操作的时候，就把事务版本号作为删除版本号。" class="headerlink" title="3、删除操作的时候，就把事务版本号作为删除版本号。"></a>3、删除操作的时候，就把事务版本号作为删除版本号。</h3><p>比如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; delete from table <span class="built_in">where</span> id=1;</div></pre></td></tr></table></figure></p>
+<h4 id="删除id-1数据如下："><a href="#删除id-1数据如下：" class="headerlink" title="删除id=1数据如下："></a>删除id=1数据如下：</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">id</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">create version</th>
+<th style="text-align:center">delete version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4、查询操作："><a href="#4、查询操作：" class="headerlink" title="4、查询操作："></a>4、查询操作：</h3><p>从上面的描述可以看到，在查询时要符合以下两个条件的记录才能被事务查询出来：</p>
+<ul>
+<li>1) 删除版本号未指定或者大于当前事务版本号，即查询事务开启后确保读取的行未被删除。(即上述事务id为2的事务查询时，依然能读取到事务id为3所删除的数据行)</li>
+<li>2) 创建版本号 小于或者等于 当前事务版本号 ，就是说记录创建是在当前事务中（等于的情况）或者在当前事务启动之前的其他事物进行的insert。</li>
+</ul>
+<p>（即事务id为2的事务只能读取到create version&lt;=2的已提交的事务的数据集）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">补充：</div><div class="line">1.MVCC手段只适用于Msyql隔离级别中的读已提交（Read committed）和可重复读（Repeatable Read）.</div><div class="line">2.Read uncimmitted由于存在脏读，即能读到未提交事务的数据行，所以不适用MVCC.</div><div class="line">原因是MVCC的创建版本和删除版本只要在事务提交后才会产生。</div><div class="line">3.串行化由于是会对所涉及到的表加锁，并非行锁，自然也就不存在行的版本控制问题。</div><div class="line">4.通过以上总结，可知，MVCC主要作用于事务性的，有行锁控制的数据库模型。</div></pre></td></tr></table></figure></p>
+<h2 id="关于Mysql中MVCC的总结"><a href="#关于Mysql中MVCC的总结" class="headerlink" title="关于Mysql中MVCC的总结"></a>关于Mysql中MVCC的总结</h2><p>客观上，我们认为他就是乐观锁的一整实现方式，就是每行都有版本号，保存时根据版本号决定是否成功。<br>但由于Mysql的写操作会加排他锁（前文有讲），如果锁定了还算不算是MVCC？<br>了解乐观锁的小伙伴们，都知道其主要依靠版本控制，即消除锁定，二者相互矛盾，so从某种意义上来说，Mysql的MVCC并非真正的MVCC，他只是借用MVCC的名号实现了读的非阻塞而已。</p>
 
       
     </div>
@@ -442,7 +516,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -455,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/26/interview/" rel="next" title="总结">
-                <i class="fa fa-chevron-left"></i> 总结
+              <a href="/2019/08/10/python使用链接mysql数据库/" rel="next" title="python安装链接mysql数据库">
+                <i class="fa fa-chevron-left"></i> python安装链接mysql数据库
               </a>
             
           </div>
@@ -465,8 +539,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/30/Mysql中MVCC原理讲解/" rel="prev" title="Mysql中MVCC原理讲解">
-                Mysql中MVCC原理讲解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/10/10MySQL为什么有时会选错索引/" rel="prev" title="10MySQL为什么有时会选错索引">
+                10MySQL为什么有时会选错索引 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -605,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python-如何使用-mysql-以及配置"><span class="nav-number">1.</span> <span class="nav-text">python 如何使用 mysql 以及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先Django-2-2支持Python-3-5-3-6和3-7"><span class="nav-number">1.1.</span> <span class="nav-text">首先Django 2.2支持Python 3.5,3.6和3.7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首先我们要知道"><span class="nav-number">1.2.</span> <span class="nav-text">首先我们要知道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python链接mysql需要三方包的，目前主流的方式就是pymysql-和-mysqlclient（也就是Python3版本的MySQLdb）。"><span class="nav-number">1.2.1.</span> <span class="nav-text">python链接mysql需要三方包的，目前主流的方式就是pymysql 和 mysqlclient（也就是Python3版本的MySQLdb）。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、pymysql"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">一、pymysql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、mysqlclient"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">二、mysqlclient</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装使用pymysql"><span class="nav-number">1.2.2.</span> <span class="nav-text">安装使用pymysql</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#英文全称为Multi-Version-Concurrency-Control-多版本并发控制。"><span class="nav-number">1.</span> <span class="nav-text">英文全称为Multi-Version Concurrency Control 多版本并发控制。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是MVCC"><span class="nav-number">1.2.</span> <span class="nav-text">什么是MVCC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.3.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本原理"><span class="nav-number">1.4.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本特征"><span class="nav-number">1.5.</span> <span class="nav-text">基本特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InnoDB存储引擎MVCC的实现策略"><span class="nav-number">1.6.</span> <span class="nav-text">InnoDB存储引擎MVCC的实现策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVCC下InnoDB的增删查改是怎么work的"><span class="nav-number">1.7.</span> <span class="nav-text">MVCC下InnoDB的增删查改是怎么work的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、插入数据（insert）-记录的版本号即当前事务的版本号"><span class="nav-number">1.7.1.</span> <span class="nav-text">1、插入数据（insert）:记录的版本号即当前事务的版本号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#假设事务id为1，那么插入后的数据行如下："><span class="nav-number">1.7.1.1.</span> <span class="nav-text">假设事务id为1，那么插入后的数据行如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。"><span class="nav-number">1.7.2.</span> <span class="nav-text">2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务id为2，那么修改id-1后的数据行如下："><span class="nav-number">1.7.2.1.</span> <span class="nav-text">事务id为2，那么修改id=1后的数据行如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、删除操作的时候，就把事务版本号作为删除版本号。"><span class="nav-number">1.7.3.</span> <span class="nav-text">3、删除操作的时候，就把事务版本号作为删除版本号。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除id-1数据如下："><span class="nav-number">1.7.3.1.</span> <span class="nav-text">删除id=1数据如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、查询操作："><span class="nav-number">1.7.4.</span> <span class="nav-text">4、查询操作：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Mysql中MVCC的总结"><span class="nav-number">1.8.</span> <span class="nav-text">关于Mysql中MVCC的总结</span></a></li></ol></li></ol></div>
             
 
           </div>
