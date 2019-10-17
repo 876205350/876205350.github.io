@@ -118,7 +118,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/06/mysql优化（六）sql语句分析/index.html">
 <meta property="og:site_name" content="Like programming">
 <meta property="og:description" content="如何利用explain来分析sql语句">
-<meta property="og:updated_time" content="2019-09-06T06:06:53.164Z">
+<meta property="og:updated_time" content="2019-10-17T09:44:01.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql优化（六）sql语句分析">
 <meta name="twitter:description" content="如何利用explain来分析sql语句">
@@ -413,14 +413,143 @@
 <p>比如 论坛注册会员的数，我们可以根据前三个月统计每天注册量，用程序估算。</p>
 <p>少量，尽可能精准数据，我们观察新闻网站，内容等一般一次性取列表10 –30条左右</p>
 <p>必须查的尽量走在索引查询行<br>取时，取尽量少的列。比如 select * from tableA  取出所有列，不建议<br>如果定量分析查的多少行和是否沿着索引查？</p>
-<h2 id="二-使用explain来分析"><a href="#二-使用explain来分析" class="headerlink" title="二.使用explain来分析"></a>二.使用explain来分析</h2><h3 id="id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"><a href="#id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。" class="headerlink" title="id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"></a>id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">mysql&gt; explain  select id,user_name from l_manager where id in (select id from l_manager where id = 2)\G</div><div class="line">*************************** 1. row ***************************</div><div class="line">           id: 1</div><div class="line">  select_type: SIMPLE</div><div class="line">        table: l_manager</div><div class="line">   partitions: NULL</div><div class="line">         type: const</div><div class="line">possible_keys: PRIMARY</div><div class="line">          key: PRIMARY</div><div class="line">      key_len: 4</div><div class="line">          ref: const</div><div class="line">         rows: 1</div><div class="line">     filtered: 100.00</div><div class="line">        Extra: NULL</div><div class="line">*************************** 2. row ***************************</div><div class="line">           id: 1</div><div class="line">  select_type: SIMPLE</div><div class="line">        table: l_manager</div><div class="line">   partitions: NULL</div><div class="line">         type: const</div><div class="line">possible_keys: PRIMARY</div><div class="line">          key: PRIMARY</div><div class="line">      key_len: 4</div><div class="line">          ref: const</div><div class="line">         rows: 1</div><div class="line">     filtered: 100.00</div><div class="line">        Extra: Using index</div><div class="line">2 rows in set, 1 warning (0.00 sec)</div></pre></td></tr></table></figure>
-<h3 id="Select-type-查询类型"><a href="#Select-type-查询类型" class="headerlink" title="Select_type:查询类型"></a>Select_type:查询类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">            ----Simple(不含子查询)</div><div class="line">Select_type-  </div><div class="line">            ----Primary（含子查询或派生查询）----Derived （from型子查询）  </div><div class="line">			                 ----subquery(非from子查询)</div></pre></td></tr></table></figure>
+<h2 id="二-使用explain来分析"><a href="#二-使用explain来分析" class="headerlink" title="二.使用explain来分析"></a>二.使用explain来分析</h2><h3 id="id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"><a href="#id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。" class="headerlink" title="id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"></a>id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。</h3><p>注意：id列数字越大越先执行，如果说数字一样大，那么就从上往下依次执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">mysql&gt; explain  select id,user_name from l_manager where id in (select id from l_manager where id = 2)\G</div><div class="line">*************************** 1. row ***************************</div><div class="line">           id: 1</div><div class="line">  select_type: SIMPLE</div><div class="line">        table: l_manager</div><div class="line">   partitions: NULL</div><div class="line">         type: const</div><div class="line">possible_keys: PRIMARY</div><div class="line">          key: PRIMARY</div><div class="line">      key_len: 4</div><div class="line">          ref: const</div><div class="line">         rows: 1</div><div class="line">     filtered: 100.00</div><div class="line">        Extra: NULL</div><div class="line">*************************** 2. row ***************************</div><div class="line">           id: 1</div><div class="line">  select_type: SIMPLE</div><div class="line">        table: l_manager</div><div class="line">   partitions: NULL</div><div class="line">         type: const</div><div class="line">possible_keys: PRIMARY</div><div class="line">          key: PRIMARY</div><div class="line">      key_len: 4</div><div class="line">          ref: const</div><div class="line">         rows: 1</div><div class="line">     filtered: 100.00</div><div class="line">        Extra: Using index</div><div class="line">2 rows in set, 1 warning (0.00 sec)</div></pre></td></tr></table></figure></p>
+<h3 id="Select-type-查询类型"><a href="#Select-type-查询类型" class="headerlink" title="Select_type:查询类型"></a>Select_type:查询类型</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">select_type Value</th>
+<th style="text-align:center">JSON Name</th>
+<th style="text-align:center">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SIMPLE</td>
+<td style="text-align:center">None</td>
+<td style="text-align:center">Simple SELECT (not using UNION or subqueries)</td>
+</tr>
+<tr>
+<td style="text-align:center">PRIMARY</td>
+<td style="text-align:center">None</td>
+<td style="text-align:center">Outermost SELECT</td>
+</tr>
+<tr>
+<td style="text-align:center">UNION</td>
+<td style="text-align:center">None</td>
+<td style="text-align:center">Second or later SELECT statement in a UNION</td>
+</tr>
+<tr>
+<td style="text-align:center">DEPENDENT UNION</td>
+<td style="text-align:center">dependent (true)</td>
+<td style="text-align:center">Second or later SELECT statement in a UNION, dependent on outer query</td>
+</tr>
+<tr>
+<td style="text-align:center">UNION RESULT</td>
+<td style="text-align:center">union_result</td>
+<td style="text-align:center">Result of a UNION.</td>
+</tr>
+<tr>
+<td style="text-align:center">SUBQUERY</td>
+<td style="text-align:center">None</td>
+<td style="text-align:center">First SELECT in subquery</td>
+</tr>
+<tr>
+<td style="text-align:center">DEPENDENT SUBQUERY</td>
+<td style="text-align:center">dependent (true)</td>
+<td style="text-align:center">First SELECT in subquery, dependent on outer query</td>
+</tr>
+<tr>
+<td style="text-align:center">DERIVED</td>
+<td style="text-align:center">None</td>
+<td style="text-align:center">Derived table SELECT (subquery in FROM clause)</td>
+</tr>
+<tr>
+<td style="text-align:center">MATERIALIZED</td>
+<td style="text-align:center">materialized_from_subquery</td>
+<td style="text-align:center">Materialized subquery</td>
+</tr>
+<tr>
+<td style="text-align:center">UNCACHEABLE SUBQUERY</td>
+<td style="text-align:center">cacheable (false)</td>
+<td style="text-align:center">A subquery for which the result cannot be cached and must be re-evaluated for each row of the outer query</td>
+</tr>
+<tr>
+<td style="text-align:center">UNCACHEABLE UNION</td>
+<td style="text-align:center">cacheable (false)</td>
+<td style="text-align:center">The second or later select in a UNION that belongs to an uncacheable subquery (see UNCACHEABLE SUBQUERY)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="各项内容含义说明："><a href="#各项内容含义说明：" class="headerlink" title="各项内容含义说明："></a>各项内容含义说明：</h4><ul>
+<li>A：<strong>simple</strong>：表示不需要union操作或者不包含子查询的简单select查询。有连接查询时，外层的查询为simple，且只有一个。</li>
+<li>B：<strong>primary</strong>：一个需要union操作或者含有子查询的select，位于最外层的单位查询的select_type即为primary。且只有一个。</li>
+<li>C：<strong>union</strong>：union连接的select查询，除了第一个表外，第二个及以后的表select_type都是union。</li>
+<li>D：<strong>dependent union</strong>：与union一样，出现在union 或union all语句中，但是这个查询要受到外部查询的影响</li>
+<li>E：<strong>union result</strong>：包含union的结果集，在union和union all语句中,因为它不需要参与查询，所以id字段为null</li>
+<li>F：<strong>subquery</strong>：除了from字句中包含的子查询外，其他地方出现的子查询都可能是subquery</li>
+<li>G：<strong>dependent subquery</strong>：与dependent union类似，表示这个subquery的查询要受到外部表查询的影响</li>
+<li>H：<strong>derived</strong>：from字句中出现的子查询。</li>
+<li>I：<strong>materialized</strong>：被物化的子查询</li>
+<li>J：<strong>UNCACHEABLE SUBQUERY</strong>：对于外层的主表，子查询不可被物化，每次都需要计算（耗时操作）</li>
+<li>K：<strong>UNCACHEABLE UNION</strong>：UNION操作中，内层的不可被物化的子查询（类似于UNCACHEABLE SUBQUERY）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">            ----Simple(不含子查询)</div><div class="line">Select_type-  </div><div class="line">            ----Primary（含子查询或派生查询）----Derived （from型子查询）  </div><div class="line">			                 ----subquery(非from子查询)</div></pre></td></tr></table></figure>
 <h3 id="Table：查询针对的表"><a href="#Table：查询针对的表" class="headerlink" title="Table：查询针对的表"></a>Table：查询针对的表</h3><p>有可能 实际表名或者表别名 （from A2 as a2）<br>Derived 如from 型子查询<br>Null 直接计算的结果不走表</p>
 <h3 id="Possible-key-可能用到的索引"><a href="#Possible-key-可能用到的索引" class="headerlink" title="Possible_key : 可能用到的索引"></a>Possible_key : 可能用到的索引</h3><p>注意：可能用几个索引最终只能用一个</p>
 <h3 id="Key-：最终用的索引"><a href="#Key-：最终用的索引" class="headerlink" title="Key ：最终用的索引"></a>Key ：最终用的索引</h3><h3 id="Key-len-使用索引最大长度"><a href="#Key-len-使用索引最大长度" class="headerlink" title="Key_len : 使用索引最大长度"></a>Key_len : 使用索引最大长度</h3><p>注：有可能possible_keys为Null 而key不为NULL这种情况<br>Possible_keys分析的是索引用于查找的过程。<br>而最终的key可能是被用于查找，排序或索引覆盖</p>
-<h3 id="Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据"><a href="#Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据" class="headerlink" title="Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据"></a>Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据</h3><p>可能的值如下：<br>all ：意味着从标的第一行往后逐行扫描，运气不好扫描到最后一行。<br>Index ： 比all性能稍微好一点<br>通俗说：all扫描所有的数据行，相当于data_all   index扫描所有索引节点相当于index_all<br>2种情况可能出现<br>1索引覆盖的查询情况下，能利用上索引数据，但利用不上索引查询必须全索引扫描<br>Range：意思是查询时能根据索引做范围扫描</p>
+<h3 id="Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据"><a href="#Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据" class="headerlink" title="Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据"></a>Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据</h3><p>可能的值如下：<br>依次从好到差：system，const，eq_ref，ref，fulltext，ref_or_null，index_merge，unique_subquery，index_subquery，range，index，ALL，除了all之外，其他的type都可以使用到索引，除了index_merge之外，其他的type只可以用到一个索引</p>
+<ul>
+<li>A：<strong>system</strong>：表中只有一行数据或者是空表，且只能用于myisam和memory表。如果是Innodb引擎表，type列在这个情况通常都是all或者index</li>
+<li>B：<strong>const</strong>：使用唯一索引或者主键，返回记录一定是1行记录的等值where条件时，通常type是const。其他数据库也叫做唯一索引扫描</li>
+<li>C：<strong>eq_ref</strong>：出现在要连接过个表的查询计划中，驱动表只返回一行数据，且这行数据是第二个表的主键或者唯一索引，且必须为not null，唯一索引和主键是多列时，只有所有的列都用作比较时才会出现eq_ref</li>
+<li>D：<strong>ref</strong>：不像eq_ref那样要求连接顺序，也没有主键和唯一索引的要求，只要使用相等条件检索时就可能出现，常见与辅助索引的等值查找。或者多列主键、唯一索引中，使用第一个列之外的列作为等值查找也会出现，总之，返回数据不唯一的等值查找就可能出现。</li>
+<li>E：<strong>fulltext</strong>：全文索引检索，要注意，全文索引的优先级很高，若全文索引和普通索引同时存在时，mysql不管代价，优先选择使用全文索引</li>
+<li>F：<strong>ref_or_null</strong>：与ref方法类似，只是增加了null值的比较。实际用的不多。<br>例如：<br>SELECT * FROM ref_table<br>WHERE key_column=expr OR key_column IS NULL;</li>
+<li>G：<strong>index_merge</strong>：表示查询使用了两个以上的索引，最后取交集或者并集，常见and ，or的条件使用了不同的索引，官方排序这个在ref_or_null之后，但是实际上由于要读取所个索引，性能可能大部分时间都不如range</li>
+<li>H：<strong>unique_subquery</strong>：用于where中的in形式子查询，子查询返回不重复值唯一值</li>
+<li>I：<strong>index_subquery</strong>：用于in形式子查询使用到了辅助索引或者in常数列表，子查询可能返回重复值，可以使用索引将子查询去重。</li>
+<li>J：<strong>range</strong>：索引范围扫描，常见于使用 =, &lt;&gt;, &gt;, &gt;=, &lt;, &lt;=, IS NULL, &lt;=&gt;, BETWEEN, IN()或者like等运算符的查询中。</li>
+<li>K：<strong>index</strong>：索引全表扫描，把索引从头到尾扫一遍，常见于使用索引列就可以处理不需要读取数据文件的查询、可以使用索引排序或者分组的查询。按照官方文档的说法：</li>
+<li><strong>all</strong> ：意味着从标的第一行往后逐行扫描，运气不好扫描到最后一行。</li>
+</ul>
+<p>通俗说：all扫描所有的数据行，相当于data_all   index扫描所有索引节点相当于index_all<br>Range：意思是查询时能根据索引做范围扫描<br>1索引覆盖的查询情况下，能利用上索引数据，但利用不上索引查询必须全索引扫描</p>
+<p>以上说的是索引扫描的两种情况，一种是查询使用了覆盖索引，那么它只需要扫描索引就可以获得数据，这个效率要比全表扫描要快，因为索引通常比数据表小，而且还能避免二次查询。在extra中显示Using index，反之，如果在索引上进行全表扫描，没有Using index的提示。</p>
 <h3 id="Ref：意思指通过索引列可以直接引用到某些数据行"><a href="#Ref：意思指通过索引列可以直接引用到某些数据行" class="headerlink" title="Ref：意思指通过索引列可以直接引用到某些数据行"></a>Ref：意思指通过索引列可以直接引用到某些数据行</h3><p>Eq_ref 是指通过索引列直接引用某1行数据<br>常见于链接查询中<br>Const，system，null 这三个分别指查询优化到常量级别甚至不需要查询时间<br>一般按照主键查询易出现const，system<br>或者直接查询某个表达式不经过表时，出现null</p>
-<h3 id="Rows：预计要扫描多少行"><a href="#Rows：预计要扫描多少行" class="headerlink" title="Rows：预计要扫描多少行"></a>Rows：预计要扫描多少行</h3><h3 id="Extra："><a href="#Extra：" class="headerlink" title="Extra："></a>Extra：</h3><p>Index是指用到索引覆盖，效率非常高<br>Using where 是指只靠索引无法定位。还需要where判断<br>Using temporary 指用上了临时表，ground by 与 order by 不同列时或ground by 与 order by 别的表的列<br>Using filesort 文件排序（文件可能在磁盘，也可能在内存）</p>
+<h3 id="Rows：预计要扫描多少行"><a href="#Rows：预计要扫描多少行" class="headerlink" title="Rows：预计要扫描多少行"></a>Rows：预计要扫描多少行</h3><h3 id="Extra："><a href="#Extra：" class="headerlink" title="Extra："></a>Extra：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">If you want to make your queries as fast as possible, </div><div class="line">look out <span class="keyword">for</span> Extra column values of Using filesort and Using temporary,</div><div class="line">or, <span class="keyword">in</span> JSON-formatted EXPLAINoutput, </div><div class="line"><span class="keyword">for</span> using_filesort and using_temporary_table properties equal to <span class="literal">true</span>.</div></pre></td></tr></table></figure>
+<p>大概的意思就是说，如果你想要优化你的查询，那就要注意extra辅助信息中的using filesort和using temporary，这两项非常消耗性能，需要注意。</p>
+<ul>
+<li>A：<strong>distinct</strong>：在select部分使用了distinc关键字。</li>
+<li>B：<strong>no tables used</strong>：不带from字句的查询或者From dual查询。</li>
+<li>C：使用not in()形式子查询或not exists运算符的连接查询，这种叫做反连接。即，一般连接查询是先查询内表，再查询外表，反连接就是先查询外表，再查询内表。</li>
+<li>D：<strong>using filesort</strong>：排序时无法使用到索引时，就会出现这个。常见于order by和group by语句中。</li>
+<li>E：<strong>using index</strong>：查询时不需要回表查询，直接通过索引就可以获取查询的数据。</li>
+<li>F：<strong>using join buffer（block nested loop），using join buffer（batched key accss）</strong>：5.6.x之后的版本优化关联查询的BNL，BKA特性。主要是减少内表的循环数量以及比较顺序地扫描查询。</li>
+<li>G：<strong>using sort_union，using_union，using intersect，using sort_intersection</strong>：<br>　　<strong>using intersect</strong>：表示使用and的各个索引的条件时，该信息表示是从处理结果获取交集。<br>　　<strong>using union</strong>：表示使用or连接各个使用索引的条件时，该信息表示从处理结果获取并集。<br>　　<strong>using sort_union和using sort_intersection</strong>：与前面两个对应的类似，只是他们是出现在用and和or查询信息量大时，先查询主键，然后进行排序合并后，才能读取记录并返回。</li>
+<li>H：<strong>using temporary</strong>：表示使用了临时表存储中间结果。临时表可以是内存临时表和磁盘临时表，执行计划中看不出来，需要查看status变量，used_tmp_table，used_tmp_disk_table才能看出来。</li>
+<li>I：<strong>using where</strong>：表示存储引擎返回的记录并不是所有的都满足查询条件，需要在server层进行过滤。查询条件中分为限制条件和检查条件，5.6之前，存储引擎只能根据限制条件扫描数据并返回，然后server层根据检查条件进行过滤再返回真正符合查询的数据。5.6.x之后支持ICP特性，可以把检查条件也下推到存储引擎层，不符合检查条件和限制条件的数据，直接不读取，这样就大大减少了存储引擎扫描的记录数量。extra列显示using index condition。</li>
+<li>J：<strong>firstmatch(tb_name)</strong>：5.6.x开始引入的优化子查询的新特性之一，常见于where字句含有in()类型的子查询。如果内表的数据量比较大，就可能出现这个。</li>
+<li>K：<strong>loosescan(m..n)</strong>：5.6.x之后引入的优化子查询的新特性之一，在in()类型的子查询中，子查询返回的可能有重复记录时，就可能出现这个。</li>
+</ul>
+<p>Index是指用到索引覆盖，效率非常高<br>Using where 是指只靠索引无法定位。还需要where判断<br>Using temporary 指用上了临时表，ground by 与 order by 不同列时或ground by 与 order by 别的表的列<br>Using filesort 文件排序（文件可能在磁盘，也可能在内存）</p>
+<h2 id="三、OPTIMIZER-TRACE"><a href="#三、OPTIMIZER-TRACE" class="headerlink" title="三、OPTIMIZER_TRACE"></a>三、OPTIMIZER_TRACE</h2><p>从MySQL5.6版本开始，optimizer_trace 可支持把MySQL查询执行计划树打印出来，对DBA深入分析SQL执行计划，COST成本都非常有用，打印的内部信息比较全面。默认是关闭的，功能支持动态开关，因为对性能有20%左右影响，只建议分析问题时，临时开启。</p>
+<h3 id="1-默认是关闭的"><a href="#1-默认是关闭的" class="headerlink" title="1. 默认是关闭的"></a>1. 默认是关闭的</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like <span class="string">'optimizer_trace'</span>;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Variable_name</th>
+<th style="text-align:center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">optimizer_trace</td>
+<td style="text-align:center">enabled=off,one_line=off</td>
+</tr>
+</tbody>
+</table>
+<p>1 row in set (0.05 sec)</p>
+<h3 id="2-演示-optimizer-trace-简单的使用流程："><a href="#2-演示-optimizer-trace-简单的使用流程：" class="headerlink" title="2.演示 optimizer_trace 简单的使用流程："></a>2.演示 optimizer_trace 简单的使用流程：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> tmp_table_size=1024;</div><div class="line"><span class="built_in">set</span> sort_buffer_size=32768;</div><div class="line"><span class="built_in">set</span> max_length_for_sort_data=16;</div><div class="line"><span class="built_in">set</span> optimizer_trace_max_mem_size=1000000;    --- 设置trace大小</div><div class="line"><span class="built_in">set</span> end_markers_in_json=on;    --- 增加trace中注释</div><div class="line">/* 打开 optimizer_trace，只对本线程有效 */</div><div class="line">SET optimizer_trace=<span class="string">'enabled=on'</span>; </div><div class="line"></div><div class="line">/* 执行语句 */</div><div class="line">select word from words order by rand() <span class="built_in">limit</span> 3;</div><div class="line"></div><div class="line">/* 查看 OPTIMIZER_TRACE 输出 */</div><div class="line">SELECT * FROM `information_schema`.`OPTIMIZER_TRACE`\G</div><div class="line"></div><div class="line">/* 关闭 optimizer_trace*/</div><div class="line">SET optimizer_trace=<span class="string">'enabled=off'</span>; </div><div class="line"></div><div class="line">补充：永久开启 optimizer_trace    （重启失效）</div><div class="line">mysql&gt; <span class="built_in">set</span> optimizer_trace=<span class="string">"enabled=on"</span>;</div></pre></td></tr></table></figure>
+<p>官方文档给出了一个不错的例子，比这里的这个要复杂多了，有兴趣的同学可自行翻阅：<br><a href="http://dev.mysql.com/doc/internals/en/tracing-example.html" target="_blank" rel="external">http://dev.mysql.com/doc/internals/en/tracing-example.html</a></p>
 
       
     </div>
@@ -613,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何利用explain来分析sql语句"><span class="nav-number">1.</span> <span class="nav-text">如何利用explain来分析sql语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-sql语句的优化"><span class="nav-number">1.1.</span> <span class="nav-text">一.sql语句的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Sql语句的时间花在哪？"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.Sql语句的时间花在哪？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Sql语句的执行时间，又花到哪了？"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.Sql语句的执行时间，又花到哪了？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何查询快？"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">如何查询快？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切分查询：按数据拆成多次"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">切分查询：按数据拆成多次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-sql语句优化思路？"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.sql语句优化思路？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-使用explain来分析"><span class="nav-number">1.2.</span> <span class="nav-text">二.使用explain来分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"><span class="nav-number">1.2.1.</span> <span class="nav-text">id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-type-查询类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">Select_type:查询类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table：查询针对的表"><span class="nav-number">1.2.3.</span> <span class="nav-text">Table：查询针对的表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-key-可能用到的索引"><span class="nav-number">1.2.4.</span> <span class="nav-text">Possible_key : 可能用到的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-：最终用的索引"><span class="nav-number">1.2.5.</span> <span class="nav-text">Key ：最终用的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-len-使用索引最大长度"><span class="nav-number">1.2.6.</span> <span class="nav-text">Key_len : 使用索引最大长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据"><span class="nav-number">1.2.7.</span> <span class="nav-text">Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ref：意思指通过索引列可以直接引用到某些数据行"><span class="nav-number">1.2.8.</span> <span class="nav-text">Ref：意思指通过索引列可以直接引用到某些数据行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rows：预计要扫描多少行"><span class="nav-number">1.2.9.</span> <span class="nav-text">Rows：预计要扫描多少行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extra："><span class="nav-number">1.2.10.</span> <span class="nav-text">Extra：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何利用explain来分析sql语句"><span class="nav-number">1.</span> <span class="nav-text">如何利用explain来分析sql语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-sql语句的优化"><span class="nav-number">1.1.</span> <span class="nav-text">一.sql语句的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Sql语句的时间花在哪？"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.Sql语句的时间花在哪？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Sql语句的执行时间，又花到哪了？"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.Sql语句的执行时间，又花到哪了？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何查询快？"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">如何查询快？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切分查询：按数据拆成多次"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">切分查询：按数据拆成多次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-sql语句优化思路？"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.sql语句优化思路？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-使用explain来分析"><span class="nav-number">1.2.</span> <span class="nav-text">二.使用explain来分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id-代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。"><span class="nav-number">1.2.1.</span> <span class="nav-text">id:代表select语句的编号，如果是链接查询表之间是平等关系select编号是从1开始，如果某select中有子查询则编号递增。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-type-查询类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">Select_type:查询类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#各项内容含义说明："><span class="nav-number">1.2.2.1.</span> <span class="nav-text">各项内容含义说明：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table：查询针对的表"><span class="nav-number">1.2.3.</span> <span class="nav-text">Table：查询针对的表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-key-可能用到的索引"><span class="nav-number">1.2.4.</span> <span class="nav-text">Possible_key : 可能用到的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-：最终用的索引"><span class="nav-number">1.2.5.</span> <span class="nav-text">Key ：最终用的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-len-使用索引最大长度"><span class="nav-number">1.2.6.</span> <span class="nav-text">Key_len : 使用索引最大长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type列：-是指查询的方式，非常重要是分析查数据的过程的重要依据"><span class="nav-number">1.2.7.</span> <span class="nav-text">Type列： 是指查询的方式，非常重要是分析查数据的过程的重要依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ref：意思指通过索引列可以直接引用到某些数据行"><span class="nav-number">1.2.8.</span> <span class="nav-text">Ref：意思指通过索引列可以直接引用到某些数据行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rows：预计要扫描多少行"><span class="nav-number">1.2.9.</span> <span class="nav-text">Rows：预计要扫描多少行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extra："><span class="nav-number">1.2.10.</span> <span class="nav-text">Extra：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、OPTIMIZER-TRACE"><span class="nav-number">1.3.</span> <span class="nav-text">三、OPTIMIZER_TRACE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-默认是关闭的"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 默认是关闭的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-演示-optimizer-trace-简单的使用流程："><span class="nav-number">1.3.2.</span> <span class="nav-text">2.演示 optimizer_trace 简单的使用流程：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
