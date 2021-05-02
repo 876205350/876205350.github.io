@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[Beego 在linux服务器部署]]></title>
     <url>%2F2021%2F02%2F02%2FBeego-%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%2F</url>
-    <content type="text"><![CDATA[Beego 在linux服务器部署1.项目打包：linux上部署： bee pack -be GOOS=linux2.go环境安装安装go：1sudo apt-get install golang-go 会安装到/usr/lib/go-1.6目录 3.工程管理：123mkdir -p /home/go/srcmkdir -p /home/go/binmkdir -p /home/go/pkg 添加环境变量：12345678910vi ~/.profile添加下面：export GOROOT=/usr/lib/go-1.6export PATH="$PATH:$GOROOT/bin"export GOPATH=/home/goexport PATH="$PATH:$GOPATH/bin"加载配置：source ~/.profile检查：go env 将打包文件放在linux下gopath路径下修改权限 chmod 777 -R /home/go 进入到该目录nohup 命令启动：1nohup ./项目名称 &amp;]]></content>
+    <content type="text"><![CDATA[Beego 在linux服务器部署 1.项目打包：linux上部署： bee pack -be GOOS=linux2.go环境安装安装go：1sudo apt-get install golang-go 会安装到/usr/lib/go-1.6目录 3.工程管理：123mkdir -p /home/go/srcmkdir -p /home/go/binmkdir -p /home/go/pkg 添加环境变量：12345678910vi ~/.profile添加下面：export GOROOT=/usr/lib/go-1.6export PATH="$PATH:$GOROOT/bin"export GOPATH=/home/goexport PATH="$PATH:$GOPATH/bin"加载配置：source ~/.profile检查：go env 将打包文件放在linux下gopath路径下修改权限 chmod 777 -R /home/go 进入到该目录nohup 命令启动：1nohup ./项目名称 &amp;]]></content>
       <categories>
         <category>Go</category>
       </categories>

@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="Beego 在linux服务器部署1.项目打包：linux上部署： bee pack -be GOOS=linux2.go环境安装安装go：1sudo apt-get install golang-go 会安装到/usr/lib/go-1.6目录 3.工程管理：123mkdir -p /home/go/srcmkdir -p /home/go/binmkdir -p /home/go/pkg 添加">
+<meta name="description" content="Beego 在linux服务器部署">
 <meta name="keywords" content="beego">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Beego 在linux服务器部署">
 <meta property="og:url" content="http://yoursite.com/2021/02/02/Beego-在linux服务器部署/index.html">
 <meta property="og:site_name" content="Like programming">
-<meta property="og:description" content="Beego 在linux服务器部署1.项目打包：linux上部署： bee pack -be GOOS=linux2.go环境安装安装go：1sudo apt-get install golang-go 会安装到/usr/lib/go-1.6目录 3.工程管理：123mkdir -p /home/go/srcmkdir -p /home/go/binmkdir -p /home/go/pkg 添加">
-<meta property="og:updated_time" content="2021-05-02T16:23:41.838Z">
+<meta property="og:description" content="Beego 在linux服务器部署">
+<meta property="og:updated_time" content="2021-05-02T16:32:26.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Beego 在linux服务器部署">
-<meta name="twitter:description" content="Beego 在linux服务器部署1.项目打包：linux上部署： bee pack -be GOOS=linux2.go环境安装安装go：1sudo apt-get install golang-go 会安装到/usr/lib/go-1.6目录 3.工程管理：123mkdir -p /home/go/srcmkdir -p /home/go/binmkdir -p /home/go/pkg 添加">
+<meta name="twitter:description" content="Beego 在linux服务器部署">
 
 
 
@@ -404,7 +404,8 @@
       
 
       
-        <h1 id="Beego-在linux服务器部署"><a href="#Beego-在linux服务器部署" class="headerlink" title="Beego 在linux服务器部署"></a>Beego 在linux服务器部署</h1><h2 id="1-项目打包："><a href="#1-项目打包：" class="headerlink" title="1.项目打包："></a>1.项目打包：</h2><h3 id="linux上部署：-bee-pack-be-GOOS-linux"><a href="#linux上部署：-bee-pack-be-GOOS-linux" class="headerlink" title="linux上部署： bee pack -be GOOS=linux"></a>linux上部署： bee pack -be GOOS=linux</h3><h2 id="2-go环境安装"><a href="#2-go环境安装" class="headerlink" title="2.go环境安装"></a>2.go环境安装</h2><p>安装go：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install golang-go</div></pre></td></tr></table></figure></p>
+        <h1 id="Beego-在linux服务器部署"><a href="#Beego-在linux服务器部署" class="headerlink" title="Beego 在linux服务器部署"></a>Beego 在linux服务器部署</h1><a id="more"></a>
+<h2 id="1-项目打包："><a href="#1-项目打包：" class="headerlink" title="1.项目打包："></a>1.项目打包：</h2><h3 id="linux上部署：-bee-pack-be-GOOS-linux"><a href="#linux上部署：-bee-pack-be-GOOS-linux" class="headerlink" title="linux上部署： bee pack -be GOOS=linux"></a>linux上部署： bee pack -be GOOS=linux</h3><h2 id="2-go环境安装"><a href="#2-go环境安装" class="headerlink" title="2.go环境安装"></a>2.go环境安装</h2><p>安装go：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install golang-go</div></pre></td></tr></table></figure></p>
 <p>会安装到/usr/lib/go-1.6目录</p>
 <h2 id="3-工程管理："><a href="#3-工程管理：" class="headerlink" title="3.工程管理："></a>3.工程管理：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir -p /home/go/src</div><div class="line">mkdir -p /home/go/bin</div><div class="line">mkdir -p /home/go/pkg</div></pre></td></tr></table></figure>
 <p>添加环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">vi ~/.profile</div><div class="line">添加下面：</div><div class="line"><span class="built_in">export</span> GOROOT=/usr/lib/go-1.6</div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PATH</span>:<span class="variable">$GOROOT</span>/bin"</span></div><div class="line"><span class="built_in">export</span> GOPATH=/home/go</div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PATH</span>:<span class="variable">$GOPATH</span>/bin"</span></div><div class="line">加载配置：</div><div class="line"><span class="built_in">source</span> ~/.profile</div><div class="line">检查：</div><div class="line">go env</div></pre></td></tr></table></figure></p>
