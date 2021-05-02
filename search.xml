@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Beego 在windows服务器部署]]></title>
+    <url>%2F2021%2F02%2F02%2FBeego-%E5%9C%A8windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"><![CDATA[Beego 在windows服务器部署 1.项目打包：window上部署：bee pack -be GOOS=windows进入到项目目录,执行：1bee pack -be GOOS=windows 如果发生错误：1234SET CGO_ENABLED=0SET GOOS=windowsSET GOARCH=amd64bee pack -be GOOS=windows 2.将打包好的项目包拷贝到要存放的路径下，解压3.安装nssm服务管理工具： 支持Windows 7, Windows 8 and Windows 10管理员身份打开cmd，进入到nssm软件存放exe文件的目录1nssm install &lt;servicename&gt; servicename就是你要添加的服务的名称然后在弹出的框中选择第二部解压文件夹中的exe文件开始中搜服务，找到 ，启动即可 4.修改服务的指向路径：1.进入服务，查看路径，【开始】=&gt;【运行】=&gt;【services.msc】2.进入注册表，修改服务路径【开始】=&gt;【运行】=&gt;【regedit】，打开HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\【服务名称】，找到要修改的服务名称，然后修改【ImagePath】中数据值即可]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>beego</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Beego 在linux服务器部署]]></title>
+    <url>%2F2021%2F02%2F02%2FBeego-%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"><![CDATA[Beego 在linux服务器部署1.项目打包：linux上部署： bee pack -be GOOS=linux2.go环境安装安装go：1sudo apt-get install golang-go 会安装到/usr/lib/go-1.6目录 3.工程管理：123mkdir -p /home/go/srcmkdir -p /home/go/binmkdir -p /home/go/pkg 添加环境变量：12345678910vi ~/.profile添加下面：export GOROOT=/usr/lib/go-1.6export PATH="$PATH:$GOROOT/bin"export GOPATH=/home/goexport PATH="$PATH:$GOPATH/bin"加载配置：source ~/.profile检查：go env 将打包文件放在linux下gopath路径下修改权限 chmod 777 -R /home/go 进入到该目录nohup 命令启动：1nohup ./项目名称 &amp;]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>beego</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[GO 面试题]]></title>
+    <url>%2F2021%2F01%2F23%2FGO-%E9%9D%A2%E8%AF%95%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[go语言面试题（不定时更新） 1、Go里边有个思想，通过通信来共享内存，而不是通过共享内存而通信，怎么理解这句话，你在工作中如何处理共享变量？2、chan比mutex更轻么？还有更轻量的方法么？3、什么时候用chan不如mutex效率高？]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Beego 表关系]]></title>
+    <url>%2F2020%2F12%2F22%2FBeego-%E8%A1%A8%E5%85%B3%E7%B3%BB%2F</url>
+    <content type="text"><![CDATA[beego表与表之间的关系 一对一关系：一对一关系通过外键相连既可以实现 一对多关系：1234567一人有多辆汽车person表： create table person\(id int primary key auto\_increment,name varchar\(32\),age int,gender varchar\(2\)\);car 表： create table car\(id int primary key auto\_increment,name varchar\(50\),) 1.可以听听舒缓的音乐，尽量的让自己放松心情。2.转移一下自己的注意力，要让自己保持情绪稳定。情绪低落很有可能是由于生活中遇到了一定的困难，烦心的事情所导致的一种不良的情绪，属于比较常见的一种情况，要学会自我调节。]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>beego</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Beego 命令行自动建表]]></title>
     <url>%2F2020%2F12%2F21%2FBeego-%E5%BB%BA%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[GO基础语法之后beego的自动建表 前提.数据库已经注册 orm.RegisterDataBase.模型已注册 orm.registerModel 在main.go中调用RunCommand命令.beego.Run() 命令前调用 orm.RunCommand() cmd中执行命令：第一种方式：通过buildmain.go,每次修改模型都要build go build main.go 编译main.go文件 main orm 置行orm命令,查看orm的命令参数、 第二种方式：直接使用main.go 或者 直接go run main.go orm 执行orm命令 自动建表123456789101112131415161718192021&gt;go run main.go orm orm command usage: syncdb - auto create tables sqlall - print sql of create tables help - print this help&gt;go run main.go orm syncdb -h (查看帮助)Usage of orm command: syncdb: -db string DataBase alias name (default "default") -force drop tables before create -v verbose info&gt;go run main.go orm syncdb table `article` already exists, skip create table `user`&gt;go run main.go orm syncdb -force drop table `article` drop table `user` create table `article` create table `user` syncdb参数： -db： 默认使用别名default -force 删除表后再创建，只是给定这个参数就删除表后再创建，建议不使用 默认是先删除后创建 force=false 如果存在就跳过，不删除存在的表 -v 查看执行的sql语句 打印加标sql：只看建表语句，不自动建表 用于建表前， go run main.go orm sqlall 默认使用default库 后面加 -h 查看帮助 在程序中调用直接建表（不建议使用）12345678910111213name := "default"//drop table 后建表force := true//打印执行过程verbose := true// 遇到错误立即返回err := orm.RunSyncdb(name,force,verbose)if err != nil &#123; fmt.println(err)&#125;]]></content>
+    <content type="text"><![CDATA[GO基础语法之后beego的自动建表 前提.数据库已经注册 orm.RegisterDataBase.模型已注册 orm.registerModel 在main.go中调用RunCommand命令.beego.Run() 命令前调用 orm.RunCommand() cmd中执行命令：第一种方式：通过buildmain.go,每次修改模型都要build go build main.go 编译main.go文件 main orm 置行orm命令,查看orm的命令参数、 第二种方式：直接使用main.go 或者 直接go run main.go orm 执行orm命令 自动建表123456789101112131415161718192021&gt;go run main.go orm orm command usage: syncdb - auto create tables sqlall - print sql of create tables help - print this help&gt;go run main.go orm syncdb -h (查看帮助)Usage of orm command: syncdb: -db string DataBase alias name (default "default") -force drop tables before create -v verbose info&gt;go run main.go orm syncdb table `article` already exists, skip create table `user`&gt;go run main.go orm syncdb -force drop table `article` drop table `user` create table `article` create table `user` syncdb参数： -db： 默认使用别名default -force 删除表后再创建，只是给定这个参数就删除表后再创建，建议不使用 默认是先删除后创建 force=false 如果存在就跳过，不删除存在的表 -v 查看执行的sql语句 打印加标sql：只看建表语句，不自动建表 用于建表前， go run main.go orm sqlall 默认使用default库 后面加 -h 查看帮助12345678910111213141516171819 &gt;go run main.go orm sqlall-- ---------------------------------------------------- Table Structure for `beego_project/models.Article`-- --------------------------------------------------CREATE TABLE IF NOT EXISTS `article` ( `id` integer NOT NULL PRIMARY KEY, `name` varchar(255) NOT NULL DEFAULT '' , `author` varchar(255) NOT NULL DEFAULT '' , `content` varchar(255) NOT NULL DEFAULT '') ENGINE=InnoDB;-- ---------------------------------------------------- Table Structure for `beego_project/models.User`-- --------------------------------------------------CREATE TABLE IF NOT EXISTS `user` ( `id` integer NOT NULL PRIMARY KEY, `name` varchar(255) NOT NULL DEFAULT '' , `age` integer NOT NULL DEFAULT 0) ENGINE=InnoDB; 在程序中调用直接建表（不建议使用）12345678910111213name := "default"//drop table 后建表force := true//打印执行过程verbose := true// 遇到错误立即返回err := orm.RunSyncdb(name,force,verbose)if err != nil &#123; fmt.println(err)&#125;]]></content>
       <categories>
         <category>Go</category>
       </categories>

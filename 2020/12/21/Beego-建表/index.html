@@ -118,7 +118,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/12/21/Beego-建表/index.html">
 <meta property="og:site_name" content="Like programming">
 <meta property="og:description" content="GO基础语法之后beego的自动建表">
-<meta property="og:updated_time" content="2020-12-21T09:34:00.817Z">
+<meta property="og:updated_time" content="2020-12-21T09:51:10.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Beego 命令行自动建表">
 <meta name="twitter:description" content="GO基础语法之后beego的自动建表">
@@ -411,7 +411,7 @@
 <h3 id="第二种方式：直接使用main-go"><a href="#第二种方式：直接使用main-go" class="headerlink" title="第二种方式：直接使用main.go"></a>第二种方式：直接使用main.go</h3><p>  或者 直接go run main.go orm 执行orm命令</p>
 <h3 id="自动建表"><a href="#自动建表" class="headerlink" title="自动建表"></a>自动建表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&gt;go run main.go orm </div><div class="line">orm <span class="built_in">command</span> usage:</div><div class="line"></div><div class="line">    syncdb     - auto create tables</div><div class="line">    sqlall     - <span class="built_in">print</span> sql of create tables</div><div class="line">    <span class="built_in">help</span>       - <span class="built_in">print</span> this <span class="built_in">help</span></div><div class="line">&gt;go run main.go orm syncdb -h  (查看帮助)</div><div class="line">Usage of orm <span class="built_in">command</span>: syncdb:</div><div class="line">  -db string</div><div class="line">        DataBase <span class="built_in">alias</span> name (default <span class="string">"default"</span>)</div><div class="line">  -force</div><div class="line">        drop tables before create</div><div class="line">  -v    verbose info</div><div class="line">&gt;go run main.go orm syncdb</div><div class="line">  table `article` already exists, skip</div><div class="line">  create table `user`</div><div class="line">&gt;go run main.go orm syncdb -force</div><div class="line">  drop table `article`</div><div class="line">  drop table `user`</div><div class="line">  create table `article`</div><div class="line">  create table `user`</div></pre></td></tr></table></figure>
 <p>syncdb参数：<br>  -db： 默认使用别名default<br>  -force 删除表后再创建，只是给定这个参数就删除表后再创建，建议不使用<br>    默认是先删除后创建<br>    force=false 如果存在就跳过，不删除存在的表<br>  -v 查看执行的sql语句</p>
-<h3 id="打印加标sql：只看建表语句，不自动建表"><a href="#打印加标sql：只看建表语句，不自动建表" class="headerlink" title="打印加标sql：只看建表语句，不自动建表"></a>打印加标sql：只看建表语句，不自动建表</h3><p>  用于建表前，<br>  go run main.go orm sqlall<br>    默认使用default库<br>    后面加 -h 查看帮助</p>
+<h3 id="打印加标sql：只看建表语句，不自动建表"><a href="#打印加标sql：只看建表语句，不自动建表" class="headerlink" title="打印加标sql：只看建表语句，不自动建表"></a>打印加标sql：只看建表语句，不自动建表</h3><p>  用于建表前，<br>  go run main.go orm sqlall<br>    默认使用default库<br>    后面加 -h 查看帮助<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"> &gt;go run main.go orm sqlall</div><div class="line">-- --------------------------------------------------</div><div class="line">--  Table Structure <span class="keyword">for</span> `beego_project/models.Article`</div><div class="line">-- --------------------------------------------------</div><div class="line">CREATE TABLE IF NOT EXISTS `article` (</div><div class="line">    `id` <span class="built_in">integer</span> NOT NULL PRIMARY KEY,</div><div class="line">    `name` varchar(255) NOT NULL DEFAULT <span class="string">''</span> ,</div><div class="line">    `author` varchar(255) NOT NULL DEFAULT <span class="string">''</span> ,</div><div class="line">    `content` varchar(255) NOT NULL DEFAULT <span class="string">''</span></div><div class="line">) ENGINE=InnoDB;</div><div class="line"></div><div class="line">-- --------------------------------------------------</div><div class="line">--  Table Structure <span class="keyword">for</span> `beego_project/models.User`</div><div class="line">-- --------------------------------------------------</div><div class="line">CREATE TABLE IF NOT EXISTS `user` (</div><div class="line">    `id` <span class="built_in">integer</span> NOT NULL PRIMARY KEY,</div><div class="line">    `name` varchar(255) NOT NULL DEFAULT <span class="string">''</span> ,</div><div class="line">    `age` <span class="built_in">integer</span> NOT NULL DEFAULT 0</div><div class="line">) ENGINE=InnoDB;</div></pre></td></tr></table></figure></p>
 <h2 id="在程序中调用直接建表（不建议使用）"><a href="#在程序中调用直接建表（不建议使用）" class="headerlink" title="在程序中调用直接建表（不建议使用）"></a>在程序中调用直接建表（不建议使用）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">name := <span class="string">"default"</span></div><div class="line"></div><div class="line">//drop table 后建表</div><div class="line">force := <span class="literal">true</span></div><div class="line"></div><div class="line">//打印执行过程</div><div class="line">verbose := <span class="literal">true</span></div><div class="line"></div><div class="line">// 遇到错误立即返回</div><div class="line">err := orm.RunSyncdb(name,force,verbose)</div><div class="line"><span class="keyword">if</span> err != nil &#123;</div><div class="line">  fmt.println(err)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
@@ -463,6 +463,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/22/Beego-表关系/" rel="prev" title="Beego 表关系">
+                Beego 表关系 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -543,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +627,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
