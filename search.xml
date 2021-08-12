@@ -36,7 +36,7 @@
   <entry>
     <title><![CDATA[GO 面试题]]></title>
     <url>%2F2021%2F01%2F23%2FGO-%E9%9D%A2%E8%AF%95%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[go语言面试题（不定时更新） 1、Go里边有个思想，通过通信来共享内存，而不是通过共享内存而通信，怎么理解这句话，你在工作中如何处理共享变量？2、chan比mutex更轻么？还有更轻量的方法么？3、什么时候用chan不如mutex效率高？]]></content>
+    <content type="text"><![CDATA[go语言面试题（不定时更新） GoLang channel 面试题：1、接收一个未经过 make 初始化的 channel 会发生什么？2、接收一个已经 close 的 channel 会发生什么？3、向 channel 发数据的时候，什么时候会直接把数据从一个 goroutine 的栈拷贝到另一个 goroutine 的栈，为什么这么处理？4、如果有多个channel同时唤醒同一个goroutine，这个并发控制是怎么做的？1、Go里边有个思想，通过通信来共享内存，而不是通过共享内存而通信，怎么理解这句话，你在工作中如何处理共享变量？2、chan比mutex更轻么？还有更轻量的方法么？3、什么时候用chan不如mutex效率高？]]></content>
       <categories>
         <category>Go</category>
       </categories>
